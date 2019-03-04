@@ -6,10 +6,10 @@ System security and password integrity are a very common problem in today’s so
 
 ### Domain terminology:
 
-**Encryption** - The practice of obscuring data as to prevent unauthorized access 
+**- Encryption** - The practice of obscuring data as to prevent unauthorized access 
 
-**Domain** - A group of computers and devices on a network; the network may require privileged access 
+**- Domain** - A group of computers and devices on a network; the network may require privileged access 
 
-**Password hashing** - The act of converting a password to an unreadable string 
+**- Password hashing** - The act of converting a password to an unreadable string 
 
-**Password Salting** - The practice of adding extra bits to a password string in order to prevent a malicious actor guessing the hashing technique 
+**- Password Salting** - The practice of adding extra bits to a password string in order to prevent a malicious actor guessing the hashing technique 
