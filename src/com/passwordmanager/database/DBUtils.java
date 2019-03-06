@@ -1,8 +1,8 @@
-package com.passwordmanager.DataBase;
+package com.passwordmanager.database;
 
 import java.sql.*;
 
-public class DBUtil {
+public class DBUtils {
 
     public static void closeStatement(Statement s) {
         try {
