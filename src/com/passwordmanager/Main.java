@@ -18,7 +18,7 @@ public class Main {
             accross multiple connections from differing IPs.
          */
         ConnectionPool pool = ConnectionPool.getInstance();
-        Connection connection = pool.getConnection();
+        Connection connection = pool.getConnection();//
 
         /*
             A prepared statement that is set using the Connection.prepareStatement
@@ -38,11 +38,16 @@ public class Main {
         String query = "SELECT * FROM TEST_TABLE";
 
         try {
+
             ps = connection.prepareStatement(query);
+
             rs = ps.executeQuery();
+
             while (rs.next()) {
                 System.out.println(rs.getString("TEST_COLUMN"));
+
             }
+
         } catch (SQLException e) {
             System.out.println(e);
         } finally {
