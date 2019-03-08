@@ -8,24 +8,33 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import com.passwordmanager.objects.*;
 
 public class UserDB {
 
-    public User getUserByID(int id) {
-        User user = null;
-
-        
-
+    public Users getUserByID(int id) {
+        Users user = null;
         return user;
-
     }
 
-    public User getUserByUsername(String username) {
-        User user = null;
-
+    public Users getUserByUsername(String username) {
+        Users user = null;
         return user;
-
     }
+
+    public boolean updateUsername(Users user, String username){return false;}
+
+    public boolean updatePassword(Users user, String pwd) {return false;}
+
+    public boolean updateFirstname(Users user, String fname) {return false;}
+
+    public boolean updateLastname(Users user, String lname) {return false;}
+
+    public boolean updateAccessLevel(Users user, int access) {return false;}
+
+    public boolean insertUser(Users user) {return false;}
+
+    public ArrayList<Users> getUsers() {return null;}
 
 
 }
