@@ -12,29 +12,26 @@ import com.passwordmanager.objects.*;
 
 public class UserDB {
 
-    public Users getUserByID(int id) {
-        Users user = null;
-        return user;
-    }
-
-    public Users getUserByUsername(String username) {
-        Users user = null;
-        return user;
-    }
-
-    public boolean updateUsername(Users user, String username){return false;}
-
-    public boolean updatePassword(Users user, String pwd) {return false;}
-
-    public boolean updateFirstname(Users user, String fname) {return false;}
-
-    public boolean updateLastname(Users user, String lname) {return false;}
-
-    public boolean updateAccessLevel(Users user, int access) {return false;}
-
-    public boolean insertUser(Users user) {return false;}
+    // GET
+    public Users getUserByID(int id) {return null;}
+    public Users getUserByUsername(String username) {return null;}
 
     public ArrayList<Users> getUsers() {return null;}
 
+    // UPDATE
+    public boolean updateUser(Users user) {return false;}
+    public boolean updateUsername(int id, String username){return false;}
+    public boolean updateUsername(String  oldUsername, String newUsername){return false;}
+    public boolean updatePassword(int id, String pwd){return false;}
+    public boolean updatePassword(String  username, String pwd){return false;}
+    public boolean updateFirstname(int id, String fname){return false;}
+    public boolean updateFirstname(String  username, String fname){return false;}
+    public boolean updateLastname(int id, String lname){return false;}
+    public boolean updateLastname(String  username, String lname){return false;}
+    public boolean updateAccessLevel(int id, int access){return false;}
+    public boolean updateAccessLevel(String  username, int access){return false;}
+
+    // INSERT
+    public boolean insertUser(Users user) {return false;}
 
 }
