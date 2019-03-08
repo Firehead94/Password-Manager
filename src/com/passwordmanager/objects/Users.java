@@ -19,18 +19,13 @@ public class Users {
     /**
      * @return the user_ID
      */
-    public int getUser_ID()
-    {
-        return user_ID;
-    }
+    public int getUser_ID() { return user_ID;}
 
     /**
      * @return the access_level
      */
 
-    public int getAccess_level() {
-        return access_level;
-    }
+    public int getAccess_level() { return access_level;}
 
     /**
      * @return the user_username
