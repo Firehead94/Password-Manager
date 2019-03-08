@@ -1,7 +1,7 @@
 package com.passwordmanager.objects;
 
 
-public class passwords {
+public class Passwords {
 
     private int password_ID;
     private int folder_ID;

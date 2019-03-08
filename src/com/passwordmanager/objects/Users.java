@@ -7,7 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
-public class users {
+public class Users {
 
     private int user_ID;
     private int access_level;

@@ -1,7 +1,7 @@
 package com.passwordmanager.objects;
 
 
-public class access_levels {
+public class AccessLevels {
 
     private int access_ID;
     private String access_title;
