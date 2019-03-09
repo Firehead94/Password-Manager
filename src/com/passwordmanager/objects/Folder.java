@@ -7,6 +7,12 @@ public class Folder {
     private int access_level;
     private String folder_name;
     private String folder_password;
+    private int folder_parent;
+
+    /**
+     * @return the folder_ID of parent folder
+     */
+    public int getFolder_parent() { return folder_parent; }
 
     /**
      * @return the folder_ID
@@ -74,4 +80,9 @@ public class Folder {
     {
         this.folder_password = folder_password;
     }
+
+    /**
+     * @param folder_parent Set the ID of the parent folder
+     */
+    public void setFolder_parent(int folder_parent) { this.folder_parent = folder_parent; }
 }
