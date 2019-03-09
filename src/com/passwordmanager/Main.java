@@ -41,7 +41,7 @@ public class Main extends Application {
         /*
             Test code to determine if DB connection has been esablished.
          */
-        String query = "SELECT * FROM TEST_TABLE";
+        String query = "SELECT * FROM USERS";
 
         launch(args);
 
@@ -52,7 +52,7 @@ public class Main extends Application {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                System.out.println(rs.getString("TEST_COLUMN"));
+                System.out.println(rs.getString("USER_USERNAME"));
 
             }
 
