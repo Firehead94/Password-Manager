@@ -3,9 +3,15 @@ package com.passwordmanager;
 
 import java.sql.*;
 import com.passwordmanager.database.*;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import javafx.application.Application;
+import com.passwordmanager.loginscreen.*;
 
 
-public class Main {
+public class Main extends Application {
 
     public static void main(String[] args) {
 
@@ -37,6 +43,8 @@ public class Main {
          */
         String query = "SELECT * FROM TEST_TABLE";
 
+        launch(args);
+
         try {
 
             ps = connection.prepareStatement(query);
@@ -56,5 +64,17 @@ public class Main {
             pool.freeConnection(connection);
         }
 
+    }
+
+    @Override
+    public void start(Stage primaryStage) throws Exception
+    {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("loginscreen/LoginScreen.fxml"));
+        Parent rootPane = loader.load();
+        Scene scene = new Scene(rootPane);
+        primaryStage.setScene(scene);
+        primaryStage.setResizable(false);
+        primaryStage.setTitle("Welcome");
+        primaryStage.show();
     }
 }
