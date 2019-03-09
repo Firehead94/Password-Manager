@@ -24,7 +24,7 @@ public class Main extends Application {
             accross multiple connections from differing IPs.
          */
         ConnectionPool pool = ConnectionPool.getInstance();
-        Connection connection = pool.getConnection();//
+        Connection connection = pool.getConnection();
 
         /*
             A prepared statement that is set using the Connection.prepareStatement
