@@ -1,7 +1,7 @@
 package com.passwordmanager.objects;
 
 
-public class Folders {
+public class Folder {
 
     private int folder_ID;
     private int access_level;

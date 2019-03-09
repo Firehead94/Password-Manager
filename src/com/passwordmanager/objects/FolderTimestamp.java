@@ -1,7 +1,7 @@
 package com.passwordmanager.objects;
 
 
-public class FolderTimestamps {
+public class FolderTimestamp {
 
     private int folder_ID;
     private long folder_timestamp;

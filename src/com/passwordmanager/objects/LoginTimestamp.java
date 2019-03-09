@@ -1,7 +1,7 @@
 package com.passwordmanager.objects;
 
 
-public class LoginTimestamps {
+public class LoginTimestamp {
 
     private int user_ID;
     private long login_timestamp;

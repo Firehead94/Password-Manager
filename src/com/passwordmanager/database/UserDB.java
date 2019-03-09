@@ -1,25 +1,18 @@
 package com.passwordmanager.database;
-import java.sql.*;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Locale;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 import com.passwordmanager.objects.*;
 
 public class UserDB {
 
     // GET
-    public Users getUserByID(int id) {return null;}
-    public Users getUserByUsername(String username) {return null;}
+    public User getUserByID(int id) {return null;}
+    public User getUserByUsername(String username) {return null;}
 
-    public ArrayList<Users> getUsers() {return null;}
+    public ArrayList<User> getUsers() {return null;}
 
     // UPDATE
-    public boolean updateUser(Users user) {return false;}
+    public boolean updateUser(User user) {return false;}
     public boolean updateUsername(int id, String username){return false;}
     public boolean updateUsername(String  oldUsername, String newUsername){return false;}
     public boolean updatePassword(int id, String pwd){return false;}
@@ -32,6 +25,6 @@ public class UserDB {
     public boolean updateAccessLevel(String  username, int access){return false;}
 
     // INSERT
-    public boolean insertUser(Users user) {return false;}
+    public boolean insertUser(User user) {return false;}
 
 }
