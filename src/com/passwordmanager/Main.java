@@ -5,6 +5,7 @@ import java.sql.*;
 
 import com.passwordmanager.database.accessors.ConnectionPool;
 import com.passwordmanager.database.accessors.DBUtils;
+import com.passwordmanager.utils.Config;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -24,7 +25,7 @@ public class Main extends Application {
             accross multiple connections from differing IPs.
          */
         //ConnectionPool pool = ConnectionPool.getInstance();
-       // Connection connection = pool.getConnection();
+        //Connection connection = pool.getConnection();
 
         /*
             A prepared statement that is set using the Connection.prepareStatement
@@ -69,7 +70,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception
     {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("GUI/loginscreen/LoginScreen.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(Config.PATH_LAYOUTS + "loginscreen/LoginScreen.fxml"));
         Parent rootPane = loader.load();
         Scene scene = new Scene(rootPane);
         primaryStage.setScene(scene);
