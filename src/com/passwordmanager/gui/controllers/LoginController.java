@@ -1,4 +1,5 @@
-package com.passwordmanager.GUI.loginscreen;
+package com.passwordmanager.gui.controllers;
+
 
 import com.passwordmanager.GUI.base.DialogBox;
 import javafx.event.ActionEvent;

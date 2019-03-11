@@ -1,6 +1,6 @@
-package com.passwordmanager.database;
+package com.passwordmanager.database.accessors;
 
-import com.passwordmanager.objects.AccessLevel;
+import com.passwordmanager.database.objects.AccessLevel;
 
 import java.util.ArrayList;
 

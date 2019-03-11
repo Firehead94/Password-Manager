@@ -1,4 +1,4 @@
-package com.passwordmanager.database;
+package com.passwordmanager.database.accessors;
 
 import java.sql.*;
 

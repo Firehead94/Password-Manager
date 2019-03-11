@@ -1,15 +1,8 @@
-package com.passwordmanager.database;
+package com.passwordmanager.database.accessors;
 
 import com.mysql.cj.jdbc.MysqlConnectionPoolDataSource;
-import com.mysql.cj.jdbc.MysqlDataSource;
-import com.mysql.cj.jdbc.MysqlPooledConnection;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import javax.sql.PooledConnection;
 import java.sql.*;
-import java.util.Properties;
 
 
 public class ConnectionPool {
