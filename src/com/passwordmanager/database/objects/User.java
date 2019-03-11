@@ -1,10 +1,4 @@
-package com.passwordmanager.objects;
-
-
-import java.io.Serializable;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+package com.passwordmanager.database.objects;
 
 
 public class User {

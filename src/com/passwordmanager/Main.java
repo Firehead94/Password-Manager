@@ -2,7 +2,9 @@ package com.passwordmanager;
 
 
 import java.sql.*;
-import com.passwordmanager.database.*;
+
+import com.passwordmanager.database.accessors.ConnectionPool;
+import com.passwordmanager.database.accessors.DBUtils;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;

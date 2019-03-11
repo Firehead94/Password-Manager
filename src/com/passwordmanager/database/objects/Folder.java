@@ -1,4 +1,4 @@
-package com.passwordmanager.objects;
+package com.passwordmanager.database.objects;
 
 
 public class Folder {

@@ -1,7 +1,7 @@
-package com.passwordmanager.database;
+package com.passwordmanager.database.accessors;
 import java.util.ArrayList;
 
-import com.passwordmanager.objects.*;
+import com.passwordmanager.database.objects.*;
 
 public class UserDB {
 

@@ -1,4 +1,4 @@
-package com.passwordmanager.loginscreen;
+package com.passwordmanager.gui.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

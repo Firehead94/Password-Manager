@@ -1,7 +1,7 @@
-package com.passwordmanager.database;
+package com.passwordmanager.database.accessors;
 
-import com.passwordmanager.objects.FolderTimestamp;
-import com.passwordmanager.objects.LoginTimestamp;
+import com.passwordmanager.database.objects.FolderTimestamp;
+import com.passwordmanager.database.objects.LoginTimestamp;
 
 import java.util.ArrayList;
 

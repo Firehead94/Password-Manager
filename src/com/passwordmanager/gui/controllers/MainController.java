@@ -1,4 +1,4 @@
-package com.passwordmanager.GUI.mainwindow;
+package com.passwordmanager.gui.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.layout.BorderPane;
