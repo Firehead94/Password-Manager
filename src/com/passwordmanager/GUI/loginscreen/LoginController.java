@@ -1,10 +1,15 @@
-package com.passwordmanager.loginscreen;
+package com.passwordmanager.GUI.loginscreen;
 
+import com.passwordmanager.GUI.base.DialogBox;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
-import com.passwordmanager.loginscreen.*;
+import javafx.application.Application;
+import javafx.stage.Stage;
 
 public class LoginController
 {
@@ -41,14 +46,6 @@ public class LoginController
     }
 
     @FXML
-    private void showOK(ActionEvent actionEvent)
-    {
-        DialogBox.showInformation("Confirm",
-                                  "Clicking this button will allow you to login once we build our " +
-                                           "next scene.");
-    }
-
-    @FXML
     private void closeApp(ActionEvent actionEvent)
     {
         System.exit(0);
@@ -69,6 +66,24 @@ public class LoginController
         passHiddenFld.setText(passShowFld.getText());
         passShowFld.setVisible(false);
         passHiddenFld.setVisible(true);
+
+    }
+
+    public void openMainWindow(ActionEvent actionEvent) throws Exception
+    {
+        try
+        {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/mainwindow/MainWindow.fxml"));
+            Parent mainPane = (Parent) loader.load();
+            Stage stage2 = new Stage();
+            stage2.setScene(new Scene(mainPane));
+            stage2.show();
+        }
+        catch (Exception e)
+        {
+            System.out.println("Error loading main scene");
+            e.printStackTrace();
+        }
 
     }
 }
