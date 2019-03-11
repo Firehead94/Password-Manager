@@ -1,4 +1,4 @@
-package com.passwordmanager.GUI.base;
+package com.passwordmanager.gui.base;
 
 import javafx.scene.control.*;
 import javafx.scene.control.Label;

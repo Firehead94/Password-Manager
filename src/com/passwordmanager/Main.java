@@ -1,10 +1,8 @@
 package com.passwordmanager;
 
 
-import java.sql.*;
+import java.net.URL;
 
-import com.passwordmanager.database.accessors.ConnectionPool;
-import com.passwordmanager.database.accessors.DBUtils;
 import com.passwordmanager.utils.Config;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -70,7 +68,8 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception
     {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(Config.PATH_LAYOUTS + "loginscreen/LoginScreen.fxml"));
+        URL loc = getClass().getClassLoader().getResource(Config.PATH_LAYOUTS + "loginscreen/LoginScreen.fxml");
+        FXMLLoader loader = new FXMLLoader(loc);
         Parent rootPane = loader.load();
         Scene scene = new Scene(rootPane);
         primaryStage.setScene(scene);
