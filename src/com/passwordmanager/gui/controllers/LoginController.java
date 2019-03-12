@@ -2,6 +2,7 @@ package com.passwordmanager.gui.controllers;
 
 
 import com.passwordmanager.gui.base.DialogBox;
+import com.passwordmanager.utils.Config;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +12,8 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.application.Application;
 import javafx.stage.Stage;
+
+import java.net.URL;
 
 public class LoginController
 {
@@ -72,12 +75,15 @@ public class LoginController
 
     public void openMainWindow(ActionEvent actionEvent) throws Exception
     {
+        //temporary for now. we will need to validate password, just trying to see if the
+        //stage will load properly
         try
         {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/mainwindow/MainWindow.fxml"));
-            Parent mainPane = (Parent) loader.load();
+            URL loc = getClass().getClassLoader().getResource(Config.PATH_LAYOUTS + "mainwindow/MainWindow.fxml");
+            FXMLLoader loader = new FXMLLoader(loc);
+            Parent root1 = loader.load();
             Stage stage2 = new Stage();
-            stage2.setScene(new Scene(mainPane));
+            stage2.setScene(new Scene(root1));
             stage2.show();
         }
         catch (Exception e)
