@@ -2,7 +2,6 @@ package com.passwordmanager.gui.controllers;
 
 
 import com.passwordmanager.gui.base.DialogBox;
-import com.passwordmanager.Main;
 import com.passwordmanager.utils.Config;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -13,40 +12,35 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-
 import java.net.URL;
 
 public class LoginController
 {
+    //global GUI components used by login screen
     @FXML
     private AnchorPane login;
-
     @FXML
     private PasswordField passHiddenFld;
-
     @FXML
     private TextField passShowFld;
-
     @FXML
     private Button okBtn;
-
     @FXML
     private Button cancelBtn;
-
     @FXML
     private Button helpBtn;
-
     @FXML
     private CheckBox showCheckBox;
 
     //Button Controllers. Temporary for now
-
     @FXML
     private void showHelp(ActionEvent actionEvent)
     {
-        DialogBox.showInformation("Welcome To Our Password Manager",
-                                  "Eventually when you click here, we will give assistance on how " +
-                                           "to login. For now enjoy this cool custom dialog box.");
+        DialogBox.showInformation("Welcome To Keycrypt",
+                                  "Enter the password which corresponds to your access level. " +
+                                           "Ask your system administrator which password you have access to.\n\n" +
+                                           "The password entered will grant you access only to specific directories " +
+                                           "within the application.");
 
     }
 
@@ -90,7 +84,8 @@ public class LoginController
         }
         catch (Exception e)
         {
-            System.out.println("Error loading main scene");
+            DialogBox.showError("Fatal Error",
+                               "Error opening program. Please check login credentials and try again.");
             e.printStackTrace();
         }
 
