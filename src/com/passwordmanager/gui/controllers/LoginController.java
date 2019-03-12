@@ -2,7 +2,9 @@ package com.passwordmanager.gui.controllers;
 
 
 import com.passwordmanager.gui.base.DialogBox;
+import com.passwordmanager.Main;
 import com.passwordmanager.utils.Config;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,7 +12,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
-import javafx.application.Application;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -52,7 +53,7 @@ public class LoginController
     @FXML
     private void closeApp(ActionEvent actionEvent)
     {
-        System.exit(0);
+        Platform.exit();
     }
 
     public void toggleVisiblePassword(ActionEvent actionEvent)
@@ -84,6 +85,7 @@ public class LoginController
             Parent root1 = loader.load();
             Stage stage2 = new Stage();
             stage2.setScene(new Scene(root1));
+            okBtn.getScene().getWindow().hide();
             stage2.show();
         }
         catch (Exception e)
