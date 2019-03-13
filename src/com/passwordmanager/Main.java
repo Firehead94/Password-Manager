@@ -4,6 +4,7 @@ package com.passwordmanager;
 import java.net.URL;
 
 import com.passwordmanager.utils.Config;
+import com.passwordmanager.utils.Layouts;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -68,7 +69,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception
     {
-        URL loc = getClass().getClassLoader().getResource(Config.PATH_LAYOUTS + "loginscreen/LoginScreen.fxml");
+        URL loc = getClass().getClassLoader().getResource(Layouts.LOGINSCREEN_FXML);
         FXMLLoader loader = new FXMLLoader(loc);
         Parent rootPane = loader.load();
         Scene scene = new Scene(rootPane);

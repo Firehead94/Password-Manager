@@ -15,6 +15,15 @@ import java.util.logging.Logger;
 public class PasswordsDB {
 
     // GET
+
+    /**
+     * Gets a single password object populated from the database using the inputs.
+     *
+     * @param attribute Column name in the PASSWORDS table you'd like to
+     *                  search by.
+     * @param value Value of the column you'd like to filter by.
+     * @return Single user object given the filtered inputs.
+     */
     public Password getPassword(String attribute, int value) {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
@@ -37,6 +46,14 @@ public class PasswordsDB {
         return pwd;
     }
 
+    /**
+     * Gets a single password object populated from the database using the inputs.
+     *
+     * @param attribute Column name in the PASSWORDS table you'd like to
+     *                  search by.
+     * @param value Value of the column you'd like to filter by.
+     * @return Single user object given the filtered inputs.
+     */
     public Password getPassword(String attribute, String value) {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
@@ -59,6 +76,11 @@ public class PasswordsDB {
         return pwd;
     }
 
+    /**
+     * Gets an arraylist of password objects populated from the database using the inputs.
+     *
+     * @return
+     */
     public ArrayList<Password> getPasswords() {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
@@ -80,6 +102,12 @@ public class PasswordsDB {
     }
 
     // UPDATE
+
+    /**
+     * Updates passed password object in the database
+     * @param pwd Password object with updated values
+     * @return Bool on whether update was completed.
+     */
     public boolean updatePassword(Password pwd) {
 
         ConnectionPool pool = ConnectionPool.getInstance();
@@ -109,6 +137,13 @@ public class PasswordsDB {
 
 
     // INSERT
+
+    /**
+     * Inserts passed password object into the database. Used only on new password
+     * objects. Use updatePassword to update the information of a user object.
+     * @param pwd New password to insert into the database.
+     * @return Bool based on success of insert statement.
+     */
     public boolean insertPassword(Password pwd) {
 
         ConnectionPool pool = ConnectionPool.getInstance();

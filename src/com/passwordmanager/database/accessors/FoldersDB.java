@@ -50,10 +50,12 @@ public class FoldersDB {
     // GET
 
     /**
-     * Gets folder object populated from DB based on filtered input.
-     * @param attribute Column name in table to apply filter to.
-     * @param value Filter for the passed attribute.
-     * @return Single folder object based on input.
+     * Gets a single folder object populated from the database using the inputs.
+     *
+     * @param attribute Column name in the FOLDERS table you'd like to
+     *                  search by.
+     * @param value Value of the column you'd like to filter by.
+     * @return Single folder object given the filtered inputs.
      */
     public Folder getFolder(String attribute, int value) {
         ConnectionPool pool = ConnectionPool.getInstance();
@@ -79,10 +81,12 @@ public class FoldersDB {
     }
 
     /**
-     * Gets folder object populated from DB based on filtered input.
-     * @param attribute Column name in table to apply filter to.
-     * @param value Filter for the passed attribute.
-     * @return Single folder object based on input.
+     * Gets a single folder object populated from the database using the inputs.
+     *
+     * @param attribute Column name in the FOLDERS table you'd like to
+     *                  search by.
+     * @param value Value of the column you'd like to filter by.
+     * @return Single folder object given the filtered inputs.
      */
     public Folder getFolder(String attribute, String value) {
         ConnectionPool pool = ConnectionPool.getInstance();
@@ -108,10 +112,12 @@ public class FoldersDB {
     }
 
     /**
-     * Gets an arraylist of folder objects populated from DB based on filtered input.
-     * @param attribute Column name in table to apply filter to.
-     * @param value Filter for the passed attribute.
-     * @return Arraylist of folder objects based on input.
+     * Gets an arraylist of folder objects populated from the database using the inputs.
+     *
+     * @param attribute Column name in the FOLDERS table you'd like to
+     *                  search by.
+     * @param value Value of the column you'd like to filter by.
+     * @return arraylist of folder objects given the filtered inputs.
      */
     public ArrayList<Folder> getFolders(String attribute, int value) {
         ConnectionPool pool = ConnectionPool.getInstance();
@@ -136,10 +142,12 @@ public class FoldersDB {
     }
 
     /**
-     * Gets an arraylist of folder objects populated from DB based on filtered input.
-     * @param attribute Column name in table to apply filter to.
-     * @param value Filter for the passed attribute.
-     * @return Arraylist of folder objects based on input.
+     * Gets an arraylist of folder objects populated from the database using the inputs.
+     *
+     * @param attribute Column name in the FOLDERS table you'd like to
+     *                  search by.
+     * @param value Value of the column you'd like to filter by.
+     * @return arraylist of folder objects given the filtered inputs.
      */
     public ArrayList<Folder> getFolders(String attribute, String value) {
         ConnectionPool pool = ConnectionPool.getInstance();
