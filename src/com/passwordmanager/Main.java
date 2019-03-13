@@ -75,7 +75,7 @@ public class Main extends Application {
         Scene scene = new Scene(rootPane);
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
-        primaryStage.setTitle("Welcome");
+        primaryStage.setTitle("Keycrypt");
         primaryStage.show();
     }
 }
