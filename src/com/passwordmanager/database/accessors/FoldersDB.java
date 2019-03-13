@@ -14,6 +14,12 @@ import java.util.logging.Logger;
 
 public class FoldersDB {
 
+    /**
+     * Validates whether folder exists in the database.
+     *
+     * @param name Folder name entered in by user
+     * @return Bool based on folder exists
+     */
     public boolean folderExists(String name) {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
@@ -42,6 +48,13 @@ public class FoldersDB {
     }
 
     // GET
+
+    /**
+     * Gets folder object populated from DB based on filtered input.
+     * @param attribute Column name in table to apply filter to.
+     * @param value Filter for the passed attribute.
+     * @return Single folder object based on input.
+     */
     public Folder getFolder(String attribute, int value) {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
@@ -64,6 +77,13 @@ public class FoldersDB {
         return folder;
 
     }
+
+    /**
+     * Gets folder object populated from DB based on filtered input.
+     * @param attribute Column name in table to apply filter to.
+     * @param value Filter for the passed attribute.
+     * @return Single folder object based on input.
+     */
     public Folder getFolder(String attribute, String value) {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
@@ -87,6 +107,12 @@ public class FoldersDB {
 
     }
 
+    /**
+     * Gets an arraylist of folder objects populated from DB based on filtered input.
+     * @param attribute Column name in table to apply filter to.
+     * @param value Filter for the passed attribute.
+     * @return Arraylist of folder objects based on input.
+     */
     public ArrayList<Folder> getFolders(String attribute, int value) {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
@@ -108,6 +134,13 @@ public class FoldersDB {
         }
         return folders;
     }
+
+    /**
+     * Gets an arraylist of folder objects populated from DB based on filtered input.
+     * @param attribute Column name in table to apply filter to.
+     * @param value Filter for the passed attribute.
+     * @return Arraylist of folder objects based on input.
+     */
     public ArrayList<Folder> getFolders(String attribute, String value) {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
@@ -129,6 +162,11 @@ public class FoldersDB {
         }
         return folders;
     }
+
+    /**
+     * Gets an arraylist of all folder objects populated from DB.
+     * @return
+     */
     public ArrayList<Folder> getFolders() {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
@@ -150,6 +188,12 @@ public class FoldersDB {
     }
 
     // UPDATE
+
+    /**
+     * Updates passed folder object in the database
+     * @param folder Object with updated values
+     * @return Bool on whether update was completed.
+     */
     public boolean updateFolder(Folder folder) {
 
         ConnectionPool pool = ConnectionPool.getInstance();
@@ -180,6 +224,13 @@ public class FoldersDB {
     }
 
     // INSERT
+
+    /**
+     * Inserts passed folder object into the database. Used only on new folder
+     * objects. Use updateFolder to update the information of a user object.
+     * @param folder New folder to insert into the database.
+     * @return Bool based on success of insert statement. Use folderExists for double checking.
+     */
     public boolean insertFolder(Folder folder) {
 
         ConnectionPool pool = ConnectionPool.getInstance();
@@ -240,7 +291,6 @@ public class FoldersDB {
     /**
      * Gets a list of folder beans from a DB based on a prepared
      * statement.
-     *
      * @param ps
      * @return
      */

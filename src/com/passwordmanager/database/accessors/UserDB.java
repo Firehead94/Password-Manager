@@ -16,7 +16,7 @@ public class UserDB {
      *
      * @param username Username entered in by user
      * @param hash UD5 hash generated from password
-     * @return
+     * @return Bool based on login information
      */
     public static boolean validateUser(String username, String hash) {
 
@@ -46,6 +46,13 @@ public class UserDB {
         return retval;
 
     }
+
+    /**
+     * Validates whether user exists in the database.
+     *
+     * @param username Username entered in by user
+     * @return Bool based on user exists
+     */
     public static boolean userExists(String username) {
 
         ConnectionPool pool = ConnectionPool.getInstance();
@@ -74,6 +81,15 @@ public class UserDB {
     }
 
     // GET
+
+    /**
+     * Gets a single user object populated from the database using the inputs.
+     *
+     * @param attribute Column name in the USER table you'd like to
+     *                  search by.
+     * @param value Value of the column you'd like to filter by.
+     * @return Single user object given the filtered inputs.
+     */
     public User getUser(String attribute, int value) {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
@@ -95,6 +111,15 @@ public class UserDB {
         }
         return user;
     }
+
+    /**
+     * Gets a single user object populated from the database using the inputs.
+     *
+     * @param attribute Column name in the USER table you'd like to
+     *                  search by.
+     * @param value Value of the column you'd like to filter by.
+     * @return Single user object given the filtered inputs.
+     */
     public User getUser(String attribute, String value) {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
@@ -116,6 +141,10 @@ public class UserDB {
         }
         return user;
     }
+
+    /**
+     * @return All users in the database
+     */
     public ArrayList<User> getUsers() {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
@@ -135,6 +164,15 @@ public class UserDB {
         }
         return users;
     }
+
+    /**
+     * Gets a list of user object populated from the databased using the inputs.
+     *
+     * @param attribute Column name in the USER table you'd like to
+     *                  search by.
+     * @param value Value of the column you'd like to filter by.
+     * @return Arraylist of user objects given the filtered inputs.
+     */
     public ArrayList<User> getUsers(String attribute, int value) {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
@@ -156,6 +194,15 @@ public class UserDB {
         }
         return users;
     }
+
+    /**
+     * Gets a list of user object populated from the databased using the inputs.
+     *
+     * @param attribute Column name in the USER table you'd like to
+     *                  search by.
+     * @param value Value of the column you'd like to filter by.
+     * @return Arraylist of user objects given the filtered inputs.
+     */
     public ArrayList<User> getUsers(String attribute, String value) {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
@@ -179,6 +226,12 @@ public class UserDB {
     }
 
     // UPDATE
+
+    /**
+     * Updates passed user object in the database
+     * @param user Object with updated values
+     * @return Bool on whether update was completed.
+     */
     public boolean updateUser(User user) {
 
         ConnectionPool pool = ConnectionPool.getInstance();
@@ -211,6 +264,13 @@ public class UserDB {
     }
 
     // INSERT
+
+    /**
+     * Inserts passed user object into the database. Used only on new user
+     * objects. Use updateUser to update the information of a user object.
+     * @param user New user to insert into the database.
+     * @return Bool based on success of insert statement. Use userExists for double checking.
+     */
     public boolean insertUser(User user) {
 
         ConnectionPool pool = ConnectionPool.getInstance();
