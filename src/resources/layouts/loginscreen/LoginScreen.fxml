@@ -48,6 +48,11 @@
                   <Image url="@../../../../../resources/images/Password%20Manager%20Logo.png" />
                </image>
             </ImageView>
+            <ImageView fitHeight="98.0" fitWidth="291.0" layoutX="43.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/Password%20Manager%20Logo.png" />
+               </image>
+            </ImageView>
          </children></AnchorPane>
    </children>
 </GridPane>
