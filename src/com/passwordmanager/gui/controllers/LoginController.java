@@ -1,6 +1,5 @@
 package com.passwordmanager.gui.controllers;
 
-
 import com.passwordmanager.gui.base.DialogBox;
 import com.passwordmanager.utils.Config;
 import javafx.application.Platform;
@@ -24,6 +23,8 @@ public class LoginController
     @FXML
     private TextField passShowFld;
     @FXML
+    private TextField usernameFld;
+    @FXML
     private Button okBtn;
     @FXML
     private Button cancelBtn;
@@ -32,7 +33,7 @@ public class LoginController
     @FXML
     private CheckBox showCheckBox;
 
-    //Button Controllers. Temporary for now
+    //Show help on login page
     @FXML
     private void showHelp(ActionEvent actionEvent)
     {
@@ -44,6 +45,7 @@ public class LoginController
 
     }
 
+    //closes application
     @FXML
     private void closeApp(ActionEvent actionEvent)
     {
