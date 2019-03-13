@@ -1,7 +1,7 @@
 package com.passwordmanager.gui.controllers;
 
 
-import com.passwordmanager.GUI.base.DialogBox;
+import com.passwordmanager.gui.base.DialogBox;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

@@ -4,6 +4,6 @@ public class Config {
 
     public static final String PATH_RESOURCES = "resources/";
     public static final String PATH_IMAGES = "images/";
-    public static final String PATH_LAYOUTS = "com/passwordmanager/gui/layouts/";
+    public static final String PATH_LAYOUTS = "resources/layouts/";
 
 }
