@@ -48,8 +48,7 @@ public class UserDB {
     }
 
     /**
-     * Validates whether user exists in the database. Will return true if
-     * the user has entered the correct credentials.
+     * Validates whether user exists in the database.
      *
      * @param username Username entered in by user
      * @return Bool based on user exists
@@ -270,7 +269,7 @@ public class UserDB {
      * Inserts passed user object into the database. Used only on new user
      * objects. Use updateUser to update the information of a user object.
      * @param user New user to insert into the database.
-     * @return Bool based on success of insert statement. Use verify user for double checking.
+     * @return Bool based on success of insert statement. Use userExists for double checking.
      */
     public boolean insertUser(User user) {
 
