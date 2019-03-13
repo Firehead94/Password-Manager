@@ -88,7 +88,7 @@ public class AccessLevelDB {
         PreparedStatement ps = null;
         int retVal = 0;
 
-        String query = "UPDATE Access_Levels SET " + DB.ACCESS_TITLE +
+        String query = "UPDATE ACCESS_LEVELS SET " + DB.ACCESS_TITLE +
                 " = ? WHERE " + DB.ACCESS_ID + " = ?;";
         try {
             ps = connection.prepareStatement(query);
@@ -140,7 +140,7 @@ public class AccessLevelDB {
                 access = new AccessLevel();
 
                 access.setAccess_ID(rs.getInt(DB.ACCESS_ID));
-                access.setAccess_title(rs.getString(DB.ACCESS_TITLE);
+                access.setAccess_title(rs.getString(DB.ACCESS_TITLE));
             }
         } catch (SQLException e) {
             Logger.getLogger(AccessLevelDB.class.getName()).log(Level.SEVERE, null, e);
