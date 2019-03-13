@@ -1,7 +1,7 @@
 package com.passwordmanager.gui.controllers;
 
 import com.passwordmanager.gui.base.DialogBox;
-import com.passwordmanager.utils.Config;
+import com.passwordmanager.utils.Layouts;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -76,7 +76,7 @@ public class LoginController
         //stage will load properly
         try
         {
-            URL loc = getClass().getClassLoader().getResource(Config.PATH_LAYOUTS + "mainwindow/MainWindow.fxml");
+            URL loc = getClass().getClassLoader().getResource(Layouts.MAINWINDOW_FXML);
             FXMLLoader loader = new FXMLLoader(loc);
             Parent root1 = loader.load();
             Stage stage2 = new Stage();
