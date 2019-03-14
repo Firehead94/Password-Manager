@@ -77,5 +77,6 @@ public class Main extends Application {
         primaryStage.setResizable(false);
         primaryStage.setTitle("Welcome to Keycrypt");
         primaryStage.show();
+
     }
 }

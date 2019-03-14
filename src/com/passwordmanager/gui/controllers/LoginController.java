@@ -67,7 +67,6 @@ public class LoginController
         passHiddenFld.setText(passShowFld.getText());
         passShowFld.setVisible(false);
         passHiddenFld.setVisible(true);
-
     }
 
     public void openMainWindow(ActionEvent actionEvent) throws Exception

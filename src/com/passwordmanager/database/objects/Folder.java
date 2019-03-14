@@ -1,13 +1,29 @@
 package com.passwordmanager.database.objects;
 
+import javafx.scene.control.TreeItem;
 
-public class Folder {
+public class Folder
+{
 
     private int folder_ID;
     private int access_level;
     private String folder_name;
     private String folder_password;
     private int folder_parent;
+
+    public Folder()
+    {
+        this.folder_ID = 0;
+        this.access_level = 0;
+        this.folder_name = "";
+        this.folder_password = "";
+        this.folder_parent = 0;
+    }
+
+    public Folder(String folder_name)
+    {
+        this.folder_name = folder_name;
+    }
 
     /**
      * @return the folder_ID of parent folder
