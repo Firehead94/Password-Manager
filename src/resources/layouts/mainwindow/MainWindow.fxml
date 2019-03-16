@@ -29,6 +29,6 @@
       </MenuBar>
    </top>
    <left>
-      <TreeView fx:id="treeView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <TreeView fx:id="treeView" prefHeight="372.0" prefWidth="263.0" BorderPane.alignment="CENTER" />
    </left>
 </BorderPane>

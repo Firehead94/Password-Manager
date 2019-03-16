@@ -7,8 +7,6 @@ import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.control.MenuBar;
-import javafx.scene.layout.StackPane;
-
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -22,13 +20,14 @@ public class MainController implements Initializable
     @FXML
     private TreeView<String> treeView;
 
+    //helper method to populate the main nodes
     public ArrayList<TreeItem<String>> getFolders()
     {
-        ArrayList<TreeItem<String>> folders = new ArrayList<TreeItem<String>>();
-
+        ArrayList<TreeItem<String>> folders = new ArrayList<>();
+        //populate the weblogin parent node
         TreeItem<String> webLogins = new TreeItem<>("Web Logins");
         webLogins.getChildren().addAll(getWebLogins());
-
+        //populate the printerLogins parent node
         TreeItem<String> printerLogins = new TreeItem<>("Printer Logins");
         printerLogins.getChildren().addAll(getPrinterPasswords());
 
@@ -37,7 +36,7 @@ public class MainController implements Initializable
 
         return folders;
     }
-
+    //create the children nodes related to web logins
     private ArrayList<TreeItem<String>> getWebLogins()
     {
         ArrayList<TreeItem<String>> webLogins = new ArrayList<>();
@@ -52,14 +51,14 @@ public class MainController implements Initializable
 
         return webLogins;
     }
-
+    //create the children nodes related to printer passwords
     private ArrayList<TreeItem<String>> getPrinterPasswords()
     {
-        ArrayList<TreeItem<String>> printerPass = new ArrayList<TreeItem<String>>();
+        ArrayList<TreeItem<String>> printerPass = new ArrayList<>();
 
-        TreeItem<String> konica = new TreeItem<String>("Konica Minolta");
-        TreeItem<String> ricoh = new TreeItem<String>("Ricoh");
-        TreeItem<String> hp = new TreeItem<String>("Hewlett Packard");
+        TreeItem<String> konica = new TreeItem<>("Konica Minolta");
+        TreeItem<String> ricoh = new TreeItem<>("Ricoh");
+        TreeItem<String> hp = new TreeItem<>("Hewlett Packard");
 
         printerPass.add(konica);
         printerPass.add(ricoh);
@@ -73,9 +72,8 @@ public class MainController implements Initializable
     public void initialize(URL location, ResourceBundle resources)
     {
         ArrayList<TreeItem<String>> allFolders = getFolders();
-        treeView = new TreeView<>();
         TreeItem<String> rootNode = new TreeItem<>("Folder Types");
         rootNode.getChildren().addAll(allFolders);
-        treeView.setRoot(rootNode);
+        this.treeView.setRoot(rootNode);
     }
 }
