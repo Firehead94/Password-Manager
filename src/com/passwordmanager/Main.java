@@ -2,7 +2,13 @@ package com.passwordmanager;
 
 
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
+import com.passwordmanager.database.accessors.ConnectionPool;
+import com.passwordmanager.database.accessors.DBUtils;
 import com.passwordmanager.utils.Config;
 import com.passwordmanager.utils.Layouts;
 import javafx.fxml.FXMLLoader;
@@ -23,25 +29,25 @@ public class Main extends Application {
             based on this application, the same system can be used on server side
             accross multiple connections from differing IPs.
          */
-        //ConnectionPool pool = ConnectionPool.getInstance();
-        //Connection connection = pool.getConnection();
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
 
         /*
             A prepared statement that is set using the Connection.prepareStatement
             function. Function takes a string in the form of an SQL statement.
          */
-        //PreparedStatement ps = null;
+        PreparedStatement ps = null;
 
         /*
             Stores results from the DB. Is an object that contains information
             of datatypes based on datatype in DB. call getType("ATTRIBUTE NAME")
          */
-        //ResultSet rs = null;
+        ResultSet rs = null;
 
         /*
             Test code to determine if DB connection has been esablished.
          */
-        /*String query = "SELECT * FROM USERS";
+        String query = "SELECT * FROM USERS";
 
         try {
 
@@ -60,7 +66,7 @@ public class Main extends Application {
             DBUtils.closeResultSet(rs);
             DBUtils.closePreparedStatement(ps);
             pool.freeConnection(connection);
-        }*/
+        }
 
         launch(args);
 
