@@ -33,10 +33,11 @@ public class MainController implements Initializable
     {
         FoldersDB foldersDB = new FoldersDB();
         allFolders = foldersDB.getFolders();
-
+        String test = "";
         for (Folder f : allFolders)
         {
-            textArea.setText(f.getFolder_name());
+            test = test.concat(" | " + f.getFolder_name());
         }
+        textArea.setText(test);
     }
 }
