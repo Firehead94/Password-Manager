@@ -10,9 +10,8 @@ import javafx.scene.control.TreeView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.control.MenuBar;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.ResourceBundle;
+import java.util.*;
+
 import javafx.scene.control.TextArea;
 
 public class MainController implements Initializable
@@ -22,7 +21,7 @@ public class MainController implements Initializable
     @FXML
     private MenuBar menuBar;
     @FXML
-    private TreeView<String> treeView;
+    private TreeView<Folder> treeView;
     @FXML
     private TextArea textArea;
 
@@ -33,31 +32,55 @@ public class MainController implements Initializable
     public void buildFolders()
     {
         FoldersDB foldersDB = new FoldersDB();
-        allFolders = foldersDB.getFolders();
-        rootFolders = new ArrayList<>();
-        map = new HashMap<>();
+       // allFolders = foldersDB.getFolders();
+       // rootFolders = new ArrayList<>();
+       // map = new HashMap<>();
+//
+       // for (Folder folder : allFolders)
+       // {
+       //     if (folder.getFolder_parent() ==  0)
+       //     {
+       //         rootFolders.add(new TreeItem<>(folder));
+       //     }
+       //     else
+       //     {
+       //         if (!(map.containsKey(folder.getFolder_parent())))
+       //         {
+       //             map.put(folder.getFolder_parent(), new ArrayList<TreeItem<Folder>>());
+       //         }
+       //         map.get(folder.getFolder_parent()).add(new TreeItem<Folder>(folder));
+       //     }
+       // }
+//
+       // for (TreeItem<Folder> fol : rootFolders)
+       //     System.out.println(fol);
+//
+       // Iterator it = map.entrySet().iterator();
+       // while (it.hasNext()) {
+       //     Map.Entry pair = (Map.Entry)it.next();
+       //     for (TreeItem<Folder> f : (ArrayList<TreeItem<Folder>>)pair.getValue()) {
+       //         System.out.println(pair.getKey() + " = " + f.getValue());
+       //     }
+       //     it.remove(); // avoids a ConcurrentModificationException
+       // }
+//
+//
+       // TreeItem<Folder> root = new TreeItem<Folder>(new Folder());
+       // Folder rootFolder = new Folder();
+       // rootFolder.setFolder_name("Password List");
+//
+       // for (TreeItem<Folder> roots : rootFolders) {
+       //     root.getChildren().addAll(roots);
+       // }
 
-        for (Folder folder : allFolders)
-        {
-            if (folder.getFolder_parent() ==  0)
-            {
-                rootFolders.add(new TreeItem<>(folder));
-            }
-            else
-            {
-                if (!(map.containsKey(folder.getFolder_parent())))
-                {
-                    map.put(folder.getFolder_parent(), new ArrayList<TreeItem<Folder>>());
-                }
-                map.get(folder.getFolder_parent()).add(new TreeItem<Folder>(folder));
-            }
-        }
+        treeView.setRoot(FolderBuilder.buildTreeView(foldersDB.getFolders()));
+
 
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-
+        buildFolders();
     }
 }

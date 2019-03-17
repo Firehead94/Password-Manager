@@ -20,6 +20,10 @@ public class Folder
         this.folder_parent = 0;
     }
 
+    @Override
+    public String toString() {
+        return folder_name;
+    }
     public Folder(String folder_name)
     {
         this.folder_name = folder_name;
