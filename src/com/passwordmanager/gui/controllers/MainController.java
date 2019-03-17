@@ -27,17 +27,37 @@ public class MainController implements Initializable
     private TextArea textArea;
 
     private ArrayList<Folder> allFolders;
+    private ArrayList<TreeItem<Folder>> rootFolders;
+    private HashMap<Integer, ArrayList<TreeItem<Folder>>> map;
+
+    public void buildFolders()
+    {
+        FoldersDB foldersDB = new FoldersDB();
+        allFolders = foldersDB.getFolders();
+        rootFolders = new ArrayList<>();
+        map = new HashMap<>();
+
+        for (Folder folder : allFolders)
+        {
+            if (folder.getFolder_parent() ==  0)
+            {
+                rootFolders.add(new TreeItem<>(folder));
+            }
+            else
+            {
+                if (!(map.containsKey(folder.getFolder_parent())))
+                {
+                    map.put(folder.getFolder_parent(), new ArrayList<TreeItem<Folder>>());
+                }
+                map.get(folder.getFolder_parent()).add(new TreeItem<Folder>(folder));
+            }
+        }
+
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-        FoldersDB foldersDB = new FoldersDB();
-        allFolders = foldersDB.getFolders();
-        String test = "";
-        for (Folder f : allFolders)
-        {
-            test = test.concat(" | " + f.getFolder_name());
-        }
-        textArea.setText(test);
+
     }
 }
