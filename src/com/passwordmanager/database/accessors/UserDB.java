@@ -26,14 +26,15 @@ public class UserDB {
         ResultSet rs = null;
         Boolean retval = false;
 
-        String query = "SELECT COUNT(*) FROM USERS " +
-                "WHERE USER_USERNAME = ? AND USER_PASSWORD = ?";
+        String query = "SELECT COUNT(*) AS TOTAL FROM USERS " +
+                "WHERE USER_USERNAME = ? AND USER_PASSWORD = ?;";
         try {
             ps = connection.prepareStatement(query);
             ps.setString(1, username);
             ps.setString(2, hash);
             rs = ps.executeQuery();
-            if (rs.next()) {
+            rs.next();
+            if (rs.getInt("TOTAL") != 0) {
                 retval = true;
             }
         } catch (SQLException e) {
