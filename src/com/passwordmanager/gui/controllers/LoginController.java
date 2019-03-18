@@ -1,5 +1,6 @@
 package com.passwordmanager.gui.controllers;
 
+import com.passwordmanager.database.accessors.UserDB;
 import com.passwordmanager.gui.base.DialogBox;
 import com.passwordmanager.utils.Layouts;
 import javafx.application.Platform;
@@ -71,24 +72,32 @@ public class LoginController
 
     public void openMainWindow(ActionEvent actionEvent) throws Exception
     {
-        //temporary for now. we will need to validate password, just trying to see if the
-        //stage will load properly
-        try
+        boolean result = UserDB.validateUser(usernameFld.getText(), passHiddenFld.getText());
+        if (result)
         {
-            URL loc = getClass().getClassLoader().getResource(Layouts.MAINWINDOW_FXML);
-            FXMLLoader loader = new FXMLLoader(loc);
-            Parent root1 = loader.load();
-            Stage stage2 = new Stage();
-            stage2.setScene(new Scene(root1));
-            okBtn.getScene().getWindow().hide();
-            stage2.show();
+            try
+            {
+                URL loc = getClass().getClassLoader().getResource(Layouts.MAINWINDOW_FXML);
+                FXMLLoader loader = new FXMLLoader(loc);
+                Parent root1 = loader.load();
+                Stage stage2 = new Stage();
+                stage2.setScene(new Scene(root1));
+                okBtn.getScene().getWindow().hide();
+                stage2.show();
+            }
+            catch (Exception e)
+            {
+                DialogBox.showError("Fatal Error",
+                        "Error opening program. Please check login credentials and try again.");
+                e.printStackTrace();
+            }
         }
-        catch (Exception e)
+        else
         {
-            DialogBox.showError("Fatal Error",
-                               "Error opening program. Please check login credentials and try again.");
-            e.printStackTrace();
+            DialogBox.showError("Invalid Username/Password",
+                                 "Please enter a valid username/password and try again");
         }
 
     }
-}
+
+}//end LoginController
