@@ -20,7 +20,7 @@ public class FoldersDB {
      * @param name Folder name entered in by user
      * @return Bool based on folder exists
      */
-    public boolean folderExists(String name) {
+    public static boolean folderExists(String name) {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
         PreparedStatement ps = null;
@@ -57,7 +57,7 @@ public class FoldersDB {
      * @param value Value of the column you'd like to filter by.
      * @return Single folder object given the filtered inputs.
      */
-    public Folder getFolder(String attribute, int value) {
+    public static Folder getFolder(String attribute, int value) {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
         PreparedStatement ps = null;
@@ -88,7 +88,7 @@ public class FoldersDB {
      * @param value Value of the column you'd like to filter by.
      * @return Single folder object given the filtered inputs.
      */
-    public Folder getFolder(String attribute, String value) {
+    public static Folder getFolder(String attribute, String value) {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
         PreparedStatement ps = null;
@@ -119,7 +119,7 @@ public class FoldersDB {
      * @param value Value of the column you'd like to filter by.
      * @return arraylist of folder objects given the filtered inputs.
      */
-    public ArrayList<Folder> getFolders(String attribute, int value) {
+    public static ArrayList<Folder> getFolders(String attribute, int value) {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
         PreparedStatement ps = null;
@@ -149,7 +149,7 @@ public class FoldersDB {
      * @param value Value of the column you'd like to filter by.
      * @return arraylist of folder objects given the filtered inputs.
      */
-    public ArrayList<Folder> getFolders(String attribute, String value) {
+    public static ArrayList<Folder> getFolders(String attribute, String value) {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
         PreparedStatement ps = null;
@@ -175,7 +175,7 @@ public class FoldersDB {
      * Gets an arraylist of all folder objects populated from DB.
      * @return
      */
-    public ArrayList<Folder> getFolders() {
+    public static ArrayList<Folder> getFolders() {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
         PreparedStatement ps = null;
@@ -202,7 +202,7 @@ public class FoldersDB {
      * @param folder Object with updated values
      * @return Bool on whether update was completed.
      */
-    public boolean updateFolder(Folder folder) {
+    public static boolean updateFolder(Folder folder) {
 
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
@@ -239,7 +239,7 @@ public class FoldersDB {
      * @param folder New folder to insert into the database.
      * @return Bool based on success of insert statement. Use folderExists for double checking.
      */
-    public boolean insertFolder(Folder folder) {
+    public static boolean insertFolder(Folder folder) {
 
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();

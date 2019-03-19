@@ -6,6 +6,7 @@ public class DB {
     public static final String USER_LASTNAME = "USER_LASTNAME";
     public static final String USER_ID = "USER_ID";
     public static final String USER_PASSWORD = "USER_PASSWORD";
+    public static final String USER_ACCESS_LEVEL = "USER_ACCESS_LEVEL";
     public static final String FOLDER_ID = "FOLDER_ID";
     public static final String FOLDER_NAME = "FOLDER_NAME";
     public static final String FOLDER_PASSWORD = "FOLDER_PASSWORD";

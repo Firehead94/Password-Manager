@@ -91,7 +91,7 @@ public class UserDB {
      * @param value Value of the column you'd like to filter by.
      * @return Single user object given the filtered inputs.
      */
-    public User getUser(String attribute, int value) {
+    public static User getUser(String attribute, int value) {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
         PreparedStatement ps = null;
@@ -121,7 +121,7 @@ public class UserDB {
      * @param value Value of the column you'd like to filter by.
      * @return Single user object given the filtered inputs.
      */
-    public User getUser(String attribute, String value) {
+    public static User getUser(String attribute, String value) {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
         PreparedStatement ps = null;
@@ -146,7 +146,7 @@ public class UserDB {
     /**
      * @return All users in the database
      */
-    public ArrayList<User> getUsers() {
+    public static ArrayList<User> getUsers() {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
         PreparedStatement ps = null;
@@ -174,7 +174,7 @@ public class UserDB {
      * @param value Value of the column you'd like to filter by.
      * @return Arraylist of user objects given the filtered inputs.
      */
-    public ArrayList<User> getUsers(String attribute, int value) {
+    public static ArrayList<User> getUsers(String attribute, int value) {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
         PreparedStatement ps = null;
@@ -204,7 +204,7 @@ public class UserDB {
      * @param value Value of the column you'd like to filter by.
      * @return Arraylist of user objects given the filtered inputs.
      */
-    public ArrayList<User> getUsers(String attribute, String value) {
+    public static ArrayList<User> getUsers(String attribute, String value) {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
         PreparedStatement ps = null;
@@ -233,7 +233,7 @@ public class UserDB {
      * @param user Object with updated values
      * @return Bool on whether update was completed.
      */
-    public boolean updateUser(User user) {
+    public static boolean updateUser(User user) {
 
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
@@ -272,7 +272,7 @@ public class UserDB {
      * @param user New user to insert into the database.
      * @return Bool based on success of insert statement. Use userExists for double checking.
      */
-    public boolean insertUser(User user) {
+    public static boolean insertUser(User user) {
 
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
@@ -322,7 +322,7 @@ public class UserDB {
                 user.setUser_username(rs.getString(DB.USER_USERNAME));
                 user.setUser_first_name(rs.getString(DB.USER_FIRSTNAME));
                 user.setUser_last_name(rs.getString(DB.USER_LASTNAME));
-                user.setAccess_level(rs.getInt(DB.ACCESS_LEVEL));
+                user.setAccess_level(rs.getInt(DB.USER_ACCESS_LEVEL));
             }
         } catch (SQLException e) {
             Logger.getLogger(UserDB.class.getName()).log(Level.SEVERE, null, e);

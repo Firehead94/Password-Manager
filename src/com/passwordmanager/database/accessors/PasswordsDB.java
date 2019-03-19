@@ -24,7 +24,7 @@ public class PasswordsDB {
      * @param value Value of the column you'd like to filter by.
      * @return Single user object given the filtered inputs.
      */
-    public Password getPassword(String attribute, int value) {
+    public static Password getPassword(String attribute, int value) {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
         PreparedStatement ps = null;
@@ -54,7 +54,7 @@ public class PasswordsDB {
      * @param value Value of the column you'd like to filter by.
      * @return Single user object given the filtered inputs.
      */
-    public Password getPassword(String attribute, String value) {
+    public static Password getPassword(String attribute, String value) {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
         PreparedStatement ps = null;
@@ -81,7 +81,7 @@ public class PasswordsDB {
      *
      * @return
      */
-    public ArrayList<Password> getPasswords() {
+    public static ArrayList<Password> getPasswords() {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
         PreparedStatement ps = null;
@@ -108,7 +108,7 @@ public class PasswordsDB {
      * @param pwd Password object with updated values
      * @return Bool on whether update was completed.
      */
-    public boolean updatePassword(Password pwd) {
+    public static boolean updatePassword(Password pwd) {
 
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
@@ -144,7 +144,7 @@ public class PasswordsDB {
      * @param pwd New password to insert into the database.
      * @return Bool based on success of insert statement.
      */
-    public boolean insertPassword(Password pwd) {
+    public static boolean insertPassword(Password pwd) {
 
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();

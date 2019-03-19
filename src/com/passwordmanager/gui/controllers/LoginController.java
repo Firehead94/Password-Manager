@@ -1,7 +1,9 @@
 package com.passwordmanager.gui.controllers;
 
 import com.passwordmanager.database.accessors.UserDB;
+import com.passwordmanager.database.objects.User;
 import com.passwordmanager.gui.base.DialogBox;
+import com.passwordmanager.utils.DB;
 import com.passwordmanager.utils.Layouts;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -16,6 +18,7 @@ import java.net.URL;
 
 public class LoginController
 {
+    User user = null;
     //global GUI components used by login screen
     @FXML
     private AnchorPane login;
@@ -77,11 +80,14 @@ public class LoginController
         {
             try
             {
+                //user = UserDB.getUser(DB.USER_USERNAME, usernameFld.getText());
                 URL loc = getClass().getClassLoader().getResource(Layouts.MAINWINDOW_FXML);
                 FXMLLoader loader = new FXMLLoader(loc);
+                //MainController mainController = loader.getController();
                 Parent root1 = loader.load();
                 Stage stage2 = new Stage();
                 stage2.setScene(new Scene(root1));
+                //mainController.setUser(user);
                 okBtn.getScene().getWindow().hide();
                 stage2.show();
             }

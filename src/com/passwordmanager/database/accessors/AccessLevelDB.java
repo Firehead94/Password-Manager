@@ -14,7 +14,7 @@ public class AccessLevelDB {
 
     // GET
 
-    public AccessLevel getAccessLevel(String title, int id) {
+    public static AccessLevel getAccessLevel(String title, int id) {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
         PreparedStatement ps = null;
@@ -37,7 +37,7 @@ public class AccessLevelDB {
 
     }
 
-    public AccessLevel getAccessLevel(String title, String id) {
+    public static AccessLevel getAccessLevel(String title, String id) {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
         PreparedStatement ps = null;
@@ -61,7 +61,7 @@ public class AccessLevelDB {
     }
 
 
-    public ArrayList<AccessLevel> getAccessLevels(){
+    public static ArrayList<AccessLevel> getAccessLevels(){
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
         PreparedStatement ps = null;
@@ -82,7 +82,7 @@ public class AccessLevelDB {
     }
 
     // UPDATE
-    public boolean updateAccessLevel(AccessLevel access) {
+    public static boolean updateAccessLevel(AccessLevel access) {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
         PreparedStatement ps = null;
@@ -105,7 +105,7 @@ public class AccessLevelDB {
     }
 
     // INSERT
-    public boolean insertAccessLevel(AccessLevel access) {
+    public static boolean insertAccessLevel(AccessLevel access) {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
         PreparedStatement ps = null;
