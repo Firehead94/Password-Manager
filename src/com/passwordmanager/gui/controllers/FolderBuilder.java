@@ -12,8 +12,6 @@ import java.util.Iterator;
 import java.util.Map;
 
 public class FolderBuilder {
-    private static Map<Integer, TreeItem<Folder>> mapToParents = new HashMap<>();
-    private static Map<Integer, TreeItem<Folder>> mapToID = new HashMap<>();
 
     /**
      * Builds a treeItem out of an arraylist populated by database.
@@ -26,9 +24,6 @@ public class FolderBuilder {
         TreeItem<Folder> root = new TreeItem<>(new Folder());
         root.getValue().setFolder_name("ROOT");
         root.getValue().setFolder_ID(0);
-
-        for (Folder folder : folders)
-            mapToID.put(folder.getFolder_ID(), new TreeItem<>(folder));
 
         return addLeaves(root, folders);
     }
