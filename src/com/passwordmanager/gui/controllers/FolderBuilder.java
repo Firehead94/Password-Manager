@@ -1,8 +1,12 @@
 package com.passwordmanager.gui.controllers;
 
 import com.passwordmanager.database.objects.Folder;
+import com.passwordmanager.utils.Images;
+import javafx.scene.Node;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import sun.reflect.generics.tree.Tree;
 
 import java.lang.reflect.Array;
@@ -24,6 +28,7 @@ public class FolderBuilder {
         TreeItem<Folder> root = new TreeItem<>(new Folder());
         root.getValue().setFolder_name("ROOT");
         root.getValue().setFolder_ID(0);
+        root.setExpanded(true);
 
         return addLeaves(root, folders);
     }
