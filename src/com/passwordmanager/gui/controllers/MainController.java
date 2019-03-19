@@ -21,7 +21,7 @@ import javafx.scene.control.TextArea;
 
 public class MainController implements Initializable
 {
-    private User user = null;
+    private static User user = null;
 
     @FXML
     private BorderPane borderPane;
@@ -32,25 +32,20 @@ public class MainController implements Initializable
     @FXML
     private TextArea textArea;
 
-    private ArrayList<Folder> allFolders;
-    private ArrayList<TreeItem<Folder>> rootFolders;
-    private HashMap<Integer, ArrayList<TreeItem<Folder>>> map;
-
     public void buildFolders()
     {
-        treeView.setRoot(FolderBuilder.buildTreeView(FoldersDB.getFolders()));//DB.ACCESS_LEVEL, user.getAccess_level())));
+        treeView.setRoot(FolderBuilder.buildTreeView(FoldersDB.getFoldersByAL(user.getAccess_level())));
         treeView.setShowRoot(false);
     }
-        
-
 
     public void setUser(User userLoggedIn) {
         user = userLoggedIn;
+        buildFolders();
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-        buildFolders();
+        //buildFolders();
     }
 }

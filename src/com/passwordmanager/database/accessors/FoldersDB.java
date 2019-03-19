@@ -143,7 +143,7 @@ public class FoldersDB {
 
     /**
      * Gets an arraylist of folder objects populated from the database using the inputs.
-     *
+     * FOR ACCESS LEVELS USE getFoldersByAL
      * @param attribute Column name in the FOLDERS table you'd like to
      *                  search by.
      * @param value Value of the column you'd like to filter by.
@@ -161,6 +161,34 @@ public class FoldersDB {
         try {
             ps = connection.prepareStatement(query);
             ps.setString(1, value);
+            folders = getListFromDB(ps);
+        } catch (SQLException e) {
+            Logger.getLogger(FoldersDB.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            DBUtils.closePreparedStatement(ps);
+            pool.freeConnection(connection);
+        }
+        return folders;
+    }
+
+    /**
+     * Gets an arraylist of folder objects populated from the database using the access level.
+     *
+     * @param value Value of the column you'd like to filter by.
+     * @return arraylist of folder objects given the filtered inputs.
+     */
+    public static ArrayList<Folder> getFoldersByAL(int value) {
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        ArrayList<Folder> folders = null;
+
+        String query = "SELECT * FROM FOLDERS " +
+                "WHERE ACCESS_LEVEL >= ?";
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setString(1, Integer.toString(value));
             folders = getListFromDB(ps);
         } catch (SQLException e) {
             Logger.getLogger(FoldersDB.class.getName()).log(Level.SEVERE, null, e);

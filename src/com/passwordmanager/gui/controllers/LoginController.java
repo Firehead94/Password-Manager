@@ -1,5 +1,6 @@
 package com.passwordmanager.gui.controllers;
 
+import com.passwordmanager.database.accessors.FoldersDB;
 import com.passwordmanager.database.accessors.UserDB;
 import com.passwordmanager.database.objects.User;
 import com.passwordmanager.gui.base.DialogBox;
@@ -15,6 +16,8 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class LoginController
 {
@@ -80,14 +83,18 @@ public class LoginController
         {
             try
             {
-                //user = UserDB.getUser(DB.USER_USERNAME, usernameFld.getText());
+                user = UserDB.getUser(DB.USER_USERNAME, usernameFld.getText());
+                Logger.getLogger(LoginController.class.getName()).log(Level.INFO, user.getUser_username() + " has logged in.");
                 URL loc = getClass().getClassLoader().getResource(Layouts.MAINWINDOW_FXML);
                 FXMLLoader loader = new FXMLLoader(loc);
-                //MainController mainController = loader.getController();
                 Parent root1 = loader.load();
                 Stage stage2 = new Stage();
                 stage2.setScene(new Scene(root1));
-                //mainController.setUser(user);
+
+                MainController mainController = loader.<MainController>getController();
+                mainController.setUser(user);
+                stage2.setTitle("KeyCrypt - Welcome " + user.getUser_first_name() + " " + user.getUser_last_name());
+
                 okBtn.getScene().getWindow().hide();
                 stage2.show();
             }
@@ -95,7 +102,7 @@ public class LoginController
             {
                 DialogBox.showError("Fatal Error",
                         "Error opening program. Please check login credentials and try again.");
-                e.printStackTrace();
+                Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, "ERROR OPENING MAIN WINDOW", e);
             }
         }
         else
