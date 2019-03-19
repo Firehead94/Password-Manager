@@ -9,9 +9,12 @@ public class ConnectionPool {
 
     private static ConnectionPool pool = null;
     private static MysqlConnectionPoolDataSource msqlcp = null;
-    private static final String DB_HOSTNAME = "jdbc:mysql://secs.oakland.edu:3306/justinscott?serverTimezone=EST";
-    private static final String DB_USERNAME = "justinscott";
-    private static final String DB_PASSWORD = "WYbtchbusLHDAHe7";
+    //private static final String DB_HOSTNAME = "jdbc:mysql://secs.oakland.edu:3306/justinscott?serverTimezone=EST";
+    //private static final String DB_USERNAME = "justinscott";
+    //private static final String DB_PASSWORD = "WYbtchbusLHDAHe7";
+    private static final String DB_HOSTNAME = "jdbc:mysql://97.70.145.108:3306/passwordmanager";
+    private static final String DB_USERNAME = "root";
+    private static final String DB_PASSWORD = "!Q2aw3zse4";
     private static final String DB_DRIVER = "com.mysql.cj.jdbc.Driver";
 
     private ConnectionPool() {
