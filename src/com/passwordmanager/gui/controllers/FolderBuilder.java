@@ -26,7 +26,7 @@ public class FolderBuilder {
     public static TreeItem<Folder> buildTreeView(ArrayList<Folder> folders) {
 
         TreeItem<Folder> root = new TreeItem<>(new Folder());
-        root.getValue().setFolder_name("ROOT");
+        root.getValue().setFolder_name("Directory");
         root.getValue().setFolder_ID(0);
         root.setExpanded(true);
 

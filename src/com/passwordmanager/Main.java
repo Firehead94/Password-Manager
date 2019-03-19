@@ -28,44 +28,43 @@ public class Main extends Application {
             based on this application, the same system can be used on server side
             accross multiple connections from differing IPs.
          */
-        //ConnectionPool pool = ConnectionPool.getInstance();
-        //Connection connection = pool.getConnection();
-//
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+
         ///*
         //    A prepared statement that is set using the Connection.prepareStatement
         //    function. Function takes a string in the form of an SQL statement.
         // */
-        //PreparedStatement ps = null;
-//
+        PreparedStatement ps = null;
+
         ///*
         //    Stores results from the DB. Is an object that contains information
         //    of datatypes based on datatype in DB. call getType("ATTRIBUTE NAME")
         // */
-        //ResultSet rs = null;
+        ResultSet rs = null;
 //
         ///*
         //    Test code to determine if DB connection has been esablished.
         // */
-        //String query = "SELECT * FROM USERS";
-//
-        //try {
-//
-        //    ps = connection.prepareStatement(query);
-//
-        //    rs = ps.executeQuery();
-//
-        //    while (rs.next()) {
-        //        System.out.println(rs.getString("USER_USERNAME"));
-//
-        //    }
-//
-        //} catch (SQLException e) {
-        //    System.out.println(e);
-        //} finally {
-        //    DBUtils.closeResultSet(rs);
-        //    DBUtils.closePreparedStatement(ps);
-        //    pool.freeConnection(connection);
-        //}
+        String query = "SELECT * FROM USERS";
+
+        try {
+
+            ps = connection.prepareStatement(query);
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                System.out.println(rs.getString("USER_USERNAME"));
+
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        } finally {
+            DBUtils.closeResultSet(rs);
+            DBUtils.closePreparedStatement(ps);
+            pool.freeConnection(connection);
+        }
         //launch the GUI
         launch(args);
     }
