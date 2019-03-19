@@ -14,7 +14,7 @@ public class AccessLevelDB {
 
     // GET
 
-    public static AccessLevel getAccessLevel(String title, int id) {
+    public static AccessLevel getAccessLevel(String title, Object id) {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
         PreparedStatement ps = null;
@@ -25,30 +25,7 @@ public class AccessLevelDB {
                 "WHERE " + title + " = ?";
         try {
             ps = connection.prepareStatement(query);
-            ps.setString(1, Integer.toString(id));
-            access = getFromDB(ps);
-        } catch (SQLException e) {
-            Logger.getLogger(AccessLevelDB.class.getName()).log(Level.SEVERE, null, e);
-        } finally {
-            DBUtils.closePreparedStatement(ps);
-            pool.freeConnection(connection);
-        }
-        return access;
-
-    }
-
-    public static AccessLevel getAccessLevel(String title, String id) {
-        ConnectionPool pool = ConnectionPool.getInstance();
-        Connection connection = pool.getConnection();
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        AccessLevel access = null;
-
-        String query = "SELECT * FROM ACCESS_LEVELS " +
-                "WHERE " + title + " = ?";
-        try {
-            ps = connection.prepareStatement(query);
-            ps.setString(1, id);
+            ps.setString(1, id.toString());
             access = getFromDB(ps);
         } catch (SQLException e) {
             Logger.getLogger(AccessLevelDB.class.getName()).log(Level.SEVERE, null, e);

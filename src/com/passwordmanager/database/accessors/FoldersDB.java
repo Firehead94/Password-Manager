@@ -57,7 +57,7 @@ public class FoldersDB {
      * @param value Value of the column you'd like to filter by.
      * @return Single folder object given the filtered inputs.
      */
-    public static Folder getFolder(String attribute, int value) {
+    public static Folder getFolder(String attribute, Object value) {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
         PreparedStatement ps = null;
@@ -68,7 +68,7 @@ public class FoldersDB {
                 "WHERE " + attribute + " = ?";
         try {
             ps = connection.prepareStatement(query);
-            ps.setString(1, Integer.toString(value));
+            ps.setString(1, value.toString());
             folder = getFromDB(ps);
         } catch (SQLException e) {
             Logger.getLogger(FoldersDB.class.getName()).log(Level.SEVERE, null, e);
@@ -78,67 +78,6 @@ public class FoldersDB {
         }
         return folder;
 
-    }
-
-    /**
-     * Gets a single folder object populated from the database using the inputs.
-     *
-     * @param attribute Column name in the FOLDERS table you'd like to
-     *                  search by.
-     * @param value Value of the column you'd like to filter by.
-     * @return Single folder object given the filtered inputs.
-     */
-    public static Folder getFolder(String attribute, String value) {
-        ConnectionPool pool = ConnectionPool.getInstance();
-        Connection connection = pool.getConnection();
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        Folder folder = null;
-
-        String query = "SELECT * FROM FOLDERS " +
-                "WHERE " + attribute + " = ?";
-        try {
-            ps = connection.prepareStatement(query);
-            ps.setString(1, value);
-            folder = getFromDB(ps);
-        } catch (SQLException e) {
-            Logger.getLogger(FoldersDB.class.getName()).log(Level.SEVERE, null, e);
-        } finally {
-            DBUtils.closePreparedStatement(ps);
-            pool.freeConnection(connection);
-        }
-        return folder;
-
-    }
-
-    /**
-     * Gets an arraylist of folder objects populated from the database using the inputs.
-     *
-     * @param attribute Column name in the FOLDERS table you'd like to
-     *                  search by.
-     * @param value Value of the column you'd like to filter by.
-     * @return arraylist of folder objects given the filtered inputs.
-     */
-    public static ArrayList<Folder> getFolders(String attribute, int value) {
-        ConnectionPool pool = ConnectionPool.getInstance();
-        Connection connection = pool.getConnection();
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        ArrayList<Folder> folders = null;
-
-        String query = "SELECT * FROM FOLDERS " +
-                "WHERE " + attribute + " = ?";
-        try {
-            ps = connection.prepareStatement(query);
-            ps.setString(1, Integer.toString(value));
-            folders = getListFromDB(ps);
-        } catch (SQLException e) {
-            Logger.getLogger(FoldersDB.class.getName()).log(Level.SEVERE, null, e);
-        } finally {
-            DBUtils.closePreparedStatement(ps);
-            pool.freeConnection(connection);
-        }
-        return folders;
     }
 
     /**
@@ -149,7 +88,7 @@ public class FoldersDB {
      * @param value Value of the column you'd like to filter by.
      * @return arraylist of folder objects given the filtered inputs.
      */
-    public static ArrayList<Folder> getFolders(String attribute, String value) {
+    public static ArrayList<Folder> getFolders(String attribute, Object value) {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
         PreparedStatement ps = null;
@@ -160,7 +99,7 @@ public class FoldersDB {
                 "WHERE " + attribute + " = ?";
         try {
             ps = connection.prepareStatement(query);
-            ps.setString(1, value);
+            ps.setString(1, value.toString());
             folders = getListFromDB(ps);
         } catch (SQLException e) {
             Logger.getLogger(FoldersDB.class.getName()).log(Level.SEVERE, null, e);
