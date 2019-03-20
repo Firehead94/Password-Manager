@@ -1,13 +1,16 @@
 package com.passwordmanager.gui.controllers;
 
 import com.passwordmanager.database.accessors.FoldersDB;
+import com.passwordmanager.database.accessors.PasswordsDB;
 import com.passwordmanager.database.objects.Folder;
+import com.passwordmanager.database.objects.Password;
 import com.passwordmanager.database.objects.User;
 import com.passwordmanager.gui.base.DialogBox;
 import com.passwordmanager.utils.DB;
 import com.passwordmanager.utils.Images;
 import com.passwordmanager.utils.Layouts;
 import javafx.application.Platform;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -50,6 +53,7 @@ public class MainController implements Initializable
     {
         treeView.setRoot(FolderBuilder.buildTreeView(FoldersDB.getFoldersByAL(user.getAccess_level())));
         treeView.setShowRoot(false);
+        treeView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
     }
 
     public void setUser(User userLoggedIn) {
@@ -60,7 +64,7 @@ public class MainController implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-        textArea.setEditable(false);
+        textArea.setEditable(true);
     }
 
     @FXML
@@ -102,8 +106,12 @@ public class MainController implements Initializable
             PasswordBoxController pbController = loader.getController();
             //testing, just making sure the value is getting passed correctly
             //we can take the value stored in newPassword and save it into the DB
-            String newPassword = pbController.getText();
+            String newPassword = pbController.getPass();
             System.out.println(newPassword);
+            boolean wasInserted = PasswordsDB.insertPassword(new Password(newPassword, pbController.getTitle(), treeView.getSelectionModel().getSelectedItem().getValue().getFolder_ID()));
+            if (wasInserted)
+                System.out.println("INSERTED");
+
         }
         catch (Exception e)
         {

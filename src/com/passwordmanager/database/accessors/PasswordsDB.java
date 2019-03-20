@@ -124,13 +124,15 @@ public class PasswordsDB {
         String query = "INSERT INTO PASSWORDS (" +
                 DB.PASSWORD + ", " +
                 DB.PASSWORD_TITLE + ", " +
-                DB.PASSWORD_TIMESTAMP + ", " +
-                "VALUES (?,?,?);";
+                DB.FOLDER_ID + ", " +
+                DB.PASSWORD_TIMESTAMP + ") " +
+                "VALUES (?,?,?,?);";
         try {
             ps = connection.prepareStatement(query);
             ps.setString(1, pwd.getPassword());
             ps.setString(2, StringUtils.capitalize(pwd.getPassword_title()));
-            ps.setLong(3, pwd.password_timestamp());
+            ps.setLong(3, pwd.getFolder_ID());
+            ps.setLong(4, pwd.password_timestamp());
             retVal = ps.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e);

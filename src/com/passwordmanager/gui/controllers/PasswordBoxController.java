@@ -13,6 +13,8 @@ public class PasswordBoxController
     @FXML
     private TextField textField;
     @FXML
+    private TextField title;
+    @FXML
     private PasswordField passwordField;
     @FXML
     private Button saveBtn;
@@ -55,8 +57,12 @@ public class PasswordBoxController
     }
     //returns the value to be saved for later entry into the DB
     //Will only send
-    String getText()
+    String getPass()
     {
         return passwordField.getText();
+    }
+    String getTitle()
+    {
+        return title.getText();
     }
 }

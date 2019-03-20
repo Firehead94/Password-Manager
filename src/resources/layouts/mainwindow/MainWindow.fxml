@@ -35,6 +35,6 @@
       </MenuBar>
    </top>
    <bottom>
-      <TextArea fx:id="textArea" prefHeight="83.0" prefWidth="600.0" BorderPane.alignment="CENTER" />
+      <TextArea fx:id="textArea" prefHeight="83.0" prefWidth="600.0" promptText="Notes:" BorderPane.alignment="CENTER" />
    </bottom>
 </BorderPane>
