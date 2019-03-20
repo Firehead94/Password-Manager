@@ -39,6 +39,8 @@ public class LoginController
     private Button helpBtn;
     @FXML
     private CheckBox showCheckBox;
+    @FXML
+    private Button newUser;
 
     //Show help on login page
     @FXML
@@ -74,6 +76,10 @@ public class LoginController
         passHiddenFld.setText(passShowFld.getText());
         passShowFld.setVisible(false);
         passHiddenFld.setVisible(true);
+    }
+
+    public void openUserCreation(ActionEvent actionEvent) throws Exception {
+
     }
 
     public void openMainWindow(ActionEvent actionEvent) throws Exception

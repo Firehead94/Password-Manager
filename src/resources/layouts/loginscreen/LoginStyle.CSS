@@ -1,22 +1,31 @@
-.check-box .box
-{
-
--fx-background-color: white;
--fx-border-color: grey;
--fx-border-radius: 3px;
-
+.check-box .box {
+  -fx-background-insets: 0;
+  -fx-background-radius: 0;
+  -fx-background-color: transparent;
+  -fx-padding: 10px;
 }
 
-.check-box:selected .mark
-{
-
--fx-background-color: white;
-
+.check-box .box .mark {
+  -fx-background-image: url("../../images/eyeClosed_small.png");
+  -fx-padding: 10px;
+  -fx-background-position: center;
+  -fx-background-repeat: stretch;
+  -fx-shape: none;
 }
 
-.check-box:selected .box
-{
+.check-box:selected .box .mark {
+  -fx-background-color: transparent;
+  -fx-background-image: url("../../images/eyeOpen_small.png");
+}
 
--fx-background-color: #28a3f4;
+.button {
+    -fx-background-color: linear-gradient(#b7deed,#21b4e2,#b7deed);
+    -fx-border-color: GREY;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+    -fx-padding: 0px;
+}
 
+.button:hover {
+    -fx-background-color: linear-gradient(#b7deed,#71ceef,#b7deed);
 }
