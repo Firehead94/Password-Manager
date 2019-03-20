@@ -51,6 +51,33 @@ public class PasswordsDB {
      *
      * @return
      */
+    public static ArrayList<Password> getPasswords(String attribute, Object value) {
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        ArrayList<Password> pwds = null;
+
+        String query = "SELECT * FROM PASSWORDS " +
+                "WHERE " + attribute + " = ?;";
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setString(1, value.toString());
+            pwds = getListFromDB(ps);
+        } catch (SQLException e) {
+            Logger.getLogger(PasswordsDB.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            DBUtils.closePreparedStatement(ps);
+            pool.freeConnection(connection);
+        }
+        return pwds;
+    }
+
+    /**
+     * Gets an arraylist of password objects populated from the database using the inputs.
+     *
+     * @return
+     */
     public static ArrayList<Password> getPasswords() {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
@@ -93,7 +120,7 @@ public class PasswordsDB {
             ps = connection.prepareStatement(query);
             ps.setString(1, pwd.getPassword());
             ps.setString(2, pwd.getPassword_title());
-            ps.setLong(3, pwd.password_timestamp());
+            ps.setTimestamp(3, pwd.password_timestamp());
             ps.setInt(4, pwd.getPassword_ID());
             retVal = ps.executeUpdate();
         } catch (SQLException e) {
@@ -132,7 +159,7 @@ public class PasswordsDB {
             ps.setString(1, pwd.getPassword());
             ps.setString(2, StringUtils.capitalize(pwd.getPassword_title()));
             ps.setLong(3, pwd.getFolder_ID());
-            ps.setLong(4, pwd.password_timestamp());
+            ps.setTimestamp(4, pwd.password_timestamp());
             retVal = ps.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e);
@@ -162,7 +189,7 @@ public class PasswordsDB {
                 pwd.setPassword(rs.getString(DB.PASSWORD));
                 pwd.setFolder_ID(rs.getInt(DB.FOLDER_ID));
                 pwd.setPassword_title(rs.getString(DB.PASSWORD_TITLE));
-                pwd.setPassword_timestamp(rs.getInt(DB.PASSWORD_TIMESTAMP));
+                pwd.setPassword_timestamp(rs.getTimestamp(DB.PASSWORD_TIMESTAMP));
             }
         } catch (SQLException e) {
             Logger.getLogger(PasswordsDB.class.getName()).log(Level.SEVERE, null, e);
@@ -191,7 +218,7 @@ public class PasswordsDB {
                 pwd.setPassword(rs.getString(DB.PASSWORD));
                 pwd.setFolder_ID(rs.getInt(DB.FOLDER_ID));
                 pwd.setPassword_title(rs.getString(DB.PASSWORD_TITLE));
-                pwd.setPassword_timestamp(rs.getInt(DB.PASSWORD_TIMESTAMP));
+                pwd.setPassword_timestamp(rs.getTimestamp(DB.PASSWORD_TIMESTAMP));
 
                 pwds.add(pwd);
             }

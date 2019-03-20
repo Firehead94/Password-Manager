@@ -10,7 +10,10 @@ import com.passwordmanager.utils.DB;
 import com.passwordmanager.utils.Images;
 import com.passwordmanager.utils.Layouts;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -37,6 +40,7 @@ import static javafx.application.Platform.exit;
 public class MainController implements Initializable
 {
     private static User user = null;
+    private static Folder selected = null;
 
     @FXML
     private BorderPane borderPane;
@@ -48,12 +52,31 @@ public class MainController implements Initializable
     private TreeView<Folder> treeView;
     @FXML
     private TextArea textArea;
+    @FXML
+    private ListView list;
 
     public void buildFolders()
     {
         treeView.setRoot(FolderBuilder.buildTreeView(FoldersDB.getFoldersByAL(user.getAccess_level())));
         treeView.setShowRoot(false);
         treeView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        treeView.getSelectionModel().selectedItemProperty().addListener((ChangeListener) (observable, oldValue, newValue) -> {
+            TreeItem<Folder> selectedItem = (TreeItem<Folder>) newValue;
+            selected = selectedItem.getValue();
+
+            showPasswords();
+        });
+
+    }
+
+    public void showPasswords() {
+        selected = treeView.getSelectionModel().getSelectedItem().getValue();
+        list.getItems().clear();
+        ArrayList<Password> pwdsDB = PasswordsDB.getPasswords(DB.FOLDER_ID, selected.getFolder_ID());
+        for (Password pwds : pwdsDB) {
+            list.getItems().add(pwds);
+        }
+
     }
 
     public void setUser(User userLoggedIn) {
@@ -109,6 +132,7 @@ public class MainController implements Initializable
             String newPassword = pbController.getPass();
             System.out.println(newPassword);
             boolean wasInserted = PasswordsDB.insertPassword(new Password(newPassword, pbController.getTitle(), treeView.getSelectionModel().getSelectedItem().getValue().getFolder_ID()));
+            showPasswords();
             if (wasInserted)
                 System.out.println("INSERTED");
 

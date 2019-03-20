@@ -1,16 +1,23 @@
 package com.passwordmanager.database.objects;
 
 
+import java.sql.Timestamp;
+
 public class Password {
 
     private int password_ID;
     private int folder_ID;
     private String password;
     private String password_title;
-    private long password_timestamp;
+    private Timestamp password_timestamp;
 
     //TODO: TEST CODE
     private static int passwordID_Count = 0;
+
+    @Override
+    public String toString() {
+        return String.format("%-20s | %2s",password_title, password);
+    }
 
     public Password()
     {
@@ -64,7 +71,7 @@ public class Password {
      * @return the password_timestamp;
      */
 
-    public long password_timestamp()
+    public Timestamp password_timestamp()
     {
         return password_timestamp;
     }
@@ -104,7 +111,7 @@ public class Password {
     /**
      * @param password_timestamp the password_timestamp to set
      */
-    public void setPassword_timestamp (long password_timestamp)
+    public void setPassword_timestamp (Timestamp password_timestamp)
     {
         this.password_timestamp = password_timestamp;
     }
