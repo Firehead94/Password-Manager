@@ -17,7 +17,8 @@
           <Menu mnemonicParsing="false" text="File">
             <items>
               <MenuItem fx:id="newPasswordMenu" mnemonicParsing="false" onAction="#createNewPassword" text="New Password" />
-                  <MenuItem mnemonicParsing="false" text="Close" />
+              <MenuItem fx:id="gotoLogin" mnemonicParsing="false" onAction="#logout" text="Logout" />
+              <MenuItem fx:id="exit" mnemonicParsing="false" onAction="#closeApp" text="Close" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Edit">

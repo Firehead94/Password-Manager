@@ -7,7 +7,9 @@ import com.passwordmanager.gui.base.DialogBox;
 import com.passwordmanager.utils.DB;
 import com.passwordmanager.utils.Images;
 import com.passwordmanager.utils.Layouts;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -26,6 +28,8 @@ import java.net.URL;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import static javafx.application.Platform.exit;
 
 public class MainController implements Initializable
 {
@@ -59,6 +63,29 @@ public class MainController implements Initializable
         textArea.setEditable(false);
     }
 
+    @FXML
+    public void logout() {
+        try {
+        URL loc = getClass().getClassLoader().getResource(Layouts.LOGINSCREEN_FXML);
+        FXMLLoader loader = new FXMLLoader(loc);
+        Parent root1 = loader.load();
+        Stage stage2 = new Stage();
+        stage2.setScene(new Scene(root1));
+        user = null;
+        menuBar.getScene().getWindow().hide();
+        stage2.show();
+        } catch (Exception e) {
+            DialogBox.showError("Fatal Error",
+                "Error switching scenes. Please try again.");
+            Logger.getLogger(NewUserController.class.getName()).log(Level.SEVERE, "ERROR OPENING USER CREATION WINDOW", e);
+        }
+    }
+
+    @FXML
+    private void closeApp(ActionEvent actionEvent)
+    {
+        Platform.exit();
+    }
 
     public void createNewPassword(ActionEvent actionEvent) throws Exception
     {
