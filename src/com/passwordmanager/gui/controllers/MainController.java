@@ -143,7 +143,7 @@ public class MainController implements Initializable
         } else {
             DialogBox.showError("Error",
                     "Error no folder selected, please select a folder.");
-            Logger.getLogger(NewUserController.class.getName()).log(Level.WARNING, "NO FOLDER SELECTED", e);
+            Logger.getLogger(NewUserController.class.getName()).log(Level.WARNING, "NO FOLDER SELECTED");
         }
 
     }
