@@ -11,4 +11,7 @@ public class Layouts {
     // Main Window
     public static final String MAINWINDOW_CSS = LAYOUT_LOC + "/mainwindow/MainWindow.css";
     public static final String MAINWINDOW_FXML = LAYOUT_LOC + "/mainwindow/MainWindow.fxml";
+
+    //Password Enter Dialog Box
+    public static final String PASSWORDBOX_FXML = LAYOUT_LOC + "/passwordbox/PasswordBox.fxml";
 }
