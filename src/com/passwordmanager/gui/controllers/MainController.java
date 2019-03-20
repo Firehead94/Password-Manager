@@ -55,17 +55,18 @@ public class MainController implements Initializable
     @FXML
     private ListView list;
 
-    public void buildFolders()
+    private void buildFolders()
     {
         treeView.setRoot(FolderBuilder.buildTreeView(FoldersDB.getFoldersByAL(user.getAccess_level())));
         treeView.setShowRoot(false);
         treeView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-        treeView.getSelectionModel().selectedItemProperty().addListener((ChangeListener) (observable, oldValue, newValue) -> {
-            TreeItem<Folder> selectedItem = (TreeItem<Folder>) newValue;
-            selected = selectedItem.getValue();
+        treeView.getSelectionModel().selectedItemProperty().addListener(
+                (ChangeListener) (observable, oldValue, newValue) -> {
+                    TreeItem<Folder> selectedItem = (TreeItem<Folder>) newValue;
+                    selected = selectedItem.getValue();
 
-            showPasswords();
-        });
+                showPasswords();
+                });
 
     }
 
@@ -89,6 +90,7 @@ public class MainController implements Initializable
     {
         textArea.setEditable(true);
     }
+
 
     @FXML
     public void logout() {

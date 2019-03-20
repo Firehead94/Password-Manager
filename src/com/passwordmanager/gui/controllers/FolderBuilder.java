@@ -42,7 +42,7 @@ public class FolderBuilder {
      * @param folders list of all folders
      * @return returns on leaf of tree
      */
-    public static TreeItem<Folder> addLeaves(TreeItem<Folder> root, ArrayList<Folder> folders) {
+    private static TreeItem<Folder> addLeaves(TreeItem<Folder> root, ArrayList<Folder> folders) {
         for (Folder folder : folders)
             if (folder.getFolder_parent() == root.getValue().getFolder_ID())
                 root.getChildren().add(addLeaves(new TreeItem<>(folder), folders));

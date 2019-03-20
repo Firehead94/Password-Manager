@@ -7,6 +7,9 @@ import java.util.ArrayList;
 
 public class TimestampDB
 {
+
+    //TODO Finish TimestampDB
+
     // GET
     public ArrayList<FolderTimestamp> getFolderTimestamps (int folderId){return null;}
     public ArrayList<LoginTimestamp> getLoginTimestamps (int userId){return null;}

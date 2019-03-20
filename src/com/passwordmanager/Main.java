@@ -1,14 +1,6 @@
 package com.passwordmanager;
 
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
-import com.passwordmanager.database.accessors.ConnectionPool;
-import com.passwordmanager.database.accessors.DBUtils;
-import com.passwordmanager.utils.Config;
 import com.passwordmanager.utils.Layouts;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
