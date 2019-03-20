@@ -24,7 +24,7 @@ public class PasswordsDB {
      * @param value Value of the column you'd like to filter by.
      * @return Single user object given the filtered inputs.
      */
-    public static Password getPassword(String attribute, int value) {
+    public static Password getPassword(String attribute, Object value) {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
         PreparedStatement ps = null;
@@ -35,37 +35,7 @@ public class PasswordsDB {
                 "WHERE " + attribute + " = ?";
         try {
             ps = connection.prepareStatement(query);
-            ps.setString(1, Integer.toString(value));
-            pwd = getFromDB(ps);
-        } catch (SQLException e) {
-            Logger.getLogger(PasswordsDB.class.getName()).log(Level.SEVERE, null, e);
-        } finally {
-            DBUtils.closePreparedStatement(ps);
-            pool.freeConnection(connection);
-        }
-        return pwd;
-    }
-
-    /**
-     * Gets a single password object populated from the database using the inputs.
-     *
-     * @param attribute Column name in the PASSWORDS table you'd like to
-     *                  search by.
-     * @param value Value of the column you'd like to filter by.
-     * @return Single user object given the filtered inputs.
-     */
-    public static Password getPassword(String attribute, String value) {
-        ConnectionPool pool = ConnectionPool.getInstance();
-        Connection connection = pool.getConnection();
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        Password pwd = null;
-
-        String query = "SELECT * FROM PASSWORDS " +
-                "WHERE " + attribute + " = ?";
-        try {
-            ps = connection.prepareStatement(query);
-            ps.setString(1, value);
+            ps.setString(1, value.toString());
             pwd = getFromDB(ps);
         } catch (SQLException e) {
             Logger.getLogger(PasswordsDB.class.getName()).log(Level.SEVERE, null, e);

@@ -91,7 +91,7 @@ public class UserDB {
      * @param value Value of the column you'd like to filter by.
      * @return Single user object given the filtered inputs.
      */
-    public static User getUser(String attribute, int value) {
+    public static User getUser(String attribute, Object value) {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
         PreparedStatement ps = null;
@@ -102,37 +102,7 @@ public class UserDB {
                 "WHERE " + attribute + " = ?";
         try {
             ps = connection.prepareStatement(query);
-            ps.setString(1, Integer.toString(value));
-            user = getFromDB(ps);
-        } catch (SQLException e) {
-            Logger.getLogger(UserDB.class.getName()).log(Level.SEVERE, null, e);
-        } finally {
-            DBUtils.closePreparedStatement(ps);
-            pool.freeConnection(connection);
-        }
-        return user;
-    }
-
-    /**
-     * Gets a single user object populated from the database using the inputs.
-     *
-     * @param attribute Column name in the USER table you'd like to
-     *                  search by.
-     * @param value Value of the column you'd like to filter by.
-     * @return Single user object given the filtered inputs.
-     */
-    public static User getUser(String attribute, String value) {
-        ConnectionPool pool = ConnectionPool.getInstance();
-        Connection connection = pool.getConnection();
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        User user = null;
-
-        String query = "SELECT * FROM USERS " +
-                "WHERE " + attribute + " = ?";
-        try {
-            ps = connection.prepareStatement(query);
-            ps.setString(1, value);
+            ps.setString(1, value.toString());
             user = getFromDB(ps);
         } catch (SQLException e) {
             Logger.getLogger(UserDB.class.getName()).log(Level.SEVERE, null, e);
@@ -174,7 +144,7 @@ public class UserDB {
      * @param value Value of the column you'd like to filter by.
      * @return Arraylist of user objects given the filtered inputs.
      */
-    public static ArrayList<User> getUsers(String attribute, int value) {
+    public static ArrayList<User> getUsers(String attribute, Object value) {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
         PreparedStatement ps = null;
@@ -185,37 +155,7 @@ public class UserDB {
                 "WHERE " + attribute + " = ?";
         try {
             ps = connection.prepareStatement(query);
-            ps.setString(1, Integer.toString(value));
-            users = getListFromDB(ps);
-        } catch (SQLException e) {
-            Logger.getLogger(UserDB.class.getName()).log(Level.SEVERE, null, e);
-        } finally {
-            DBUtils.closePreparedStatement(ps);
-            pool.freeConnection(connection);
-        }
-        return users;
-    }
-
-    /**
-     * Gets a list of user object populated from the databased using the inputs.
-     *
-     * @param attribute Column name in the USER table you'd like to
-     *                  search by.
-     * @param value Value of the column you'd like to filter by.
-     * @return Arraylist of user objects given the filtered inputs.
-     */
-    public static ArrayList<User> getUsers(String attribute, String value) {
-        ConnectionPool pool = ConnectionPool.getInstance();
-        Connection connection = pool.getConnection();
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        ArrayList<User> users = null;
-
-        String query = "SELECT * FROM USERS " +
-                "WHERE " + attribute + " = ?";
-        try {
-            ps = connection.prepareStatement(query);
-            ps.setString(1, value);
+            ps.setString(1, value.toString());
             users = getListFromDB(ps);
         } catch (SQLException e) {
             Logger.getLogger(UserDB.class.getName()).log(Level.SEVERE, null, e);

@@ -8,25 +8,22 @@ public class Password {
     private String password;
     private String password_title;
     private long password_timestamp;
-    private static int passwordID_Count;
+
+    //TODO: TEST CODE
+    private static int passwordID_Count = 0;
 
     public Password()
     {
-        this.password_ID = 0;
-        this.password = "TestPassword123";
-        this.password_title = "Testing";
-        this.password_timestamp = 0;
-        passwordID_Count++;
+        this(++passwordID_Count, "TestingPassword123", "Testing Password");
     }
     //overloaded constructor for creating a password
     //folder ID can be set after creation using the setFolder_ID() method
     //timestamp can be set using the setPassword_Timestamp method()
     public Password(int Password_ID, String password, String password_title)
     {
-        this.password_ID = getPassword_ID();
+        this.password_ID = Password_ID;
         this.password = password;
         this.password_title = password_title;
-        passwordID_Count++;
     }
 
     /**
@@ -112,6 +109,8 @@ public class Password {
         this.password_timestamp = password_timestamp;
     }
 
+
+    //TODO: TEST CODE
     public int getPasswordIDCount()
     {
         return passwordID_Count;
