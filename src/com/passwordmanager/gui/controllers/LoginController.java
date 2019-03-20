@@ -61,6 +61,7 @@ public class LoginController
         Platform.exit();
     }
 
+    @FXML
     public void toggleVisiblePassword(ActionEvent actionEvent)
     {
         //if show password checkbox is selected, show password in cleartext
@@ -78,8 +79,22 @@ public class LoginController
         passHiddenFld.setVisible(true);
     }
 
-    public void openUserCreation(ActionEvent actionEvent) throws Exception {
 
+    @FXML
+    public void openUserCreation(ActionEvent actionEvent) throws Exception {
+        try {
+            URL loc = getClass().getClassLoader().getResource(Layouts.NEWUSER_FXML);
+            FXMLLoader loader = new FXMLLoader(loc);
+            Parent root1 = loader.load();
+            Stage stage2 = new Stage();
+            stage2.setScene(new Scene(root1));
+            newUser.getScene().getWindow().hide();
+            stage2.show();
+        } catch (Exception e) {
+            DialogBox.showError("Fatal Error",
+                    "Error switching scenes. Please try again.");
+            Logger.getLogger(NewUserController.class.getName()).log(Level.SEVERE, "ERROR OPENING USER CREATION WINDOW", e);
+        }
     }
 
     public void openMainWindow(ActionEvent actionEvent) throws Exception

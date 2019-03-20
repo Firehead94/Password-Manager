@@ -10,6 +10,16 @@ public class User {
     private String user_first_name;
     private String user_last_name;
 
+    public User() {
+
+    }
+
+    public User(String un, String fn, String ln, String pw) {
+        setUser_first_name(fn);
+        setUser_last_name(ln);
+        setUser_username(un);
+        setUser_password(pw);
+    }
     /**
      * @return the user_ID
      */

@@ -25,9 +25,9 @@
    <children>
       <AnchorPane fx:id="login" minHeight="-Infinity" minWidth="-Infinity" prefHeight="378.0" prefWidth="413.0" style="-fx-background-color: linear-gradient(to bottom, rgba(226,226,226,1) 0%, rgba(219,219,219,1) 50%, rgba(209,209,209,1) 51%, rgba(254,254,254,1) 100%);">
          <children>
-            <TextField fx:id="usernameFld" layoutX="135.0" layoutY="183.0" prefHeight="26.0" prefWidth="143.0" promptText="Username" style="-fx-alignment: left;" AnchorPane.bottomAnchor="169.0" AnchorPane.leftAnchor="135.0" AnchorPane.rightAnchor="135.0" AnchorPane.topAnchor="183.0" />
-            <TextField fx:id="passShowFld" focusTraversable="false" layoutX="124.0" layoutY="218.0" style="-fx-alignment: left;" AnchorPane.leftAnchor="135.0" AnchorPane.rightAnchor="135.0" />
-            <PasswordField fx:id="passHiddenFld" layoutX="124.0" layoutY="218.0" promptText="Password" style="-fx-alignment: left;" AnchorPane.leftAnchor="135.0" AnchorPane.rightAnchor="135.0" />
+            <TextField fx:id="usernameFld" alignment="TOP_LEFT" layoutX="135.0" layoutY="183.0" prefHeight="26.0" prefWidth="143.0" promptText="Username" style="-fx-alignment: center-left;" AnchorPane.bottomAnchor="169.0" AnchorPane.leftAnchor="135.0" AnchorPane.rightAnchor="135.0" AnchorPane.topAnchor="183.0" />
+            <TextField fx:id="passShowFld" focusTraversable="false" layoutX="124.0" layoutY="218.0" style="-fx-alignment: center-left;" AnchorPane.leftAnchor="135.0" AnchorPane.rightAnchor="135.0" />
+            <PasswordField fx:id="passHiddenFld" alignment="TOP_LEFT" layoutX="124.0" layoutY="218.0" promptText="Password" style="-fx-alignment: center-left;" AnchorPane.leftAnchor="135.0" AnchorPane.rightAnchor="135.0" />
             <CheckBox fx:id="showCheckBox" alignment="CENTER" graphicTextGap="0.0" layoutX="244.0" layoutY="211.0" mnemonicParsing="false" onAction="#toggleVisiblePassword" opacity="0.4" AnchorPane.rightAnchor="129.0" AnchorPane.topAnchor="211.0">
                <font>
                   <Font size="1.0" />
