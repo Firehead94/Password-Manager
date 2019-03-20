@@ -116,31 +116,34 @@ public class MainController implements Initializable
 
     public void createNewPassword(ActionEvent actionEvent) throws Exception
     {
-        try
-        {
-            URL loc = getClass().getClassLoader().getResource(Layouts.PASSWORDBOX_FXML);
-            FXMLLoader loader = new FXMLLoader(loc);
-            Parent root2 = loader.load();
-            Stage stage3 = new Stage();
-            stage3.setTitle("New Password");
-            stage3.setScene(new Scene(root2));
-            stage3.initModality(Modality.APPLICATION_MODAL);
-            stage3.showAndWait();
-            PasswordBoxController pbController = loader.getController();
-            //testing, just making sure the value is getting passed correctly
-            //we can take the value stored in newPassword and save it into the DB
-            String newPassword = pbController.getPass();
-            System.out.println(newPassword);
-            boolean wasInserted = PasswordsDB.insertPassword(new Password(newPassword, pbController.getTitle(), treeView.getSelectionModel().getSelectedItem().getValue().getFolder_ID()));
-            showPasswords();
-            if (wasInserted)
-                System.out.println("INSERTED");
+        if (treeView.getSelectionModel().getSelectedItem() != null) {
+            try {
+                URL loc = getClass().getClassLoader().getResource(Layouts.PASSWORDBOX_FXML);
+                FXMLLoader loader = new FXMLLoader(loc);
+                Parent root2 = loader.load();
+                Stage stage3 = new Stage();
+                stage3.setTitle("New Password");
+                stage3.setScene(new Scene(root2));
+                stage3.initModality(Modality.APPLICATION_MODAL);
+                stage3.showAndWait();
+                PasswordBoxController pbController = loader.getController();
+                //testing, just making sure the value is getting passed correctly
+                //we can take the value stored in newPassword and save it into the DB
+                String newPassword = pbController.getPass();
+                System.out.println(newPassword);
+                boolean wasInserted = PasswordsDB.insertPassword(new Password(newPassword, pbController.getTitle(), treeView.getSelectionModel().getSelectedItem().getValue().getFolder_ID()));
+                showPasswords();
+                if (wasInserted)
+                    System.out.println("INSERTED");
 
-        }
-        catch (Exception e)
-        {
-            DialogBox.showError("Error", "There was a problem opening the desired window");
-            Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, "ERROR OPENING PASSWORD BOX", e);
+            } catch (Exception e) {
+                DialogBox.showError("Error", "There was a problem opening the desired window");
+                Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, "ERROR OPENING PASSWORD BOX", e);
+            }
+        } else {
+            DialogBox.showError("Error",
+                    "Error no folder selected, please select a folder.");
+            Logger.getLogger(NewUserController.class.getName()).log(Level.WARNING, "NO FOLDER SELECTED", e);
         }
 
     }
