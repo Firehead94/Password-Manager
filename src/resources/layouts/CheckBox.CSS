@@ -1,0 +1,21 @@
+.check-box .box {
+  -fx-background-insets: 0;
+  -fx-background-radius: 0;
+  -fx-background-color: transparent;
+  -fx-padding: 10px;
+}
+
+.check-box .box .mark {
+  -fx-background-image: url("../images/eyeClosed_small.png");
+  -fx-padding: 10px;
+  -fx-background-position: center;
+  -fx-background-repeat: stretch;
+  -fx-shape: none;
+  -fx-
+}
+
+.check-box:selected .box .mark {
+  -fx-background-color: transparent;
+  -fx-background-image: url("../images/eyeOpen_small.png");
+}
+
