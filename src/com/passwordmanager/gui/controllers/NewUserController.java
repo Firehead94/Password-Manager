@@ -69,9 +69,6 @@ public class NewUserController {
     private void createUser(ActionEvent actionEvent) {
         User user = null;
 
-        updatePassBox();
-        updateConfirmBox();
-
         if (!passHiddenFld.getText().equals(passHiddenFld2.getText())) {
             noMatch.setText("Passwords Don't Match");
         } else {
@@ -113,43 +110,21 @@ public class NewUserController {
 
     }
 
-    public void updatePassBox() {
-        if (showCheckBox.isSelected())
-            passShowFld.setText(passHiddenFld.getText());
-        else
-            passHiddenFld.setText(passShowFld.getText());
-    }
-
-    public void updateConfirmBox() {
-        if (showCheckBox2.isSelected())
-            passShowFld2.setText(passHiddenFld2.getText());
-        else
-            passHiddenFld2.setText(passShowFld2.getText());
+    @FXML
+    public void passwordPassword(MouseEvent actionEvent) {
+        passShowFld.setText(passHiddenFld.getText());
+        passHiddenFld.setVisible(!passHiddenFld.isVisible());
+        if (actionEvent.isPrimaryButtonDown()) {
+            showCheckBox.setSelected(true);
+        }
     }
 
     @FXML
-    public void toggleVisiblePassword(ActionEvent actionEvent)
-    {
-        passShowFld.setVisible(showCheckBox.isSelected());
-        passHiddenFld.setVisible(!showCheckBox.isSelected());
-        if (showCheckBox.isSelected())
-            passShowFld.setText(passHiddenFld.getText());
-        else
-            passHiddenFld.setText(passShowFld.getText());
-        return;
+    public void passwordConfirm(MouseEvent actionEvent) {
+        passShowFld2.setText(passHiddenFld2.getText());
+        passHiddenFld2.setVisible(!passHiddenFld2.isVisible());
+        if (actionEvent.isPrimaryButtonDown()) {
+            showCheckBox2.setSelected(true);
+        }
     }
-
-    @FXML
-    public void toggleVisiblePassword2(ActionEvent actionEvent)
-    {
-        passShowFld2.setVisible(showCheckBox2.isSelected());
-        passHiddenFld2.setVisible(!showCheckBox2.isSelected());
-        if (showCheckBox2.isSelected())
-            passShowFld2.setText(passHiddenFld2.getText());
-        else
-            passHiddenFld2.setText(passShowFld2.getText());
-        return;
-    }
-
-
 }

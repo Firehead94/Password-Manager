@@ -13,8 +13,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -62,21 +64,12 @@ public class LoginController
     }
 
     @FXML
-    public void toggleVisiblePassword(ActionEvent actionEvent)
-    {
-        //if show password checkbox is selected, show password in cleartext
-        if (showCheckBox.isSelected())
-        {
-            passShowFld.setText(passHiddenFld.getText());
-            passShowFld.setVisible(true);
-            passHiddenFld.setVisible(false);
-            return;
+    public void toggleVisiblePassword(MouseEvent actionEvent) {
+        passShowFld.setText(passHiddenFld.getText());
+        passHiddenFld.setVisible(!passHiddenFld.isVisible());
+        if (actionEvent.isPrimaryButtonDown()) {
+            showCheckBox.setSelected(true);
         }
-
-        //otherwise don't show the password in cleartext
-        passHiddenFld.setText(passShowFld.getText());
-        passShowFld.setVisible(false);
-        passHiddenFld.setVisible(true);
     }
 
 

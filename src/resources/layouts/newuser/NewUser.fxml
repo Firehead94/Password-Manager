@@ -32,7 +32,7 @@
                <children>
                       <TextField fx:id="passShowFld" focusTraversable="false" layoutY="7.0" style="-fx-alignment: center-left;" />
                       <PasswordField fx:id="passHiddenFld" layoutY="7.0" promptText="Password" style="-fx-alignment: center-left;" />
-                      <CheckBox fx:id="showCheckBox" alignment="CENTER" graphicTextGap="0.0" layoutX="109.0" mnemonicParsing="false" onAction="#toggleVisiblePassword" opacity="0.4">
+                      <CheckBox fx:id="showCheckBox" alignment="CENTER" focusTraversable="false" graphicTextGap="0.0" layoutX="109.0" mnemonicParsing="false" onMousePressed="#passwordPassword" onMouseReleased="#passwordPassword" opacity="0.4">
                           <font>
                               <Font size="1.0" />
                           </font>
@@ -43,7 +43,7 @@
                <children>
                   <TextField fx:id="passShowFld2" focusTraversable="false" layoutY="7.0" style="-fx-alignment: center-left;" />
                   <PasswordField fx:id="passHiddenFld2" layoutY="7.0" promptText="Confirm Password" style="-fx-alignment: center-left;" />
-                  <CheckBox fx:id="showCheckBox2" alignment="CENTER" graphicTextGap="0.0" layoutX="109.0" mnemonicParsing="false" onAction="#toggleVisiblePassword2" opacity="0.4">
+                  <CheckBox fx:id="showCheckBox2" alignment="CENTER" focusTraversable="false" graphicTextGap="0.0" layoutX="109.0" mnemonicParsing="false" onMousePressed="#passwordConfirm" onMouseReleased="#passwordConfirm" opacity="0.4">
                      <font>
                         <Font size="1.0" />
                      </font>

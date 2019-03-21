@@ -6,16 +6,17 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.WindowEvent;
 
 public class PasswordBoxController
 {
     @FXML
-    private TextField textField;
+    private TextField passShow;
     @FXML
     private TextField title;
     @FXML
-    private PasswordField passwordField;
+    private PasswordField passHide;
     @FXML
     private Button saveBtn;
     @FXML
@@ -40,26 +41,18 @@ public class PasswordBoxController
         cancelBtn.getScene().getWindow().hide();
     }
     @FXML
-    void toggleVisiblePassword()
-    {
-        //if show password checkbox is selected, show password in cleartext
-        if (showCheckBox.isSelected())
-        {
-            textField.setText(passwordField.getText());
-            textField.setVisible(true);
-            passwordField.setVisible(false);
-            return;
+    public void toggleVisiblePassword(MouseEvent actionEvent) {
+        passShow.setText(passHide.getText());
+        passHide.setVisible(!passHide.isVisible());
+        if (actionEvent.isPrimaryButtonDown()) {
+            showCheckBox.setSelected(true);
         }
-        //otherwise don't show the password in cleartext
-        passwordField.setText(textField.getText());
-        textField.setVisible(false);
-        passwordField.setVisible(true);
     }
     //returns the value to be saved for later entry into the DB
     //Will only send
     String getPass()
     {
-        return passwordField.getText();
+        return passHide.getText();
     }
     String getTitle()
     {
