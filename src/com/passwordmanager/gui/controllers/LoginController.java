@@ -49,11 +49,10 @@ public class LoginController
     private void showHelp(ActionEvent actionEvent)
     {
         DialogBox.showInformation("Welcome To Keycrypt",
-                                  "Enter the password which corresponds to your access level. " +
-                                           "Ask your system administrator which password you have access to.\n\n" +
-                                           "The password entered will grant you access only to specific directories " +
-                                           "within the application.");
-
+                              "Enter the password which corresponds to your access level. " +
+                                       "Ask your system administrator which password you have access to.\n\n" +
+                                       "The password entered will grant you access only to specific directories " +
+                                       "within the application.");
     }
 
     //closes application
