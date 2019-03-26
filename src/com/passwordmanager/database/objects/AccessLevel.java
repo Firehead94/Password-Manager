@@ -1,6 +1,9 @@
 package com.passwordmanager.database.objects;
 
-
+/**
+ * @author Justin Scott
+ * @author Nick Soltysiak
+ */
 public class AccessLevel {
 
     private int access_ID;

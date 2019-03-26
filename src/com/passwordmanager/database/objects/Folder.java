@@ -2,6 +2,10 @@ package com.passwordmanager.database.objects;
 
 import javafx.scene.control.TreeItem;
 
+/**
+ * @author Justin Scott
+ * @author Nick Soltysiak
+ */
 public class Folder
 {
 

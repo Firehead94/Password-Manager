@@ -14,6 +14,11 @@ import java.util.logging.Logger;
 
 //TODO: add deletePassword from database
 
+
+/**
+ * @author Justin Scott
+ * @author Nick Soltysiak
+ */
 public class PasswordsDB {
 
     // GET

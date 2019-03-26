@@ -21,6 +21,10 @@ import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * @author Justin Scott
+ * @author Patrick Kelly
+ */
 public class LoginController
 {
     User user = null;

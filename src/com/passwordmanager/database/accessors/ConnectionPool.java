@@ -4,7 +4,9 @@ import com.mysql.cj.jdbc.MysqlConnectionPoolDataSource;
 
 import java.sql.*;
 
-
+/**
+ * @author Justin Scott
+ */
 public class ConnectionPool {
 
     private static ConnectionPool pool = null;

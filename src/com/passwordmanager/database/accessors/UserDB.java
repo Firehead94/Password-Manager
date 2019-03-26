@@ -8,6 +8,10 @@ import com.sun.xml.internal.ws.util.StringUtils;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * @author Justin Scott
+ * @author Nick Soltysiak
+ */
 public class UserDB {
 
     /**

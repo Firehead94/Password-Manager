@@ -8,7 +8,9 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.WindowEvent;
-
+/**
+ * @author Patrick Kelly
+ */
 public class PasswordBoxController
 {
     @FXML

@@ -10,6 +10,10 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * @author Justin Scott
+ * @author Nick Soltysiak
+ */
 public class AccessLevelDB {
 
     // GET

@@ -2,6 +2,9 @@ package com.passwordmanager.database.accessors;
 
 import java.sql.*;
 
+/**
+ * @author Justin Scott
+ */
 public class DBUtils {
 
     public static void closeStatement(Statement s) {

@@ -3,6 +3,10 @@ package com.passwordmanager.database.objects;
 
 import java.sql.Timestamp;
 
+/**
+ * @author Justin Scott
+ * @author Nick Soltysiak
+ */
 public class Password {
 
     private int password_ID;

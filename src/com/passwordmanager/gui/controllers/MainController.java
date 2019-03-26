@@ -37,6 +37,10 @@ import java.util.logging.Logger;
 
 import static javafx.application.Platform.exit;
 
+/**
+ * @author Justin Scott
+ * @author Patrick Kelly
+ */
 public class MainController implements Initializable
 {
     private static User user = null;

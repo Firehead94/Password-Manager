@@ -1,6 +1,9 @@
 package com.passwordmanager.database.objects;
 
-
+/**
+ * @author Justin Scott
+ * @author Nick Soltysiak
+ */
 public class User {
 
     private int user_ID;

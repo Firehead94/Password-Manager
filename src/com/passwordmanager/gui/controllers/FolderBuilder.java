@@ -15,6 +15,9 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+/**
+ * @author Justin Scott
+ */
 public class FolderBuilder {
 
     /**
