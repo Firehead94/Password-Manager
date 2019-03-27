@@ -34,8 +34,8 @@
             <TextField fx:id="usernameFld" alignment="TOP_LEFT" layoutX="135.0" layoutY="183.0" prefHeight="26.0" prefWidth="149.0" promptText="Username" style="-fx-alignment: center-left;" AnchorPane.bottomAnchor="169.0" AnchorPane.leftAnchor="135.0" AnchorPane.rightAnchor="129.0" AnchorPane.topAnchor="183.0" />
             <AnchorPane layoutX="135.0" layoutY="211.0">
                <children>
-                  <TextField fx:id="passShowFld" focusTraversable="false" layoutY="7.0" style="-fx-alignment: center-left;" />
-                  <PasswordField fx:id="passHiddenFld" alignment="TOP_LEFT" layoutY="7.0" promptText="Password" style="-fx-alignment: center-left;" />
+                  <TextField fx:id="passShowFld" focusTraversable="false" layoutY="7.0" prefHeight="26.0" prefWidth="149.0" style="-fx-alignment: center-left;" />
+                  <PasswordField fx:id="passHiddenFld" alignment="TOP_LEFT" layoutY="7.0" prefHeight="26.0" prefWidth="149.0" promptText="Password" style="-fx-alignment: center-left;" />
                   <CheckBox fx:id="showCheckBox" alignment="CENTER" focusTraversable="false" graphicTextGap="0.0" layoutX="109.0" mnemonicParsing="false" onMousePressed="#toggleVisiblePassword" onMouseReleased="#toggleVisiblePassword" opacity="0.4">
                      <font>
                         <Font size="1.0" />
