@@ -20,19 +20,19 @@ import java.util.logging.Logger;
  */
 public class FoldersDB {
 
-    public static Folder removeFolder(String attribute, Object value) {
+    public static void removeFolder(String attribute, Object value) {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
         PreparedStatement ps = null;
         ResultSet rs = null;
-        Folder folder = null;
+
 
         String query = "DELETE FROM FOLDERS " +
                 "WHERE " + attribute + " = ?";
         try {
             ps = connection.prepareStatement(query);
             ps.setString(1, value.toString());
-            folder = getFromDB(ps);
+            ps.executeQuery();
         }
 
         catch (SQLException e) {
@@ -43,7 +43,7 @@ public class FoldersDB {
             DBUtils.closePreparedStatement(ps);
             pool.freeConnection(connection);
         }
-        return folder;
+
 
     }
 

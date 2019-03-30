@@ -21,19 +21,17 @@ import java.util.logging.Logger;
  */
 public class PasswordsDB {
 
-    public static Password deletePassword(String attribute, Object value) {
+    public static void deletePassword(String attribute, Object value) {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
         PreparedStatement ps = null;
-        ResultSet rs = null;
-        Password pwd = null;
 
         String query = "DELETE FROM PASSWORDS " +
                 "WHERE " + attribute + " = ?";
         try {
             ps = connection.prepareStatement(query);
             ps.setString(1, value.toString());
-            rs = ps.executeQuery();
+            ps.executeQuery();
         }
 
         catch (SQLException e) {
@@ -44,7 +42,6 @@ public class PasswordsDB {
             DBUtils.closePreparedStatement(ps);
             pool.freeConnection(connection);
         }
-        return pwd;
     }
 
     // GET
