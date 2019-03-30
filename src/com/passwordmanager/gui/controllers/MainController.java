@@ -74,6 +74,49 @@ public class MainController
     private TextField urlField;
     @FXML
     private TextArea notesField;
+    @FXML
+    private Button cancelBtnTitle;
+
+    @FXML
+    private Button saveBtnTitle;
+
+    @FXML
+    private Label creatorLbl;
+
+    @FXML
+    private Label timeLbl;
+
+    @FXML
+    private Button cancelBtnUser;
+
+    @FXML
+    private Button saveBtnUser;
+
+    @FXML
+    private Button cancelBtnPass;
+
+    @FXML
+    private Button saveBtnPass;
+
+    @FXML
+    private Button cancelBtnURL;
+
+    @FXML
+    private Button saveBtnURL;
+
+    @FXML
+    private Button cancelBtnNotes;
+
+    @FXML
+    private Button saveBtnNotes;
+    @FXML
+    private Button changeBtnPass;
+
+    @FXML
+    private PasswordField passHiddenFld;
+
+    @FXML
+    private PasswordField passHiddenFldChange;
 
     private void buildFolders()
     {

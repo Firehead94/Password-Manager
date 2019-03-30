@@ -1,22 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TreeView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="1103.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.passwordmanager.gui.controllers.MainController">
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="559.0" prefWidth="1025.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.passwordmanager.gui.controllers.MainController">
    <left>
       <TreeView fx:id="treeView" prefHeight="372.0" prefWidth="263.0" BorderPane.alignment="CENTER" />
    </left>
    <top>
-      <MenuBar fx:id="menuBar" BorderPane.alignment="CENTER">
+      <MenuBar fx:id="menuBar" prefHeight="27.0" prefWidth="1103.0" BorderPane.alignment="CENTER">
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
@@ -42,21 +51,85 @@
       <ListView fx:id="list" prefHeight="200.0" prefWidth="200.0" stylesheets="@ListView.css" BorderPane.alignment="CENTER" />
    </center>
    <bottom>
-      <AnchorPane fx:id="bottomInformationPane" prefHeight="228.0" prefWidth="1103.0" BorderPane.alignment="CENTER">
+      <AnchorPane fx:id="bottomInformationPane" prefHeight="245.0" prefWidth="1025.0" BorderPane.alignment="CENTER">
          <children>
-            <Text layoutX="4.0" layoutY="13.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password Information" />
+            <ImageView fitHeight="274.0" fitWidth="1020.0" layoutX="2.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../../images/graymin.jpg" />
+               </image>
+            </ImageView>
+            <Text layoutX="14.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password Information">
+               <font>
+                  <Font name="Calibri" size="22.0" />
+               </font>
+               <stroke>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="BLACK" />
+                        <Stop color="WHITE" offset="0.10652920962199312" />
+                        <Stop color="WHITE" offset="0.2371134020618557" />
+                        <Stop color="WHITE" offset="0.3642611683848797" />
+                        <Stop color="WHITE" offset="0.7697594501718212" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </stroke></Text>
             <Text layoutX="14.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Title" />
-            <Text layoutX="9.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Creators ID" />
-            <Text layoutX="9.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" />
-            <Text layoutX="11.0" layoutY="184.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" />
-            <TextField fx:id="titleField" layoutX="14.0" layoutY="52.0" />
-            <TextField fx:id="creatorsIdField" layoutX="14.0" layoutY="99.0" />
-            <TextField fx:id="usernameField" layoutX="14.0" layoutY="144.0" />
-            <TextField fx:id="passwordField" layoutX="14.0" layoutY="188.0" />
-            <Text layoutX="235.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="URL" />
-            <TextField fx:id="urlField" layoutX="233.0" layoutY="51.0" prefHeight="26.0" prefWidth="325.0" />
-            <Text layoutX="235.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Notes" />
-            <TextArea fx:id="notesField" layoutX="235.0" layoutY="107.0" prefHeight="112.0" prefWidth="322.0" />
+            <Text layoutX="14.0" layoutY="256.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Creators ID" />
+            <Text layoutX="9.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" />
+            <Text layoutX="11.0" layoutY="159.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" />
+            <TextField fx:id="titleField" layoutX="14.0" layoutY="52.0" prefHeight="25.0" prefWidth="174.0" />
+            <TextField fx:id="usernameField" layoutX="14.0" layoutY="107.0" prefWidth="174.0" />
+            <Text layoutX="438.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="URL" />
+            <TextField fx:id="urlField" layoutX="438.0" layoutY="52.0" prefHeight="26.0" prefWidth="325.0" />
+            <Text layoutX="433.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Notes" />
+            <TextArea fx:id="notesField" layoutX="440.0" layoutY="99.0" prefHeight="112.0" prefWidth="322.0" />
+            <Button fx:id="cancelBtnTitle" layoutX="276.0" layoutY="49.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="65.0" stylesheets="@../GeneralStyle.CSS" text="Cancel" />
+            <Button fx:id="saveBtnTitle" layoutX="203.0" layoutY="49.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="65.0" text="Save">
+               <stylesheets>
+                  <URL value="@../CheckBox.CSS" />
+                  <URL value="@../GeneralStyle.CSS" />
+               </stylesheets>
+            </Button>
+            <Text layoutX="266.0" layoutY="256.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time Stamp" />
+            <Label fx:id="creatorLbl" layoutX="76.0" layoutY="243.0" prefHeight="17.0" prefWidth="165.0" />
+            <Label fx:id="timeLbl" layoutX="341.0" layoutY="243.0" prefHeight="17.0" prefWidth="171.0" />
+            <Button fx:id="cancelBtnUser" layoutX="276.0" layoutY="104.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="65.0" stylesheets="@../GeneralStyle.CSS" text="Cancel" />
+            <Button fx:id="saveBtnUser" layoutX="203.0" layoutY="104.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="65.0" text="Save">
+               <stylesheets>
+                  <URL value="@../CheckBox.CSS" />
+                  <URL value="@../GeneralStyle.CSS" />
+               </stylesheets>
+            </Button>
+            <Button fx:id="cancelBtnPass" layoutX="276.0" layoutY="203.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="65.0" stylesheets="@../GeneralStyle.CSS" text="Cancel" visible="false" />
+            <Button fx:id="saveBtnPass" layoutX="203.0" layoutY="203.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="65.0" text="Save" visible="false">
+               <stylesheets>
+                  <URL value="@../CheckBox.CSS" />
+                  <URL value="@../GeneralStyle.CSS" />
+               </stylesheets>
+            </Button>
+            <Button fx:id="cancelBtnURL" layoutX="854.0" layoutY="49.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="65.0" stylesheets="@../GeneralStyle.CSS" text="Cancel" />
+            <Button fx:id="saveBtnURL" layoutX="781.0" layoutY="49.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="65.0" text="Save">
+               <stylesheets>
+                  <URL value="@../CheckBox.CSS" />
+                  <URL value="@../GeneralStyle.CSS" />
+               </stylesheets>
+            </Button>
+            <Button fx:id="cancelBtnNotes" layoutX="853.0" layoutY="178.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="65.0" stylesheets="@../GeneralStyle.CSS" text="Cancel" />
+            <Button fx:id="saveBtnNotes" layoutX="780.0" layoutY="178.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="65.0" text="Save">
+               <stylesheets>
+                  <URL value="@../CheckBox.CSS" />
+                  <URL value="@../GeneralStyle.CSS" />
+               </stylesheets>
+            </Button>
+            <Button fx:id="changeBtnPass" layoutX="203.0" layoutY="160.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="65.0" text="Change">
+               <stylesheets>
+                  <URL value="@../CheckBox.CSS" />
+                  <URL value="@../GeneralStyle.CSS" />
+               </stylesheets>
+            </Button>
+            <PasswordField fx:id="passHiddenFld" alignment="TOP_LEFT" layoutX="11.0" layoutY="165.0" prefHeight="26.0" prefWidth="177.0" promptText="Password" style="-fx-alignment: center-left;" />
+            <PasswordField fx:id="passHiddenFldChange" alignment="TOP_LEFT" layoutX="11.0" layoutY="205.0" prefHeight="26.0" prefWidth="177.0" promptText="Password" style="-fx-alignment: center-left;" visible="false" />
          </children>
       </AnchorPane>
    </bottom>
