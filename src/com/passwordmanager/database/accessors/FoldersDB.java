@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+//TODO add remove folder, call remove password
 
 /**
  * @author Justin Scott
