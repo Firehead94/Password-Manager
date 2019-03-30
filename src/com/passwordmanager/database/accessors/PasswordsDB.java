@@ -21,6 +21,32 @@ import java.util.logging.Logger;
  */
 public class PasswordsDB {
 
+    public static Password deletePassword(String attribute, Object value) {
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Password pwd = null;
+
+        String query = "DELETE FROM PASSWORDS " +
+                "WHERE " + attribute + " = ?";
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setString(1, value.toString());
+            rs = ps.executeQuery();
+        }
+
+        catch (SQLException e) {
+            Logger.getLogger(PasswordsDB.class.getName()).log(Level.SEVERE, null, e);
+        }
+
+        finally {
+            DBUtils.closePreparedStatement(ps);
+            pool.freeConnection(connection);
+        }
+        return pwd;
+    }
+
     // GET
 
     //TODO similar to this
@@ -178,6 +204,7 @@ public class PasswordsDB {
         return retVal != 0;
 
     }
+
 
     // GENERIC
     /**

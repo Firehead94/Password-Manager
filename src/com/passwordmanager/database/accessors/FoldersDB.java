@@ -20,6 +20,33 @@ import java.util.logging.Logger;
  */
 public class FoldersDB {
 
+    public static Folder removeFolder(String attribute, Object value) {
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Folder folder = null;
+
+        String query = "DELETE FROM FOLDERS " +
+                "WHERE " + attribute + " = ?";
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setString(1, value.toString());
+            folder = getFromDB(ps);
+        }
+
+        catch (SQLException e) {
+            Logger.getLogger(FoldersDB.class.getName()).log(Level.SEVERE, null, e);
+        }
+
+        finally {
+            DBUtils.closePreparedStatement(ps);
+            pool.freeConnection(connection);
+        }
+        return folder;
+
+    }
+
     /**
      * Validates whether folder exists in the database.
      *
