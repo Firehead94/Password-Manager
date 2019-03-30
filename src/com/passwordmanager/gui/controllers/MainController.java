@@ -1,5 +1,6 @@
 package com.passwordmanager.gui.controllers;
 
+import com.mysql.cj.log.NullLogger;
 import com.passwordmanager.database.accessors.FoldersDB;
 import com.passwordmanager.database.accessors.PasswordsDB;
 import com.passwordmanager.database.objects.Folder;
@@ -176,6 +177,7 @@ public class MainController
     {
         if (treeView.getSelectionModel().getSelectedItem() != null) {
             try {
+                boolean wasInserted = false;
                 URL loc = getClass().getClassLoader().getResource(Layouts.PASSWORDBOX_FXML);
                 FXMLLoader loader = new FXMLLoader(loc);
                 Parent root2 = loader.load();
@@ -189,7 +191,8 @@ public class MainController
                 //we can take the value stored in newPassword and save it into the DB
                 String newPassword = pbController.getPass();
                 System.out.println(newPassword);
-                boolean wasInserted = PasswordsDB.insertPassword(new Password(newPassword, pbController.getTitle(), treeView.getSelectionModel().getSelectedItem().getValue().getFolder_ID()));
+                if (!newPassword.isEmpty())
+                    wasInserted = PasswordsDB.insertPassword(new Password(newPassword, pbController.getTitle(), treeView.getSelectionModel().getSelectedItem().getValue().getFolder_ID()));
                 showPasswords();
                 if (wasInserted)
                     System.out.println("INSERTED");
