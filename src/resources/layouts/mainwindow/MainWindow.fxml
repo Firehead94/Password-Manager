@@ -5,8 +5,11 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TreeView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Text?>
 
 <BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="1103.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.passwordmanager.gui.controllers.MainController">
    <left>
@@ -35,10 +38,26 @@
         </menus>
       </MenuBar>
    </top>
-   <bottom>
-      <TextArea fx:id="textArea" prefHeight="83.0" prefWidth="600.0" promptText="Notes:" BorderPane.alignment="CENTER" />
-   </bottom>
    <center>
       <ListView fx:id="list" prefHeight="200.0" prefWidth="200.0" stylesheets="@ListView.css" BorderPane.alignment="CENTER" />
    </center>
+   <bottom>
+      <AnchorPane fx:id="bottomInformationPane" prefHeight="228.0" prefWidth="1103.0" BorderPane.alignment="CENTER">
+         <children>
+            <Text layoutX="4.0" layoutY="13.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password Information" />
+            <Text layoutX="14.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Title" />
+            <Text layoutX="9.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Creators ID" />
+            <Text layoutX="9.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" />
+            <Text layoutX="11.0" layoutY="184.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" />
+            <TextField fx:id="titleField" layoutX="14.0" layoutY="52.0" />
+            <TextField fx:id="creatorsIdField" layoutX="14.0" layoutY="99.0" />
+            <TextField fx:id="usernameField" layoutX="14.0" layoutY="144.0" />
+            <TextField fx:id="passwordField" layoutX="14.0" layoutY="188.0" />
+            <Text layoutX="235.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="URL" />
+            <TextField fx:id="urlField" layoutX="233.0" layoutY="51.0" prefHeight="26.0" prefWidth="325.0" />
+            <Text layoutX="235.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Notes" />
+            <TextArea fx:id="notesField" layoutX="235.0" layoutY="107.0" prefHeight="112.0" prefWidth="322.0" />
+         </children>
+      </AnchorPane>
+   </bottom>
 </BorderPane>

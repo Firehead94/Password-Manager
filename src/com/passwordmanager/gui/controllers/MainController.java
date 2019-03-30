@@ -26,6 +26,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.control.MenuBar;
 import javafx.stage.Modality;
@@ -42,7 +43,7 @@ import static javafx.application.Platform.exit;
  * @author Justin Scott
  * @author Patrick Kelly
  */
-public class MainController implements Initializable
+public class MainController
 {
     private static User user = null;
     private static Folder selected = null;
@@ -59,6 +60,21 @@ public class MainController implements Initializable
     private TextArea textArea;
     @FXML
     private ListView list;
+    //Password Information Field
+    @FXML
+    private AnchorPane bottomInformationPane;
+    @FXML
+    private TextField titleField;
+    @FXML
+    private TextField creatorsIdField;
+    @FXML
+    private TextField usernameField;
+    @FXML
+    private TextField passwordField;
+    @FXML
+    private TextField urlField;
+    @FXML
+    private TextArea notesField;
 
     private void buildFolders()
     {
@@ -89,13 +105,6 @@ public class MainController implements Initializable
         user = userLoggedIn;
         buildFolders();
     }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources)
-    {
-        textArea.setEditable(true);
-    }
-
 
     @FXML
     public void logout() {
