@@ -148,7 +148,7 @@ public class MainController
                 //we can take the value stored in newPassword and save it into the DB
                 String newPassword = pbController.getPass();
                 System.out.println(newPassword);
-                if (newPassword.isEmpty())
+                if (!newPassword.isEmpty())
                     wasInserted = PasswordsDB.insertPassword(new Password(newPassword, pbController.getTitle(), treeView.getSelectionModel().getSelectedItem().getValue().getFolder_ID()));
                 showPasswords();
                 if (wasInserted)
