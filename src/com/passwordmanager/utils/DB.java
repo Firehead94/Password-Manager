@@ -1,5 +1,6 @@
 package com.passwordmanager.utils;
 
+//TODO account for new attributes in DB
 public class DB {
     public static final String USER_USERNAME = "USER_USERNAME";
     public static final String USER_FIRSTNAME = "USER_FIRSTNAME";

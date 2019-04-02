@@ -3,6 +3,7 @@ package com.passwordmanager.database.objects;
 
 import java.sql.Timestamp;
 
+//TODO account for new attributes in DB
 /**
  * @author Justin Scott
  * @author Nick Soltysiak
