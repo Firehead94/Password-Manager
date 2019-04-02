@@ -23,7 +23,7 @@
 
 <BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="559.0" prefWidth="1025.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.passwordmanager.gui.controllers.MainController">
    <left>
-      <TreeView fx:id="treeView" prefHeight="372.0" prefWidth="263.0" BorderPane.alignment="CENTER" />
+      <TreeView fx:id="treeView" prefHeight="324.0" prefWidth="263.0" BorderPane.alignment="CENTER" />
    </left>
    <top>
       <MenuBar fx:id="menuBar" prefHeight="27.0" prefWidth="1103.0" BorderPane.alignment="CENTER">
@@ -49,7 +49,7 @@
       </MenuBar>
    </top>
    <bottom>
-      <AnchorPane fx:id="bottomInformationPane" prefHeight="245.0" prefWidth="1025.0" BorderPane.alignment="CENTER">
+      <AnchorPane fx:id="bottomInformationPane" disable="true" maxHeight="275.0" minHeight="0.0" prefHeight="0.0" prefWidth="1025.0" visible="false" BorderPane.alignment="CENTER">
          <children>
             <ImageView fitHeight="274.0" fitWidth="1020.0" layoutX="2.0" pickOnBounds="true">
                <image>
@@ -81,7 +81,7 @@
             <Text layoutX="438.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="URL" />
             <TextField fx:id="urlField" layoutX="438.0" layoutY="52.0" prefHeight="26.0" prefWidth="325.0" />
             <Text layoutX="433.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Notes" />
-            <TextArea fx:id="notesField" layoutX="440.0" layoutY="99.0" prefHeight="112.0" prefWidth="322.0" />
+            <TextArea fx:id="notesField" layoutX="440.0" layoutY="99.0" prefHeight="112.0" prefWidth="322.0" wrapText="true" />
             <Button fx:id="cancelBtnTitle" layoutX="276.0" layoutY="49.0" mnemonicParsing="false" onAction="#cancel" prefHeight="31.0" prefWidth="65.0" stylesheets="@../GeneralStyle.CSS" text="Cancel" />
             <Button fx:id="saveBtnTitle" layoutX="203.0" layoutY="49.0" mnemonicParsing="false" onAction="#save" prefHeight="31.0" prefWidth="65.0" text="Save">
                <stylesheets>
@@ -126,9 +126,9 @@
                   <URL value="@../GeneralStyle.CSS" />
                </stylesheets>
             </Button>
-            <AnchorPane layoutX="14.0" layoutY="162.0" prefHeight="31.0" prefWidth="175.0">
+            <AnchorPane fx:id="passFields" disable="true" layoutX="14.0" layoutY="162.0" prefHeight="31.0" prefWidth="175.0">
                <children>
-                  <TextField fx:id="passShowFld" focusTraversable="false" layoutY="7.0" prefWidth="174.0" style="-fx-alignment: center-left;" />
+                  <TextField fx:id="passShowFld" focusTraversable="false" layoutY="7.0" prefWidth="174.0" style="-fx-alignment: center-left;" visible="false" />
                   <PasswordField fx:id="passHiddenFld" alignment="TOP_LEFT" layoutY="7.0" prefWidth="174.0" promptText="Password" style="-fx-alignment: center-left;" />
                   <CheckBox fx:id="showCheckBox" alignment="CENTER" focusTraversable="false" graphicTextGap="0.0" layoutX="138.0" mnemonicParsing="false" onMousePressed="#toggleVisiblePassword" onMouseReleased="#toggleVisiblePassword" opacity="0.4" stylesheets="@../CheckBox.CSS">
                      <font>
@@ -139,7 +139,7 @@
             </AnchorPane>
             <AnchorPane fx:id="confirmFields" disable="true" layoutX="14.0" layoutY="199.0" prefHeight="31.0" prefWidth="175.0">
                <children>
-                  <TextField fx:id="confirmShowFld" focusTraversable="false" layoutY="7.0" prefWidth="174.0" style="-fx-alignment: center-left;" />
+                  <TextField fx:id="confirmShowFld" focusTraversable="false" layoutY="7.0" prefWidth="174.0" style="-fx-alignment: center-left;" visible="false" />
                   <PasswordField fx:id="confirmHiddenFld" alignment="TOP_LEFT" layoutY="7.0" prefWidth="174.0" promptText="Password" style="-fx-alignment: center-left;" />
                   <CheckBox fx:id="confirmCheckBox" alignment="CENTER" focusTraversable="false" graphicTextGap="0.0" layoutX="138.0" mnemonicParsing="false" onMousePressed="#toggleVisibleConfirm" onMouseReleased="#toggleVisibleConfirm" opacity="0.4" stylesheets="@../CheckBox.CSS">
                      <font>

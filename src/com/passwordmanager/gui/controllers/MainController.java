@@ -81,6 +81,8 @@ public class MainController
     /**
      *  Info Panel
      */
+    @FXML
+    private AnchorPane bottomInformationPane;
     //Title
     @FXML
     private TextField titleField;
@@ -115,6 +117,8 @@ public class MainController
 
     //Password Field - Top
     @FXML
+    private AnchorPane passFields;
+    @FXML
     private Label passError;
     @FXML
     private PasswordField passHiddenFld;
@@ -126,6 +130,8 @@ public class MainController
     private Button changeBtnPass;
 
     //Password Field - Bottom
+    @FXML
+    private AnchorPane confirmFields;
     @FXML
     private PasswordField confirmHiddenFld;
     @FXML
@@ -163,37 +169,48 @@ public class MainController
     public void showPasswords() {
         selected = treeView.getSelectionModel().getSelectedItem().getValue();
         //list.getItems().clear();
+        passwordList.getPanes().clear();
         ArrayList<Password> pwdsDB = PasswordsDB.getPasswords(DB.FOLDER_ID, selected.getFolder_ID());
         //for (Password pwds : pwdsDB) {
         //    list.getItems().add(pwds);
         //}
-        //Accordion passwordList = new Accordion();
+
         for (Password pwds: pwdsDB) {
             TitledPane pane = new TitledPane();
             VBox content = new VBox();
+            content.setSpacing(5);
+            HBox contentA = new HBox();
+            contentA.setSpacing(100);
+            VBox contentB = new VBox();
+            VBox contentC = new VBox();
+            VBox contentD = new VBox();
             pane.setText(pwds.getPassword_title());
-            content.getChildren().addAll(
-                    new Label(UserDB.getUser(DB.USER_ID,pwds.getPassword_owner()).getUser_username()),
-                    new Label(pwds.getPassword_username()),
-                    new Label(pwds.getPassword()),
-                    new Label(pwds.getPassword_url()),
-                    new Label(pwds.getPassword_notes()),
-                    new Label(pwds.getPassword_timestamp().toString())
+            contentB.getChildren().addAll(
+                    new Label("Creator: " + UserDB.getUser(DB.USER_ID,pwds.getPassword_owner()).getUser_username()),
+                    new Label("Username: " + pwds.getPassword_username())
                     );
-            HBox contentP = new HBox();
-            contentP.getChildren().add(content);
+            contentC.getChildren().addAll(
+                    new Label("Password: " + pwds.getPassword()),
+                    new Label("Last Edited: " + pwds.getPassword_timestamp().toString())
+                    );
+            contentD.getChildren().addAll(
+                    new Label("URL: " + pwds.getPassword_url()),
+                    new Label("Notes: " + pwds.getPassword_notes())
+            );
+
             Button edit = new Button();
             edit.setText("Edit");
             edit.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
                     populateInfoPane(pwds);
-                    System.out.println(pwds.getPassword_title()); //Need to test
                     selectedPwd = pwds;
                 }
             });
-            contentP.getChildren().add(edit);
-            pane.setContent(contentP);
+            contentA.getChildren().addAll(contentB, contentC, edit);
+            content.getChildren().add(contentA);
+            content.getChildren().add(contentD);
+            pane.setContent(content);
             passwordList.getPanes().add(pane);
 
         }
@@ -201,6 +218,9 @@ public class MainController
     }
 
     public void populateInfoPane(Password pwd) {
+        bottomInformationPane.setVisible(true);
+        bottomInformationPane.setDisable(false);
+        bottomInformationPane.setPrefHeight(275);
         titleField.setText(pwd.getPassword_title());
         urlField.setText(pwd.getPassword_url());
         notesField.setText(pwd.getPassword_notes());
@@ -213,14 +233,21 @@ public class MainController
         confirmShowFld.setText(pwd.getPassword());
     }
 
+    public void toggleInfoPane() {
+        bottomInformationPane.setVisible(!bottomInformationPane.isVisible());
+        bottomInformationPane.setDisable(!bottomInformationPane.isDisabled());
+        bottomInformationPane.setPrefHeight(bottomInformationPane.isVisible() ? 275 : 0);
+    }
+
     @FXML
     public void change(ActionEvent actionEvent) {
-        confirmHiddenFld.setDisable(!confirmHiddenFld.isDisabled());
-        confirmShowFld.setDisable(!confirmShowFld.isDisabled());
-        passHiddenFld.setDisable(!passHiddenFld.isDisabled());
-        passShowFld.setDisable(!passShowFld.isDisabled());
+        passFields.setDisable(!passFields.isDisabled());
+        confirmFields.setDisable(!confirmFields.isDisabled());
+        passShowFld.setVisible(!passShowFld.isVisible());
+        confirmShowFld.setVisible(!confirmShowFld.isVisible());
         saveBtnPass.setVisible(!saveBtnPass.isVisible());
         cancelBtnPass.setVisible(!cancelBtnPass.isVisible());
+        changeBtnPass.setVisible(!changeBtnPass.isVisible());
     }
 
     @FXML
@@ -266,6 +293,9 @@ public class MainController
             Logger.getLogger(MainController.class.getName()).log(Level.WARNING, null, actionEvent.getSource() + " is invalid button.");
         }
         PasswordsDB.updatePassword(selectedPwd);
+        selectedPwd = PasswordsDB.getPassword(DB.PASSWORD_ID, selectedPwd.getPassword_ID());
+        showPasswords();
+        populateInfoPane(selectedPwd);
     }
 
     public void setUser(User userLoggedIn) {
@@ -314,12 +344,11 @@ public class MainController
                 //testing, just making sure the value is getting passed correctly
                 //we can take the value stored in newPassword and save it into the DB
                 String newPassword = pbController.getPass();
-                System.out.println(newPassword);
                 if (!newPassword.isEmpty())
-                    wasInserted = PasswordsDB.insertPassword(new Password(newPassword, pbController.getTitle(), treeView.getSelectionModel().getSelectedItem().getValue().getFolder_ID()));
+                    wasInserted = PasswordsDB.insertPassword(new Password(newPassword, pbController.getTitle(), treeView.getSelectionModel().getSelectedItem().getValue().getFolder_ID(), user.getUser_ID()));
                 showPasswords();
                 if (wasInserted)
-                    System.out.println("INSERTED");
+                    Logger.getLogger(MainController.class.getName()).log(Level.INFO, "INSERTED");
 
             } catch (Exception e) {
                 DialogBox.showError("Error", "There was a problem opening the desired window");

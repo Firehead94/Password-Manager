@@ -148,7 +148,7 @@ public class PasswordsDB {
                 " = ?, " + DB.PASSWORD_USERNAME +
                 " = ?, " + DB.PASSWORD_URL +
                 " = ?, " + DB.FOLDER_ID +
-                " = ?, WHERE " + DB.PASSWORD_ID + " = ?;";
+                " = ? WHERE " + DB.PASSWORD_ID + " = ?;";
         try {
             ps = connection.prepareStatement(query);
             ps.setString(1, pwd.getPassword());
@@ -160,6 +160,7 @@ public class PasswordsDB {
             ps.setString(7, pwd.getPassword_url());
             ps.setInt(8,pwd.getFolder_ID());
             ps.setInt(9, pwd.getPassword_ID());
+            System.out.println(ps.toString());
             retVal = ps.executeUpdate();
         } catch (SQLException e) {
             Logger.getLogger(PasswordsDB.class.getName()).log(Level.SEVERE, null, e);
@@ -202,10 +203,10 @@ public class PasswordsDB {
             ps.setString(2, StringUtils.capitalize(pwd.getPassword_title()));
             ps.setLong(3, pwd.getFolder_ID());
             ps.setTimestamp(4, pwd.getPassword_timestamp());
-            ps.setString(6, pwd.getPassword_username());
-            ps.setString(7, pwd.getPassword_url());
-            ps.setString(4, pwd.getPassword_notes());
-            ps.setInt(5, pwd.getPassword_owner());
+            ps.setString(5, pwd.getPassword_username());
+            ps.setString(6, pwd.getPassword_url());
+            ps.setString(7, pwd.getPassword_notes());
+            ps.setInt(8, pwd.getPassword_owner());
             retVal = ps.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e);
@@ -241,6 +242,7 @@ public class PasswordsDB {
                 pwd.setPassword_owner(rs.getInt(DB.PASSWORD_OWNER));
                 pwd.setPassword_username(rs.getString(DB.PASSWORD_USERNAME));
                 pwd.setPassword_url(rs.getString(DB.PASSWORD_URL));
+                pwd.setPassword_ID(rs.getInt(DB.PASSWORD_ID));
             }
         } catch (SQLException e) {
             Logger.getLogger(PasswordsDB.class.getName()).log(Level.SEVERE, null, e);
@@ -274,6 +276,7 @@ public class PasswordsDB {
                 pwd.setPassword_owner(rs.getInt(DB.PASSWORD_OWNER));
                 pwd.setPassword_username(rs.getString(DB.PASSWORD_USERNAME));
                 pwd.setPassword_url(rs.getString(DB.PASSWORD_URL));
+                pwd.setPassword_ID(rs.getInt(DB.PASSWORD_ID));
 
                 pwds.add(pwd);
             }

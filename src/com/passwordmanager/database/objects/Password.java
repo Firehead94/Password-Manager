@@ -58,16 +58,17 @@ public class Password {
     }
 
     public Password() {
-        this("TestingPassword123", "Testing Password", 1);
+
     }
 
     //overloaded constructor for creating a password
     //folder ID can be set after creation using the setFolder_ID() method
     //timestamp can be set using the setPassword_Timestamp method()
-    public Password(String password, String password_title, int folder) {
+    public Password(String password, String password_title, int folder, int id) {
         this.password = password;
         this.password_title = password_title;
         this.folder_ID = folder;
+        this.password_owner = id;
     }
 
     /**
