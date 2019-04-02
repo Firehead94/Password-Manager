@@ -197,6 +197,19 @@ public class MainController
 
     }
 
+    public void populateInfoPane(Password pwd) {
+        titleField.setText(pwd.getPassword_title());
+        urlField.setText(pwd.getPassword_URL());
+        notesField.setText(pwd.getPassword_Notes());
+        timeLbl.setText(pwd.getPassword_timestamp());
+        creatorLbl.setText(pwd.getPassword_creatorid());
+        usernameField.setText(pwd.getPassword_username());
+        passHiddenFld.setText(pwd.getPassword());
+        passShowFld.setText(pwd.getPassword());
+        confirmHiddenFld.setText(pwd.getPassword());
+        confirmShowFld.setText(pwd.getPassword());
+    }
+
 
 
     public void setUser(User userLoggedIn) {
