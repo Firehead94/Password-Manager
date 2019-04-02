@@ -213,11 +213,34 @@ public class MainController
     }
 
     @FXML
-    public void change(ActionEvent actionEvent) {}
+    public void change(ActionEvent actionEvent) {
+        confirmHiddenFld.setDisable(!confirmHiddenFld.isDisabled());
+        confirmShowFld.setDisable(!confirmShowFld.isDisabled());
+        passHiddenFld.setDisable(!passHiddenFld.isDisabled());
+        passShowFld.setDisable(!passShowFld.isDisabled());
+        saveBtnPass.setVisible(!saveBtnPass.isVisible());
+        cancelBtnPass.setVisible(!cancelBtnPass.isVisible());
+    }
 
     @FXML
     public void cancel(ActionEvent actionEvent) {
-        String name = ((Button)actionEvent.getSource()).getId();
+        if (actionEvent.getSource() == cancelBtnTitle) {
+            titleField.setText(selectedPwd.getPassword_title());
+        } else if (actionEvent.getSource() == cancelBtnUser) {
+            usernameField.setText(selectedPwd.getPassword_username());
+        } else if (actionEvent.getSource() == cancelBtnPass) {
+            passHiddenFld.setText(selectedPwd.getPassword());
+            passShowFld.setText(selectedPwd.getPassword());
+            confirmHiddenFld.setText(selectedPwd.getPassword());
+            confirmShowFld.setText(selectedPwd.getPassword());
+            change(actionEvent);
+        } else if (actionEvent.getSource() == cancelBtnURL) {
+            urlField.setText(selectedPwd.getPassword_url());
+        } else if (actionEvent.getSource() == cancelBtnNotes) {
+            notesField.setText(selectedPwd.getPassword_notes());
+        } else {
+            Logger.getLogger(MainController.class.getName()).log(Level.WARNING, null, actionEvent.getSource() + " is invalid button.");
+        }
 
     }
 
