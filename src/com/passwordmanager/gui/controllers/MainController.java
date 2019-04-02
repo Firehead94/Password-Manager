@@ -3,6 +3,7 @@ package com.passwordmanager.gui.controllers;
 import com.mysql.cj.log.NullLogger;
 import com.passwordmanager.database.accessors.FoldersDB;
 import com.passwordmanager.database.accessors.PasswordsDB;
+import com.passwordmanager.database.accessors.UserDB;
 import com.passwordmanager.database.objects.Folder;
 import com.passwordmanager.database.objects.Password;
 import com.passwordmanager.database.objects.User;
@@ -26,9 +27,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.control.MenuBar;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -47,6 +51,8 @@ public class MainController
 {
     private static User user = null;
     private static Folder selected = null;
+    private Password selectedPwd = null;
+
 
     @FXML
     private BorderPane borderPane;
@@ -70,7 +76,7 @@ public class MainController
      *  Password Viewer
      */
     @FXML
-    private ListView list;
+    private Accordion passwordList;
 
     /**
      *  Info Panel
@@ -154,13 +160,44 @@ public class MainController
 
     public void showPasswords() {
         selected = treeView.getSelectionModel().getSelectedItem().getValue();
-        list.getItems().clear();
+        //list.getItems().clear();
         ArrayList<Password> pwdsDB = PasswordsDB.getPasswords(DB.FOLDER_ID, selected.getFolder_ID());
-        for (Password pwds : pwdsDB) {
-            list.getItems().add(pwds);
+        //for (Password pwds : pwdsDB) {
+        //    list.getItems().add(pwds);
+        //}
+        //Accordion passwordList = new Accordion();
+        for (Password pwds: pwdsDB) {
+            TitledPane pane = new TitledPane();
+            VBox content = new VBox();
+            pane.setText(pwds.getPassword_title());
+            content.getChildren().addAll(
+                    new Label(pwds.getPassword_creatorid()),
+                    new Label(pwds.getPassword_username()),
+                    new Label(pwds.getPassword()),
+                    new Label(pwds.getPassword_URL()),
+                    new Label(pwds.getPassword_Notes()),
+                    new Label(pwds.getPassword_timestamp())
+                    );
+            HBox contentP = new HBox();
+            contentP.getChildren().add(content);
+            Button edit = new Button();
+            edit.setText("Edit");
+            edit.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    populateInfoPane(pwds);
+                    System.out.println(pwds.getPassword_title()); //Need to test
+                    selectedPwd = pwds;
+                }
+            });
+            contentP.getChildren().add(edit);
+            passwordList.getPanes().add(pane);
+
         }
 
     }
+
+
 
     public void setUser(User userLoggedIn) {
         user = userLoggedIn;
@@ -225,5 +262,23 @@ public class MainController
             Logger.getLogger(NewUserController.class.getName()).log(Level.WARNING, "NO FOLDER SELECTED");
         }
 
+    }
+
+    @FXML
+    public void toggleVisiblePassword(MouseEvent actionEvent) {
+        passShowFld.setText(passHiddenFld.getText());
+        passHiddenFld.setVisible(!passHiddenFld.isVisible());
+        if (actionEvent.isPrimaryButtonDown()) {
+            showCheckBox.setSelected(true);
+        }
+    }
+
+    @FXML
+    public void toggleVisibleConfirm(MouseEvent actionEvent) {
+        passShowFld2.setText(passHiddenFld2.getText());
+        passHiddenFld2.setVisible(!passHiddenFld2.isVisible());
+        if (actionEvent.isPrimaryButtonDown()) {
+            showCheckBox2.setSelected(true);
+        }
     }
 }
