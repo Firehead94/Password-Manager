@@ -153,6 +153,6 @@
       </AnchorPane>
    </bottom>
    <center>
-      <Accordion fx:id="accordionList" BorderPane.alignment="CENTER" />
+      <Accordion fx:id="passwordList" BorderPane.alignment="CENTER" />
    </center>
 </BorderPane>

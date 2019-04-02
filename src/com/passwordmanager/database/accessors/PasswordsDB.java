@@ -143,13 +143,23 @@ public class PasswordsDB {
         String query = "UPDATE PASSWORDS SET " + DB.PASSWORD +
                 " = ?, " + DB.PASSWORD_TITLE +
                 " = ?, " + DB.PASSWORD_TIMESTAMP +
-                " = ? WHERE " + DB.PASSWORD_ID + " = ?;";
+                " = ?, " + DB.PASSWORD_NOTES +
+                " = ?, " + DB.PASSWORD_OWNER +
+                " = ?, " + DB.PASSWORD_USERNAME +
+                " = ?, " + DB.PASSWORD_URL +
+                " = ?, " + DB.FOLDER_ID +
+                " = ?, WHERE " + DB.PASSWORD_ID + " = ?;";
         try {
             ps = connection.prepareStatement(query);
             ps.setString(1, pwd.getPassword());
             ps.setString(2, pwd.getPassword_title());
-            ps.setTimestamp(3, pwd.password_timestamp());
-            ps.setInt(4, pwd.getPassword_ID());
+            ps.setTimestamp(3, pwd.getPassword_timestamp());
+            ps.setString(4, pwd.getPassword_notes());
+            ps.setInt(5, pwd.getPassword_owner());
+            ps.setString(6, pwd.getPassword_username());
+            ps.setString(7, pwd.getPassword_url());
+            ps.setInt(8,pwd.getFolder_ID());
+            ps.setInt(9, pwd.getPassword_ID());
             retVal = ps.executeUpdate();
         } catch (SQLException e) {
             Logger.getLogger(PasswordsDB.class.getName()).log(Level.SEVERE, null, e);
@@ -180,14 +190,22 @@ public class PasswordsDB {
                 DB.PASSWORD + ", " +
                 DB.PASSWORD_TITLE + ", " +
                 DB.FOLDER_ID + ", " +
-                DB.PASSWORD_TIMESTAMP + ") " +
-                "VALUES (?,?,?,?);";
+                DB.PASSWORD_TIMESTAMP + ", " +
+                DB.PASSWORD_USERNAME + ", " +
+                DB.PASSWORD_URL + ", " +
+                DB.PASSWORD_NOTES + ", " +
+                DB.PASSWORD_OWNER + ") " +
+                "VALUES (?,?,?,?,?,?,?,?);";
         try {
             ps = connection.prepareStatement(query);
             ps.setString(1, pwd.getPassword());
             ps.setString(2, StringUtils.capitalize(pwd.getPassword_title()));
             ps.setLong(3, pwd.getFolder_ID());
-            ps.setTimestamp(4, pwd.password_timestamp());
+            ps.setTimestamp(4, pwd.getPassword_timestamp());
+            ps.setString(6, pwd.getPassword_username());
+            ps.setString(7, pwd.getPassword_url());
+            ps.setString(4, pwd.getPassword_notes());
+            ps.setInt(5, pwd.getPassword_owner());
             retVal = ps.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e);
@@ -219,6 +237,10 @@ public class PasswordsDB {
                 pwd.setFolder_ID(rs.getInt(DB.FOLDER_ID));
                 pwd.setPassword_title(rs.getString(DB.PASSWORD_TITLE));
                 pwd.setPassword_timestamp(rs.getTimestamp(DB.PASSWORD_TIMESTAMP));
+                pwd.setPassword_notes(rs.getString(DB.PASSWORD_NOTES));
+                pwd.setPassword_owner(rs.getInt(DB.PASSWORD_OWNER));
+                pwd.setPassword_username(rs.getString(DB.PASSWORD_USERNAME));
+                pwd.setPassword_url(rs.getString(DB.PASSWORD_URL));
             }
         } catch (SQLException e) {
             Logger.getLogger(PasswordsDB.class.getName()).log(Level.SEVERE, null, e);
@@ -248,6 +270,10 @@ public class PasswordsDB {
                 pwd.setFolder_ID(rs.getInt(DB.FOLDER_ID));
                 pwd.setPassword_title(rs.getString(DB.PASSWORD_TITLE));
                 pwd.setPassword_timestamp(rs.getTimestamp(DB.PASSWORD_TIMESTAMP));
+                pwd.setPassword_notes(rs.getString(DB.PASSWORD_NOTES));
+                pwd.setPassword_owner(rs.getInt(DB.PASSWORD_OWNER));
+                pwd.setPassword_username(rs.getString(DB.PASSWORD_USERNAME));
+                pwd.setPassword_url(rs.getString(DB.PASSWORD_URL));
 
                 pwds.add(pwd);
             }

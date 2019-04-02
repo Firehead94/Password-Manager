@@ -16,9 +16,12 @@ public class DB {
     public static final String PASSWORD = "PASSWORD";
     public static final String PASSWORD_TITLE = "PASSWORD_TITLE";
     public static final String PASSWORD_TIMESTAMP = "PASSWORD_TIMESTAMP";
+    public static final String PASSWORD_NOTES = "PASSWORD_NOTES";
+    public static final String PASSWORD_URL = "PASSWORD_URL";
+    public static final String PASSWORD_USERNAME = "PASSWORD_USERNAME";
+    public static final String PASSWORD_OWNER = "PASSWORD_OWNER";
+
     public static final String ACCESS_LEVEL = "ACCESS_LEVEL"; //Refers to ACCESS_ID's in the DB
     public static final String ACCESS_ID = "ACCESS_ID";
     public static final String ACCESS_TITLE = "ACCESS_TITLE";
-    public static final String LOGIN_TIMESTAMP = "LOGIN_TIMESTAMP";
-    public static final String FOLDER_TIMESTAMP = "FOLDER_TIMESTAMP";
 }

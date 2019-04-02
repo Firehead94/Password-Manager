@@ -119,7 +119,7 @@ public class MainController
     @FXML
     private PasswordField passHiddenFld;
     @FXML
-    private PasswordField passShowFld;
+    private TextField passShowFld;
     @FXML
     private CheckBox showCheckBox;
     @FXML
@@ -129,7 +129,7 @@ public class MainController
     @FXML
     private PasswordField confirmHiddenFld;
     @FXML
-    private PasswordField confirmShowFld;
+    private TextField confirmShowFld;
     @FXML
     private CheckBox confirmCheckBox;
     @FXML
@@ -173,12 +173,12 @@ public class MainController
             VBox content = new VBox();
             pane.setText(pwds.getPassword_title());
             content.getChildren().addAll(
-                    new Label(pwds.getPassword_creatorid()),
+                    new Label(UserDB.getUser(DB.USER_ID,pwds.getPassword_owner()).getUser_username()),
                     new Label(pwds.getPassword_username()),
                     new Label(pwds.getPassword()),
                     new Label(pwds.getPassword_url()),
                     new Label(pwds.getPassword_notes()),
-                    new Label(pwds.getPassword_timestamp())
+                    new Label(pwds.getPassword_timestamp().toString())
                     );
             HBox contentP = new HBox();
             contentP.getChildren().add(content);
@@ -193,6 +193,7 @@ public class MainController
                 }
             });
             contentP.getChildren().add(edit);
+            pane.setContent(contentP);
             passwordList.getPanes().add(pane);
 
         }
@@ -203,8 +204,8 @@ public class MainController
         titleField.setText(pwd.getPassword_title());
         urlField.setText(pwd.getPassword_url());
         notesField.setText(pwd.getPassword_notes());
-        timeLbl.setText(pwd.getPassword_timestamp());
-        creatorLbl.setText(pwd.getPassword_creatorid());
+        timeLbl.setText(pwd.getPassword_timestamp().toString());
+        creatorLbl.setText(UserDB.getUser(DB.USER_ID,pwd.getPassword_owner()).getUser_username());
         usernameField.setText(pwd.getPassword_username());
         passHiddenFld.setText(pwd.getPassword());
         passShowFld.setText(pwd.getPassword());
@@ -343,10 +344,10 @@ public class MainController
 
     @FXML
     public void toggleVisibleConfirm(MouseEvent actionEvent) {
-        passShowFld2.setText(passHiddenFld2.getText());
-        passHiddenFld2.setVisible(!passHiddenFld2.isVisible());
+        confirmShowFld.setText(confirmHiddenFld.getText());
+        confirmHiddenFld.setVisible(!confirmHiddenFld.isVisible());
         if (actionEvent.isPrimaryButtonDown()) {
-            showCheckBox2.setSelected(true);
+            confirmCheckBox.setSelected(true);
         }
     }
 }

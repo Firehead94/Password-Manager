@@ -15,6 +15,42 @@ public class Password {
     private String password;
     private String password_title;
     private Timestamp password_timestamp;
+    private String password_username;
+    private String password_url;
+    private String password_notes;
+    private int password_owner;
+
+    public String getPassword_username() {
+        return password_username;
+    }
+
+    public void setPassword_username(String password_username) {
+        this.password_username = password_username;
+    }
+
+    public String getPassword_url() {
+        return password_url;
+    }
+
+    public void setPassword_url(String password_url) {
+        this.password_url = password_url;
+    }
+
+    public String getPassword_notes() {
+        return password_notes;
+    }
+
+    public void setPassword_notes(String password_notes) {
+        this.password_notes = password_notes;
+    }
+
+    public int getPassword_owner() {
+        return password_owner;
+    }
+
+    public void setPassword_owner(int password_owner) {
+        this.password_owner = password_owner;
+    }
 
     @Override
     public String toString() {
@@ -68,7 +104,7 @@ public class Password {
      * @return the password_timestamp;
      */
 
-    public Timestamp password_timestamp() {
+    public Timestamp getPassword_timestamp() {
         return password_timestamp;
     }
 
