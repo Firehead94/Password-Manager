@@ -50,74 +50,92 @@ public class MainController
 
     @FXML
     private BorderPane borderPane;
+
+    /**
+     *  Menu Bar
+     */
     @FXML
     private MenuBar menuBar;
     @FXML
     private MenuItem newPasswordMenu;
+
+    /**
+     *  Folder Viewer
+     */
     @FXML
     private TreeView<Folder> treeView;
-    @FXML
-    private TextArea textArea;
+
+
+    /**
+     *  Password Viewer
+     */
     @FXML
     private ListView list;
-    //Password Information Field
-    @FXML
-    private AnchorPane bottomInformationPane;
+
+    /**
+     *  Info Panel
+     */
+    //Title
     @FXML
     private TextField titleField;
     @FXML
-    private TextField creatorsIdField;
-    @FXML
-    private TextField usernameField;
-    @FXML
-    private TextField passwordField;
-    @FXML
-    private TextField urlField;
-    @FXML
-    private TextArea notesField;
-    @FXML
     private Button cancelBtnTitle;
-
     @FXML
     private Button saveBtnTitle;
 
+    //Username
     @FXML
-    private Label creatorLbl;
-
-    @FXML
-    private Label timeLbl;
-
+    private TextField usernameField;
     @FXML
     private Button cancelBtnUser;
-
     @FXML
     private Button saveBtnUser;
 
+    //URL
     @FXML
-    private Button cancelBtnPass;
-
-    @FXML
-    private Button saveBtnPass;
-
+    private TextField urlField;
     @FXML
     private Button cancelBtnURL;
-
     @FXML
     private Button saveBtnURL;
 
+    //Notes
+    @FXML
+    private TextArea notesField;
     @FXML
     private Button cancelBtnNotes;
-
     @FXML
     private Button saveBtnNotes;
+
+    //Password Field - Top
+    @FXML
+    private PasswordField passHiddenFld;
+    @FXML
+    private PasswordField passShowFld;
+    @FXML
+    private CheckBox showCheckBox;
     @FXML
     private Button changeBtnPass;
 
+    //Password Field - Bottom
     @FXML
-    private PasswordField passHiddenFld;
+    private PasswordField confirmHiddenFld;
+    @FXML
+    private PasswordField confirmShowFld;
+    @FXML
+    private CheckBox confirmCheckBox;
+    @FXML
+    private Button cancelBtnPass;
+    @FXML
+    private Button saveBtnPass;
 
+    //Bottom Info
     @FXML
-    private PasswordField passHiddenFldChange;
+    private Label creatorLbl;
+    @FXML
+    private Label timeLbl;
+
+
 
     private void buildFolders()
     {
