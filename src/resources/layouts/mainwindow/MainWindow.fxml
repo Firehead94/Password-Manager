@@ -148,6 +148,7 @@
                   </CheckBox>
                </children>
             </AnchorPane>
+            <Label fx:id="passError" layoutX="64.0" layoutY="147.0" prefHeight="17.0" prefWidth="165.0" textFill="RED" />
          </children>
       </AnchorPane>
    </bottom>

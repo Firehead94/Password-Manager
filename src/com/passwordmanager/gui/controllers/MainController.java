@@ -115,6 +115,8 @@ public class MainController
 
     //Password Field - Top
     @FXML
+    private Label passError;
+    @FXML
     private PasswordField passHiddenFld;
     @FXML
     private PasswordField passShowFld;
@@ -174,8 +176,8 @@ public class MainController
                     new Label(pwds.getPassword_creatorid()),
                     new Label(pwds.getPassword_username()),
                     new Label(pwds.getPassword()),
-                    new Label(pwds.getPassword_URL()),
-                    new Label(pwds.getPassword_Notes()),
+                    new Label(pwds.getPassword_url()),
+                    new Label(pwds.getPassword_notes()),
                     new Label(pwds.getPassword_timestamp())
                     );
             HBox contentP = new HBox();
@@ -199,8 +201,8 @@ public class MainController
 
     public void populateInfoPane(Password pwd) {
         titleField.setText(pwd.getPassword_title());
-        urlField.setText(pwd.getPassword_URL());
-        notesField.setText(pwd.getPassword_Notes());
+        urlField.setText(pwd.getPassword_url());
+        notesField.setText(pwd.getPassword_notes());
         timeLbl.setText(pwd.getPassword_timestamp());
         creatorLbl.setText(pwd.getPassword_creatorid());
         usernameField.setText(pwd.getPassword_username());
@@ -210,7 +212,37 @@ public class MainController
         confirmShowFld.setText(pwd.getPassword());
     }
 
+    @FXML
+    public void change(ActionEvent actionEvent) {}
 
+    @FXML
+    public void cancel(ActionEvent actionEvent) {
+        String name = ((Button)actionEvent.getSource()).getId();
+
+    }
+
+    @FXML
+    public void save(ActionEvent actionEvent) {
+        if (actionEvent.getSource() == saveBtnTitle) {
+            selectedPwd.setPassword_title(titleField.getText());
+        } else if (actionEvent.getSource() == saveBtnUser){
+            selectedPwd.setPassword_username(usernameField.getText());
+        } else if (actionEvent.getSource() == saveBtnPass){
+            if (passHiddenFld.getText().equals(confirmHiddenFld.getText())) {
+                selectedPwd.setPassword(passHiddenFld.getText());
+                passError.setText("");
+            }else {
+                passError.setText("Passwords do not match");
+            }
+        } else if (actionEvent.getSource() == saveBtnURL){
+            selectedPwd.setPassword_url(urlField.getText());
+        } else if (actionEvent.getSource() == saveBtnNotes){
+            selectedPwd.setPassword_notes(notesField.getText());
+        } else {
+            Logger.getLogger(MainController.class.getName()).log(Level.WARNING, null, actionEvent.getSource() + " is invalid button.");
+        }
+        PasswordsDB.updatePassword(selectedPwd);
+    }
 
     public void setUser(User userLoggedIn) {
         user = userLoggedIn;
