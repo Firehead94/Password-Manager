@@ -14,7 +14,7 @@ public class User {
     private String user_last_name;
 
     public User() {
-
+        setUser_username("Does not exist");
     }
 
     public User(String un, String fn, String ln, String pw) {

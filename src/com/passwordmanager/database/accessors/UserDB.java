@@ -100,7 +100,7 @@ public class UserDB {
         Connection connection = pool.getConnection();
         PreparedStatement ps = null;
         ResultSet rs = null;
-        User user = null;
+        User user = new User();
 
         String query = "SELECT * FROM USERS " +
                 "WHERE " + attribute + " = ?";
@@ -256,7 +256,7 @@ public class UserDB {
     private static User getFromDB(PreparedStatement ps) {
 
         ResultSet rs = null;
-        User user = null;
+        User user = new User();
         try {
             rs = ps.executeQuery();
             if (rs.next()) {

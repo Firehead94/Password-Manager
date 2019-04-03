@@ -184,18 +184,19 @@ public class MainController
         for (Password pwds: pwdsDB) {
             TitledPane pane = new TitledPane();
             VBox content = new VBox();
+            content.setMinWidth(670);
             content.setSpacing(5);
             HBox contentA = new HBox();
-            contentA.setSpacing(100);
+            contentA.setSpacing(75);
             VBox contentB = new VBox();
             VBox contentC = new VBox();
             VBox contentD = new VBox();
             HBox buttonBox = new HBox();
             pane.setText(pwds.getPassword_title());
             contentB.getChildren().addAll(
-                    new Label("Creator: " + UserDB.getUser(DB.USER_ID,pwds.getPassword_owner()).getUser_username()),
+                    new Label("Creator: " + UserDB.getUser(DB.USER_ID, pwds.getPassword_owner()).getUser_username()),
                     new Label("Username: " + pwds.getPassword_username())
-                    );
+            );
             contentC.getChildren().addAll(
                     new Label("Password: " + pwds.getPassword()),
                     new Label("Last Edited: " + pwds.getPassword_timestamp().toString())
