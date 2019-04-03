@@ -129,7 +129,8 @@ public class MainController
             pane.setText(usr.getUser_username() + ":" + usr.getUser_ID());
             delete.setText("Delete");
             delete.getStylesheets().add(Layouts.DELETE_CSS);
-            delete.setPrefWidth(30);
+            delete.setPrefWidth(50);
+            delete.setPrefHeight(25);
             delete.setOnAction(event -> {
                 selectedUser = usr;
                 UserDB.deleteFromDB(usr.getUser_ID());
@@ -137,7 +138,8 @@ public class MainController
             });
             save.setText("Save");
             save.getStylesheets().add(Layouts.GENERAL_CSS);
-            save.setPrefWidth(30);
+            save.setPrefWidth(50);
+            save.setPrefHeight(25);
             save.setOnAction(event -> {
                 selectedUser = usr;
                 selectedUser.setAccess_level(AccessLevelDB.getAccessLevel(DB.ACCESS_TITLE, dropdown.getValue()).getAccess_ID());
