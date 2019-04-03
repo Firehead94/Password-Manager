@@ -96,9 +96,8 @@ public class LoginController
     public void openMainWindow(ActionEvent actionEvent) throws Exception
     {
         boolean resultHidden = UserDB.validateUser(usernameFld.getText(), passHiddenFld.getText());
-        boolean resultClear = UserDB.validateUser(usernameFld.getText(), passShowFld.getText());
 
-        if (resultHidden || resultClear)
+        if (resultHidden)
         {
             try
             {

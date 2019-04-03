@@ -4,7 +4,7 @@ import java.sql.*;
 import com.passwordmanager.database.objects.*;
 import com.passwordmanager.utils.DB;
 import com.sun.xml.internal.ws.util.StringUtils;
-
+import com.passwordmanager.utils.HashPassword;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -19,27 +19,28 @@ public class UserDB {
      * entered the correct credentials.
      *
      * @param username Username entered in by user
-     * @param hash UD5 hash generated from password
+     * @param pass hash generated from password
      * @return Bool based on login information
      */
-    public static boolean validateUser(String username, String hash) {
+    public static boolean validateUser(String username, String pass) {
 
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
         PreparedStatement ps = null;
         ResultSet rs = null;
-        Boolean retval = false;
+        String retval = "";
 
-        String query = "SELECT COUNT(*) AS TOTAL FROM USERS " +
-                "WHERE USER_USERNAME = ? AND USER_PASSWORD = ?;";
+        String query = "SELECT USER_PASSWORD FROM USERS " +
+                "WHERE USER_USERNAME = ?;";
         try {
             ps = connection.prepareStatement(query);
             ps.setString(1, username);
-            ps.setString(2, hash);
             rs = ps.executeQuery();
-            rs.next();
-            if (rs.getInt("TOTAL") != 0) {
-                retval = true;
+
+            if (rs.next()) {
+                retval = rs.getString(DB.USER_PASSWORD);
+                String[] split = retval.split(":");
+                return HashPassword.checkPasswordMatch(pass, split[0], split[1]);
             }
         } catch (SQLException e) {
             Logger.getLogger(UserDB.class.getName()).log(Level.SEVERE, null, e);
@@ -48,8 +49,7 @@ public class UserDB {
             DBUtils.closePreparedStatement(ps);
             pool.freeConnection(connection);
         }
-        return retval;
-
+        return false;
     }
 
     /**

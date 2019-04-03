@@ -4,6 +4,7 @@ import com.passwordmanager.database.accessors.UserDB;
 import com.passwordmanager.database.objects.User;
 import com.passwordmanager.gui.base.DialogBox;
 import com.passwordmanager.utils.DB;
+import com.passwordmanager.utils.HashPassword;
 import com.passwordmanager.utils.Layouts;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -76,7 +77,10 @@ public class NewUserController {
         } else {
             if (!UserDB.userExists(usernameFld.getText())) {
                 try {
-                    user = new User(usernameFld.getText(), firstname.getText(), lastname.getText(), passHiddenFld.getText());
+                    String salt = HashPassword.createSalt(128).get();
+                    String hash = HashPassword.createHash(passHiddenFld.getText(), salt).get();
+
+                    user = new User(usernameFld.getText(), firstname.getText(), lastname.getText(), salt + ":" + hash);
                     boolean wasCreated = UserDB.insertUser(user);
                     if (wasCreated) {
                         user = UserDB.getUser(DB.USER_USERNAME, usernameFld.getText());
