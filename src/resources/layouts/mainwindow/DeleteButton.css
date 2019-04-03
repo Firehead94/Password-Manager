@@ -1,5 +1,5 @@
 .button {
-    -fx-background-color: linear-gradient(#b7deed,#21b4e2,#b7deed);
+    -fx-background-color: linear-gradient(#edb7b7,#e22121,#edb7b7);
     -fx-border-color: GREY;
     -fx-background-radius: 5px;
     -fx-border-radius: 5px;
@@ -7,5 +7,5 @@
 }
 
 .button:hover {
-    -fx-background-color: linear-gradient(#b7deed,#71ceef,#b7deed);
+    -fx-background-color: linear-gradient(#edb7b7,#ef8f71,#edb7b7);
 }

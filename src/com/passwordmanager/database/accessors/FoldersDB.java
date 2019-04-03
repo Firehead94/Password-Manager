@@ -32,7 +32,7 @@ public class FoldersDB {
         try {
             ps = connection.prepareStatement(query);
             ps.setString(1, value.toString());
-            ps.executeQuery();
+            ps.execute();
         }
 
         catch (SQLException e) {

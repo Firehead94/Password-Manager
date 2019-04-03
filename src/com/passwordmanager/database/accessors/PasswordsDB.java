@@ -25,11 +25,11 @@ public class PasswordsDB {
         PreparedStatement ps = null;
 
         String query = "DELETE FROM PASSWORDS " +
-                "WHERE " + attribute + " = ?";
+                "WHERE " + attribute + " = ?;";
         try {
             ps = connection.prepareStatement(query);
             ps.setString(1, value.toString());
-            ps.executeQuery();
+            ps.execute();
         }
 
         catch (SQLException e) {

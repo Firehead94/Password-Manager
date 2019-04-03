@@ -26,4 +26,5 @@ public class Layouts {
 
     // General
     public static final String GENERAL_CSS = LAYOUT_LOC + "/GeneralStyle.css";
+    public static final String DELETE_CSS = LAYOUT_LOC + "/mainwindow/DeleteButton.css";
 }

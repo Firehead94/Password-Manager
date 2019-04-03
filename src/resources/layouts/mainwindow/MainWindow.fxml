@@ -21,7 +21,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="559.0" prefWidth="1025.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.passwordmanager.gui.controllers.MainController">
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="559.0" prefWidth="932.0" stylesheets="@../GeneralStyle.CSS" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.passwordmanager.gui.controllers.MainController">
    <left>
       <TreeView fx:id="treeView" prefHeight="324.0" prefWidth="263.0" BorderPane.alignment="CENTER" />
    </left>
@@ -51,7 +51,7 @@
    <bottom>
       <AnchorPane fx:id="bottomInformationPane" disable="true" maxHeight="275.0" minHeight="0.0" prefHeight="0.0" prefWidth="1025.0" visible="false" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="274.0" fitWidth="1020.0" layoutX="2.0" pickOnBounds="true">
+            <ImageView fitHeight="274.0" fitWidth="930.0" layoutX="2.0" pickOnBounds="true">
                <image>
                   <Image url="@../../images/graymin.jpg" />
                </image>
@@ -149,6 +149,7 @@
                </children>
             </AnchorPane>
             <Label fx:id="passError" layoutX="64.0" layoutY="147.0" prefHeight="17.0" prefWidth="165.0" textFill="RED" />
+            <Button fx:id="deleteBtn" layoutX="853.0" layoutY="238.0" mnemonicParsing="false" onAction="#deletePassword" prefHeight="32.0" prefWidth="67.0" stylesheets="@DeleteButton.css" text="Delete" />
          </children>
       </AnchorPane>
    </bottom>

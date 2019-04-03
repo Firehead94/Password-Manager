@@ -148,8 +148,17 @@ public class MainController
     private Label creatorLbl;
     @FXML
     private Label timeLbl;
+    @FXML
+    private Button deleteBtn;
 
 
+    @FXML
+    private void deletePassword(ActionEvent actionEvent) {
+        PasswordsDB.deletePassword(DB.PASSWORD_ID,selectedPwd.getPassword_ID());
+        showPasswords();
+        if (bottomInformationPane.isVisible())
+            toggleInfoPane();
+    }
 
     private void buildFolders()
     {
@@ -168,12 +177,9 @@ public class MainController
 
     public void showPasswords() {
         selected = treeView.getSelectionModel().getSelectedItem().getValue();
-        //list.getItems().clear();
         passwordList.getPanes().clear();
         ArrayList<Password> pwdsDB = PasswordsDB.getPasswords(DB.FOLDER_ID, selected.getFolder_ID());
-        //for (Password pwds : pwdsDB) {
-        //    list.getItems().add(pwds);
-        //}
+
 
         for (Password pwds: pwdsDB) {
             TitledPane pane = new TitledPane();
@@ -184,6 +190,7 @@ public class MainController
             VBox contentB = new VBox();
             VBox contentC = new VBox();
             VBox contentD = new VBox();
+            HBox buttonBox = new HBox();
             pane.setText(pwds.getPassword_title());
             contentB.getChildren().addAll(
                     new Label("Creator: " + UserDB.getUser(DB.USER_ID,pwds.getPassword_owner()).getUser_username()),
@@ -200,14 +207,25 @@ public class MainController
 
             Button edit = new Button();
             edit.setText("Edit");
-            edit.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    populateInfoPane(pwds);
-                    selectedPwd = pwds;
-                }
+            edit.setPrefWidth(75);
+            edit.setPrefHeight(30);
+            edit.getStylesheets().add(Layouts.GENERAL_CSS);
+            edit.setOnAction(event -> {
+                selectedPwd = pwds;
+                populateInfoPane(pwds);
             });
-            contentA.getChildren().addAll(contentB, contentC, edit);
+
+            Button delete = new Button();
+            delete.setText("Delete");
+            delete.setPrefWidth(75);
+            delete.setPrefHeight(30);
+            delete.getStylesheets().add(Layouts.DELETE_CSS);
+            delete.setOnAction(event -> {
+                selectedPwd = pwds;
+                deletePassword(event);
+            });
+            buttonBox.getChildren().addAll(edit,delete);
+            contentA.getChildren().addAll(contentB, contentC, buttonBox);
             content.getChildren().add(contentA);
             content.getChildren().add(contentD);
             pane.setContent(content);
