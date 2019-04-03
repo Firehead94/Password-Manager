@@ -1,9 +1,6 @@
 package com.passwordmanager.utils;
 
 import javax.crypto.Cipher;
-import javax.crypto.KeyGenerator;
-import javax.crypto.NoSuchPaddingException;
-import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -41,11 +38,17 @@ public class EncryptPasswordAES
         }
     }
 
-    public static String passwordEncrypt(String plainText, String secMessage)
+    /**
+     *
+     * @param plainText enter the plaintext password to be encrypted into the database
+     * @param secretKey the secret key message passed which is used to encrypt/decrypt
+     * @return String encoded in base64 UTF-8 format. If exception occurs, return null
+     */
+    public static String passwordEncrypt(String plainText, String secretKey)
     {
         try
         {
-            generateKey(secMessage);
+            generateKey(secretKey);
             Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
             cipher.init(Cipher.ENCRYPT_MODE, secKey);
             return Base64.getEncoder().encodeToString(cipher.doFinal(plainText.getBytes(StandardCharsets.UTF_8)));
@@ -57,11 +60,17 @@ public class EncryptPasswordAES
         return null;
     }
 
-    public static String passwordDecrypt(String encryptedString, String secMessage)
+    /**
+     *
+     * @param encryptedString the encrypted string to decrypt using the secret key
+     * @param secretKey the secret key message passed which is used to encrypt/decrypt
+     * @return decrypted String encoded in base64 UTF-8 format
+     */
+    public static String passwordDecrypt(String encryptedString, String secretKey)
     {
         try
         {
-            generateKey(secMessage);
+            generateKey(secretKey);
             Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5PADDING");
             cipher.init(Cipher.DECRYPT_MODE, secKey);
             return new String(cipher.doFinal(Base64.getDecoder().decode(encryptedString)));
