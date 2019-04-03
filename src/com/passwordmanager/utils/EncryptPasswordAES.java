@@ -19,15 +19,20 @@ public class EncryptPasswordAES
     private static SecretKeySpec secKey;
     private static byte[] byteKey;
 
-    public static void generateKey(String inputKey)
+    /**
+     *
+     * @param inputKey takes the input secret key and generates a new string using padding
+     *                 by SHA-1 algorithm for better security
+     */
+    private static void generateKey(String inputKey)
     {
         MessageDigest sha1 = null;
 
         try
         {
-            byteKey = inputKey.getBytes(StandardCharsets.UTF_8);
-            sha1 = MessageDigest.getInstance("SHA-1");
-            byteKey = sha1.digest(byteKey);
+            byteKey = inputKey.getBytes(StandardCharsets.UTF_8); //convert String input to byte array
+            sha1 = MessageDigest.getInstance("SHA-1"); //instantiate SHA-1 algorithm for extra padding bits
+            byteKey = sha1.digest(byteKey); //pad the byte array using MessageDigest Class
             byteKey = Arrays.copyOf(byteKey, 16);
             secKey = new SecretKeySpec(byteKey, "AES");
         }
@@ -84,7 +89,7 @@ public class EncryptPasswordAES
     //main method for testing
     public static void main(String[] args)
     {
-        final String ourSecretKey = "WGHa!4TrQA!VcMM?FPooZ!";
+        final String ourSecretKey = "WGHa!4TrQA!VcMM?FPooZ!"; //this can be changed to whatever if we want more security
 
         String plainTextString = "Testing to see if this works properly";
         String encryptedString = EncryptPasswordAES.passwordEncrypt(plainTextString, ourSecretKey);
