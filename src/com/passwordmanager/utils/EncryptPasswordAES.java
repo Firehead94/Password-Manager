@@ -54,7 +54,7 @@ public class EncryptPasswordAES
         try
         {
             generateKey(secretKey);
-            Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
+            Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding"); //use AES algorithm with padding
             cipher.init(Cipher.ENCRYPT_MODE, secKey);
             return Base64.getEncoder().encodeToString(cipher.doFinal(plainText.getBytes(StandardCharsets.UTF_8)));
         }
@@ -69,14 +69,14 @@ public class EncryptPasswordAES
      *
      * @param encryptedString the encrypted string to decrypt using the secret key
      * @param secretKey the secret key message passed which is used to encrypt/decrypt
-     * @return decrypted String encoded in base64 UTF-8 format
+     * @return decrypted String encoded in base64 UTF-8 format. If exception occurs, return null
      */
     public static String passwordDecrypt(String encryptedString, String secretKey)
     {
         try
         {
             generateKey(secretKey);
-            Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5PADDING");
+            Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5PADDING"); //use AES algorithm with padding
             cipher.init(Cipher.DECRYPT_MODE, secKey);
             return new String(cipher.doFinal(Base64.getDecoder().decode(encryptedString)));
         }
