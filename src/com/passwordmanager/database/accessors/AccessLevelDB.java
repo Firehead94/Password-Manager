@@ -62,6 +62,27 @@ public class AccessLevelDB {
         return accessLevels;
     }
 
+    public static ArrayList<AccessLevel> getAccessLevelsChildren(int value){
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        ArrayList<AccessLevel> accessLevels = null;
+
+        String query = "SELECT * FROM ACCESS_LEVELS WHERE ACCESS_ID > ?;";
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setInt(1,value);
+            accessLevels = getListFromDB(ps);
+        } catch (SQLException e) {
+            Logger.getLogger(AccessLevelDB.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            DBUtils.closePreparedStatement(ps);
+            pool.freeConnection(connection);
+        }
+        return accessLevels;
+    }
+
     // UPDATE
     public static boolean updateAccessLevel(AccessLevel access) {
         ConnectionPool pool = ConnectionPool.getInstance();

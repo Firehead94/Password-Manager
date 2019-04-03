@@ -170,6 +170,34 @@ public class UserDB {
         return users;
     }
 
+    /**
+     * Gets a list of user objects by access level of less prio
+     * than passed number.
+     *
+     * @param value Value of the column you'd like to filter by.
+     * @return Arraylist of user objects given the filtered inputs.
+     */
+    public static ArrayList<User> getUsersChildren(int value) {
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        ArrayList<User> users = null;
+
+        String query = "SELECT * FROM USERS " +
+                "WHERE USER_ACCESS_LEVEL > ?";
+        try {
+            ps = connection.prepareStatement(query);
+                ps.setInt(1,value);
+            users = getListFromDB(ps);
+        } catch (SQLException e) {
+            Logger.getLogger(UserDB.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            DBUtils.closePreparedStatement(ps);
+            pool.freeConnection(connection);
+        }
+        return users;
+    }
     // UPDATE
 
     /**
@@ -277,6 +305,32 @@ public class UserDB {
     }
 
     /**
+     * Gets a single user bean from the a DB based on a prepared statement
+     * @param val ID of user
+     * @return
+     */
+    public static boolean deleteFromDB(int val) {
+
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        PreparedStatement ps = null;
+        boolean rs = false;
+
+        String query = "DELETE FROM users WHERE USER_ID = ?;";
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setInt(1,val);
+            rs = ps.execute();
+        } catch (SQLException e) {
+            Logger.getLogger(UserDB.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            DBUtils.closePreparedStatement(ps);
+            pool.freeConnection(connection);
+        }
+        return rs;
+    }
+
+    /**
      * Gets a list of user beans from a DB based on a prepared
      * statement.
      *
@@ -296,7 +350,7 @@ public class UserDB {
                 user.setUser_username(rs.getString(DB.USER_USERNAME));
                 user.setUser_first_name(rs.getString(DB.USER_FIRSTNAME));
                 user.setUser_last_name(rs.getString(DB.USER_LASTNAME));
-                user.setAccess_level(rs.getInt(DB.ACCESS_LEVEL));
+                user.setAccess_level(rs.getInt(DB.USER_ACCESS_LEVEL));
 
                 users.add(user);
             }
