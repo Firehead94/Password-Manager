@@ -215,7 +215,7 @@ public class UserDB {
         String query = "UPDATE USERS SET " + DB.USER_USERNAME +
                 " = ?, " + DB.USER_FIRSTNAME +
                 " = ?, " + DB.USER_LASTNAME +
-                " = ?, " + DB.ACCESS_LEVEL +
+                " = ?, " + DB.USER_ACCESS_LEVEL +
                 " = ?, " + DB.USER_PASSWORD +
                 " = ? WHERE " + DB.USER_ID + " = ?;";
         try {
