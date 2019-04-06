@@ -12,8 +12,6 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-//TODO add remove folder, call remove password
-
 /**
  * @author Justin Scott
  * @author Nick Soltysiak
@@ -82,7 +80,6 @@ public class FoldersDB {
 
     // GET
 
-    //TODO similar to this
     /**
      * Gets a single folder object populated from the database using the inputs.
      *

@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-//TODO account for new attributes in DB
 /**
  * @author Justin Scott
  * @author Nick Soltysiak
