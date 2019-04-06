@@ -86,17 +86,5 @@ public class EncryptPasswordAES
         }
         return null;
     }
-    //main method for testing
-    public static void main(String[] args)
-    {
-        final String ourSecretKey = "WGHa!4TrQA!VcMM?FPooZ!"; //this can be changed to whatever if we want more security
 
-        String plainTextString = "Testing to see if this works properly";
-        String encryptedString = EncryptPasswordAES.passwordEncrypt(plainTextString, ourSecretKey);
-        String decryptedString = EncryptPasswordAES.passwordDecrypt(encryptedString, ourSecretKey);
-
-        System.out.println(plainTextString);
-        System.out.println(encryptedString);
-        System.out.println(decryptedString);
-    }
 }

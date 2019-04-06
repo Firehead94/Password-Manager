@@ -2,6 +2,8 @@ package com.passwordmanager.database.accessors;
 
 import com.passwordmanager.database.objects.Password;
 import com.passwordmanager.utils.DB;
+import com.passwordmanager.utils.EncryptPasswordAES;
+import com.passwordmanager.utils.HashPassword;
 import com.sun.xml.internal.ws.util.StringUtils;
 
 import java.sql.Connection;
@@ -151,7 +153,8 @@ public class PasswordsDB {
                 " = ? WHERE " + DB.PASSWORD_ID + " = ?;";
         try {
             ps = connection.prepareStatement(query);
-            ps.setString(1, pwd.getPassword());
+            String salt = HashPassword.createSalt(16).get();
+            ps.setString(1, salt + ":" + EncryptPasswordAES.passwordEncrypt(pwd.getPassword(), salt));
             ps.setString(2, pwd.getPassword_title());
             ps.setTimestamp(3, pwd.getPassword_timestamp());
             ps.setString(4, pwd.getPassword_notes());
@@ -199,7 +202,8 @@ public class PasswordsDB {
                 "VALUES (?,?,?,?,?,?,?,?);";
         try {
             ps = connection.prepareStatement(query);
-            ps.setString(1, pwd.getPassword());
+            String salt = HashPassword.createSalt(16).get();
+            ps.setString(1, salt + ":" + EncryptPasswordAES.passwordEncrypt(pwd.getPassword(), salt));
             ps.setString(2, StringUtils.capitalize(pwd.getPassword_title()));
             ps.setLong(3, pwd.getFolder_ID());
             ps.setTimestamp(4, pwd.getPassword_timestamp());
@@ -234,7 +238,8 @@ public class PasswordsDB {
             if (rs.next()) {
                 pwd = new Password();
 
-                pwd.setPassword(rs.getString(DB.PASSWORD));
+                String pass[] = rs.getString(DB.PASSWORD).split(":");
+                pwd.setPassword(EncryptPasswordAES.passwordDecrypt(pass[1],pass[0]));
                 pwd.setFolder_ID(rs.getInt(DB.FOLDER_ID));
                 pwd.setPassword_title(rs.getString(DB.PASSWORD_TITLE));
                 pwd.setPassword_timestamp(rs.getTimestamp(DB.PASSWORD_TIMESTAMP));
@@ -268,7 +273,8 @@ public class PasswordsDB {
             while (rs.next()) {
                 Password pwd = new Password();
 
-                pwd.setPassword(rs.getString(DB.PASSWORD));
+                String pass[] = rs.getString(DB.PASSWORD).split(":");
+                pwd.setPassword(EncryptPasswordAES.passwordDecrypt(pass[1],pass[0]));
                 pwd.setFolder_ID(rs.getInt(DB.FOLDER_ID));
                 pwd.setPassword_title(rs.getString(DB.PASSWORD_TITLE));
                 pwd.setPassword_timestamp(rs.getTimestamp(DB.PASSWORD_TIMESTAMP));

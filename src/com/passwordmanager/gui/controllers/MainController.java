@@ -103,56 +103,67 @@ public class MainController
 
     @FXML
     public void viewMyProfile(ActionEvent actionEvent) {
-        profilePane.setVisible(true);
-        profilePane.setPrefWidth(300);
-        accountTitle.setText(user.getUser_username() + ":" + user.getUser_ID());
-        infoFirstname.setText(user.getUser_first_name());
-        infoLastname.setText(user.getUser_last_name());
-        infoAccessLevel.setText(AccessLevelDB.getAccessLevel(DB.ACCESS_ID, user.getAccess_level()).getAccess_title());
+        if (!profilePane.isVisible()) {
+            profilePane.setVisible(true);
+            profilePane.setPrefWidth(300);
+            ((MenuItem)actionEvent.getSource()).setText("Hide Profile");
+            accountTitle.setText(user.getUser_username() + ":" + user.getUser_ID());
+            infoFirstname.setText(user.getUser_first_name());
+            infoLastname.setText(user.getUser_last_name());
+            infoAccessLevel.setText(AccessLevelDB.getAccessLevel(DB.ACCESS_ID, user.getAccess_level()).getAccess_title());
 
-        ArrayList<User> userDB = UserDB.getUsersChildren(user.getAccess_level());
-        ArrayList<AccessLevel> levels = AccessLevelDB.getAccessLevelsChildren(user.getAccess_level());
-        deleteUser.setOnAction(event -> {
-            UserDB.deleteFromDB(user.getUser_ID());
-            logout();
-        });
-        userList.getPanes().clear();
-        for (User usr : userDB) {
-            TitledPane pane = new TitledPane();
-            Button delete = new Button();
-            Button save = new Button();
-            HBox content = new HBox();
-            ComboBox dropdown = new ComboBox();
-            dropdown.setValue(AccessLevelDB.getAccessLevel(DB.ACCESS_ID, usr.getAccess_level()).getAccess_title());
-            for (AccessLevel lvl : levels) {
-                dropdown.getItems().add(lvl.getAccess_title());
+            ArrayList<User> userDB = UserDB.getUsersChildren(user.getAccess_level());
+            ArrayList<AccessLevel> levels = AccessLevelDB.getAccessLevelsChildren(user.getAccess_level());
+            deleteUser.setOnAction(event -> {
+                UserDB.deleteFromDB(user.getUser_ID());
+                logout();
+            });
+            userList.getPanes().clear();
+            for (User usr : userDB) {
+                TitledPane pane = new TitledPane();
+                Button delete = new Button();
+                Button save = new Button();
+                HBox content = new HBox();
+                ComboBox dropdown = new ComboBox();
+                dropdown.setValue(AccessLevelDB.getAccessLevel(DB.ACCESS_ID, usr.getAccess_level()).getAccess_title());
+                for (AccessLevel lvl : levels) {
+                    dropdown.getItems().add(lvl.getAccess_title());
+                }
+                pane.setText(usr.getUser_username() + ":" + usr.getUser_ID());
+                delete.setText("Delete");
+                delete.getStylesheets().add(Layouts.DELETE_CSS);
+                delete.setPrefWidth(50);
+                delete.setPrefHeight(25);
+                delete.setOnAction(event -> {
+                    selectedUser = usr;
+                    UserDB.deleteFromDB(usr.getUser_ID());
+                    viewMyProfile(event);
+                });
+                save.setText("Save");
+                save.getStylesheets().add(Layouts.GENERAL_CSS);
+                save.setPrefWidth(50);
+                save.setPrefHeight(25);
+                save.setOnAction(event -> {
+                    selectedUser = usr;
+                    selectedUser.setAccess_level(AccessLevelDB.getAccessLevel(DB.ACCESS_TITLE, dropdown.getValue()).getAccess_ID());
+                    UserDB.updateUser(selectedUser);
+                    viewMyProfile(event);
+                });
+                content.setSpacing(5);
+                content.setPrefWidth(295);
+                content.getChildren().addAll(dropdown, save, delete);
+                pane.setContent(content);
+                userList.getPanes().add(pane);
             }
-            pane.setText(usr.getUser_username() + ":" + usr.getUser_ID());
-            delete.setText("Delete");
-            delete.getStylesheets().add(Layouts.DELETE_CSS);
-            delete.setPrefWidth(50);
-            delete.setPrefHeight(25);
-            delete.setOnAction(event -> {
-                selectedUser = usr;
-                UserDB.deleteFromDB(usr.getUser_ID());
-                viewMyProfile(event);
-            });
-            save.setText("Save");
-            save.getStylesheets().add(Layouts.GENERAL_CSS);
-            save.setPrefWidth(50);
-            save.setPrefHeight(25);
-            save.setOnAction(event -> {
-                selectedUser = usr;
-                selectedUser.setAccess_level(AccessLevelDB.getAccessLevel(DB.ACCESS_TITLE, dropdown.getValue()).getAccess_ID());
-                UserDB.updateUser(selectedUser);
-                viewMyProfile(event);
-            });
-            content.setSpacing(5);
-            content.setPrefWidth(295);
-            content.getChildren().addAll(dropdown,save,delete);
-            pane.setContent(content);
-            userList.getPanes().add(pane);
+        }else {
+            hideProfile();
+            ((MenuItem)actionEvent.getSource()).setText("View Profile");
         }
+    }
+
+    public void hideProfile() {
+        profilePane.setVisible(false);
+        profilePane.setPrefWidth(0);
     }
 
     @FXML
