@@ -108,6 +108,7 @@ public class LoginController
                 Parent root1 = loader.load();
                 Stage stage2 = new Stage();
                 stage2.setScene(new Scene(root1));
+                stage2.setMinWidth(1100);
 
                 MainController mainController = loader.<MainController>getController();
                 mainController.setUser(user);

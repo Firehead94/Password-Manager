@@ -16,7 +16,8 @@ public class Layouts {
     // New User Screen
     public static final String NEWUSER_FXML = LAYOUT_LOC + "/newuser/NewUser.fxml";
 
-
+    // Reset Password
+    public static final String RESETPASSWORD_FXML = LAYOUT_LOC + "/mainwindow/NewPassword.fxml";
 
 
 

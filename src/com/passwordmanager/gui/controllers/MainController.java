@@ -11,6 +11,7 @@ import com.passwordmanager.database.objects.Password;
 import com.passwordmanager.database.objects.User;
 import com.passwordmanager.gui.base.DialogBox;
 import com.passwordmanager.utils.DB;
+import com.passwordmanager.utils.HashPassword;
 import com.passwordmanager.utils.Images;
 import com.passwordmanager.utils.Layouts;
 import javafx.application.Platform;
@@ -154,6 +155,33 @@ public class MainController
         }
     }
 
+    @FXML
+    public void resetPassword() {
+        try {
+
+            URL loc = getClass().getClassLoader().getResource(Layouts.RESETPASSWORD_FXML);
+            FXMLLoader loader = new FXMLLoader(loc);
+            Parent root2 = loader.load();
+            Stage stage3 = new Stage();
+            stage3.setTitle("Reset Password");
+            stage3.setScene(new Scene(root2));
+            stage3.initModality(Modality.APPLICATION_MODAL);
+            stage3.showAndWait();
+            PasswordResetController prc = loader.getController();
+            if (!prc.getPasswordNew().isEmpty()) {
+                user.setUser_password(prc.getPasswordNew());
+                UserDB.updateUser(user);
+                Logger.getLogger(PasswordResetController.class.getName()).log(Level.INFO, "Password Reset");
+            } else {
+                Logger.getLogger(PasswordResetController.class.getName()).log(Level.INFO, "Password Not Reset");
+            }
+
+        } catch (Exception e) {
+            DialogBox.showError("Error", "There was a problem opening the desired window");
+            Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, "ERROR OPENING PASSWORD BOX", e);
+        }
+    }
+
     /**
      *  Info Panel
      */
@@ -256,7 +284,6 @@ public class MainController
         passwordList.getPanes().clear();
         ArrayList<Password> pwdsDB = PasswordsDB.getPasswords(DB.FOLDER_ID, selected.getFolder_ID());
 
-
         for (Password pwds: pwdsDB) {
             TitledPane pane = new TitledPane();
             VBox content = new VBox();
@@ -328,10 +355,11 @@ public class MainController
         confirmShowFld.setText(pwd.getPassword());
     }
 
+    @FXML
     public void toggleInfoPane() {
-        bottomInformationPane.setVisible(!bottomInformationPane.isVisible());
-        bottomInformationPane.setDisable(!bottomInformationPane.isDisabled());
-        bottomInformationPane.setPrefHeight(bottomInformationPane.isVisible() ? 275 : 0);
+        bottomInformationPane.setVisible(false);
+        bottomInformationPane.setDisable(true);
+        bottomInformationPane.setPrefHeight(0);
     }
 
     @FXML

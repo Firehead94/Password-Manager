@@ -19,16 +19,15 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="930.0" prefHeight="560.0" prefWidth="1136.0" stylesheets="@../GeneralStyle.CSS" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.passwordmanager.gui.controllers.MainController">
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="1191.0" stylesheets="@../GeneralStyle.CSS" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.passwordmanager.gui.controllers.MainController">
    <left>
-      <TreeView fx:id="treeView" prefHeight="324.0" prefWidth="263.0" BorderPane.alignment="CENTER" />
+      <TreeView fx:id="treeView" prefHeight="258.0" prefWidth="211.0" BorderPane.alignment="CENTER" />
    </left>
    <top>
       <MenuBar fx:id="menuBar" prefHeight="27.0" prefWidth="1103.0" BorderPane.alignment="CENTER">
@@ -55,7 +54,7 @@
       </MenuBar>
    </top>
    <bottom>
-      <AnchorPane fx:id="bottomInformationPane" disable="true" maxHeight="275.0" minHeight="0.0" prefHeight="0.0" prefWidth="1025.0" visible="false" BorderPane.alignment="CENTER">
+      <AnchorPane fx:id="bottomInformationPane" disable="true" maxHeight="275.0" minHeight="-Infinity" prefHeight="0.0" prefWidth="1025.0" BorderPane.alignment="CENTER" visible="false">
          <children>
             <ImageView fitHeight="274.0" fitWidth="930.0" layoutX="2.0" pickOnBounds="true">
                <image>
@@ -156,57 +155,54 @@
             </AnchorPane>
             <Label fx:id="passError" layoutX="64.0" layoutY="147.0" prefHeight="17.0" prefWidth="165.0" textFill="RED" />
             <Button fx:id="deleteBtn" layoutX="853.0" layoutY="238.0" mnemonicParsing="false" onAction="#deletePassword" prefHeight="32.0" prefWidth="67.0" stylesheets="@DeleteButton.css" text="Delete" />
+            <Button fx:id="hideBtn" layoutX="779.0" layoutY="238.0" mnemonicParsing="false" onAction="#toggleInfoPane" prefHeight="32.0" prefWidth="67.0" text="Hide" />
          </children>
       </AnchorPane>
    </bottom>
    <center>
-      <Accordion fx:id="passwordList" minWidth="670.0" prefWidth="670.0" BorderPane.alignment="CENTER" />
+      <Accordion fx:id="passwordList" minWidth="377.0" prefHeight="258.0" prefWidth="377.0" BorderPane.alignment="CENTER" />
    </center>
    <right>
-      <Pane fx:id="profilePane" minHeight="-Infinity" prefHeight="533.0" prefWidth="0.0" style="-fx-background-color: WHITE;" stylesheets="@AccountInfo.css" visible="false" BorderPane.alignment="CENTER">
+      <VBox fx:id="profilePane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="0.0" stylesheets="@AccountInfo.css" visible="false" BorderPane.alignment="CENTER">
          <children>
-            <VBox maxWidth="1.7976931348623157E308" prefHeight="535.0" style="-fx-background-color: WHITE; -fx-border-color: GREY;">
+            <Label fx:id="accountTitle" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="298.0" stylesheets="@AccountInfo.css" text="Username:ID">
+               <font>
+                  <Font name="Tw Cen MT Condensed Extra Bold" size="25.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets left="3.0" />
+               </padding>
+            </Label>
+            <Label fx:id="infoFirstname" prefHeight="35.0" prefWidth="201.0" text="Firstname">
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </Label>
+            <Label fx:id="infoLastname" prefHeight="35.0" prefWidth="201.0" text="Lastname">
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </Label>
+            <Label fx:id="infoAccessLevel" prefHeight="35.0" prefWidth="201.0" text="AccountLevel">
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </Label>
+            <HBox maxWidth="1.7976931348623157E308" prefHeight="29.0">
                <children>
-                  <Label fx:id="accountTitle" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="65.0" stylesheets="@AccountInfo.css" text="Username:ID">
-                     <font>
-                        <Font name="Tw Cen MT Condensed Extra Bold" size="25.0" />
-                     </font>
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                     <padding>
-                        <Insets left="3.0" />
-                     </padding>
-                  </Label>
-                  <Label fx:id="infoFirstname" prefHeight="35.0" prefWidth="201.0" text="Firstname">
-                     <padding>
-                        <Insets left="5.0" />
-                     </padding>
-                  </Label>
-                  <Label fx:id="infoLastname" layoutX="11.0" layoutY="76.0" prefHeight="35.0" prefWidth="201.0" text="Lastname">
-                     <padding>
-                        <Insets left="5.0" />
-                     </padding>
-                  </Label>
-                  <Label fx:id="infoAccessLevel" layoutX="11.0" layoutY="111.0" prefHeight="35.0" prefWidth="201.0" text="AccountLevel">
-                     <padding>
-                        <Insets left="5.0" />
-                     </padding>
-                  </Label>
-                  <HBox maxWidth="1.7976931348623157E308" prefHeight="29.0">
-                     <children>
-                        <Button fx:id="newPassword" mnemonicParsing="false" prefHeight="25.0" prefWidth="98.0" text="New Password" />
-                        <Button fx:id="deleteUser" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" text="Delete" />
-                     </children>
-                  </HBox>
-                  <ScrollPane maxWidth="1.7976931348623157E308" prefHeight="334.0">
-                     <content>
-                        <Accordion fx:id="userList" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="331.0" />
-                     </content>
-                  </ScrollPane>
+                  <Button fx:id="newPassword" mnemonicParsing="false" onAction="#resetPassword" prefHeight="25.0" prefWidth="98.0" text="New Password" />
+                  <Button fx:id="deleteUser" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" stylesheets="@DeleteButton.css" text="Delete" />
                </children>
-            </VBox>
+            </HBox>
+            <ScrollPane prefWidth="201.0">
+               <content>
+                  <Accordion fx:id="userList" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="331.0" />
+               </content>
+            </ScrollPane>
          </children>
-      </Pane>
+      </VBox>
    </right>
 </BorderPane>
