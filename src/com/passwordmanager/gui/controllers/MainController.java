@@ -299,6 +299,9 @@ public class MainController
 
         }
     }
+    //help button top panel
+    @FXML
+    private MenuItem aboutMenu;
 
     @FXML
     private void deletePassword(ActionEvent actionEvent) {
@@ -580,5 +583,17 @@ public class MainController
         if (actionEvent.isPrimaryButtonDown()) {
             confirmCheckBox.setSelected(true);
         }
+    }
+
+    public void showAbout(ActionEvent actionEvent)
+    {
+        DialogBox.showInformation("About KeyCrypt",
+                 "Welcome to KeyCrypt Password Manager.\n\n" +
+                          "To enter a new password, select the file option and click new password. Then enter\n" +
+                          "the desired information relating to that password. Once you have entered a password,\n" +
+                          "you may add additional information regarding that password, such as the login, associated URL,\n" +
+                          "and additional notes which could be helpful to the team using the password.\n\n" +
+                          "To logout, select the File option and click logout.\n\n" +
+                          "to view information a specific profile, select the file option and select view profile.");
     }
 }
