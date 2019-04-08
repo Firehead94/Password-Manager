@@ -27,6 +27,7 @@ public class FolderBoxController
     void saveNewFolder(ActionEvent actionEvent)
     {
         if (!title.getText().isEmpty())
+            create = true;
             saveBtn.getScene().getWindow().hide();
     }
     @FXML
