@@ -21,15 +21,21 @@ public class FolderBoxController
     @FXML
     private Button cancelBtn;
 
+    boolean create = true;
+
     @FXML
     void saveNewFolder(ActionEvent actionEvent)
     {
-        saveBtn.getScene().getWindow().hide();
+        if (!title.getText().isEmpty())
+            saveBtn.getScene().getWindow().hide();
     }
     @FXML
     void closeWindow(ActionEvent actionEvent)
     {
+        create = false;
         cancelBtn.getScene().getWindow().hide();
+
+
     }
 
     //returns the value to be saved for later entry into the DB

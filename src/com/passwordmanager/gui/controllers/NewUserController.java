@@ -71,10 +71,9 @@ public class NewUserController {
     @FXML
     private void createUser(ActionEvent actionEvent) {
         User user = null;
-
         if (!passHiddenFld.getText().equals(passHiddenFld2.getText())) {
             noMatch.setText("Passwords Don't Match");
-        } else {
+        } else if (!(passHiddenFld.getText().isEmpty() || firstname.getText().isEmpty() || lastname.getText().isEmpty() || usernameFld.getText().isEmpty())) {
             if (!UserDB.userExists(usernameFld.getText())) {
                 try {
                     String salt = HashPassword.createSalt(128).get();

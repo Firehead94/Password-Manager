@@ -157,7 +157,7 @@ public class MainController
                 pane.setContent(content);
                 userList.getPanes().add(pane);
             }
-        }else {
+        }else if (actionEvent.getSource().getClass() == MenuItem.class) {
             hideProfile();
             ((MenuItem)actionEvent.getSource()).setText("View Profile");
         }
@@ -270,7 +270,7 @@ public class MainController
 
     @FXML
     public void createNewFolder(ActionEvent actionEvent) {
-        boolean created;
+        boolean created = false;
 
         try {
             URL loc = getClass().getClassLoader().getResource(Layouts.FOLDERBOX_FXML);
@@ -282,11 +282,13 @@ public class MainController
             stage3.initModality(Modality.APPLICATION_MODAL);
             stage3.showAndWait();
             FolderBoxController pbController = loader.getController();
-            Folder folder = new Folder(pbController.getTitle());
-            if (treeView.getSelectionModel().getSelectedItem() != null) {
-                folder.setFolder_parent(treeView.getSelectionModel().getSelectedItem().getValue().getFolder_ID());
+            if (pbController.create) {
+                Folder folder = new Folder(pbController.getTitle());
+                if (treeView.getSelectionModel().getSelectedItem() != null) {
+                    folder.setFolder_parent(treeView.getSelectionModel().getSelectedItem().getValue().getFolder_ID());
+                }
+                created = FoldersDB.insertFolder(folder);
             }
-            created = FoldersDB.insertFolder(folder);
             if (created) {
                 Logger.getLogger(MainController.class.getName()).log(Level.INFO, "CREATED");
             } else {
@@ -295,7 +297,7 @@ public class MainController
             buildFolders();
         } catch (Exception e) {
             DialogBox.showError("Error", "There was a problem opening the desired window");
-            Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, "ERROR OPENING FOLDER BOX", e);
+            Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, "ERROR FOLDER BOX", e);
 
         }
     }
