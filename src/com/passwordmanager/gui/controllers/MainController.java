@@ -594,7 +594,7 @@ public class MainController
                           "you may add additional information regarding that password, such as the login, associated URL," +
                           "and additional notes which could be helpful to the team using the password.\n\n" +
                           "To logout, select the File option and click logout.\n\n" +
-                          "to view information a specific profile, select the file option and select view profile.\n\n" +
+                          "to view information a specific profile, select the File option and select view profile.\n\n" +
                           "To create a new folder, select the File option and click new folder. To delete a folder," +
                           "select the corresponding folder and select delete.");
     }
