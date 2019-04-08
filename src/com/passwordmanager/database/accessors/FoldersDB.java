@@ -4,10 +4,7 @@ import com.passwordmanager.database.objects.Folder;
 import com.passwordmanager.utils.DB;
 import com.sun.xml.internal.ws.util.StringUtils;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -253,7 +250,10 @@ public class FoldersDB {
         try {
             ps = connection.prepareStatement(query);
             ps.setString(1, StringUtils.capitalize(folder.getFolder_name()));
-            ps.setInt(2, folder.getFolder_parent());
+            if (folder.getFolder_parent() == 0)
+                ps.setNull(2, Types.INTEGER);
+            else
+                ps.setInt(2, folder.getFolder_parent());
             ps.setString(3, folder.getFolder_password());
             ps.setInt(4, folder.getAccess_level());
             retVal = ps.executeUpdate();

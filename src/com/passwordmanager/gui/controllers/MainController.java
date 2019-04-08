@@ -30,12 +30,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.control.MenuBar;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.*;
 import java.util.logging.Level;
@@ -266,6 +268,37 @@ public class MainController
     @FXML
     private Button deleteBtn;
 
+    @FXML
+    public void createNewFolder(ActionEvent actionEvent) {
+        boolean created;
+
+        try {
+            URL loc = getClass().getClassLoader().getResource(Layouts.FOLDERBOX_FXML);
+            FXMLLoader loader = new FXMLLoader(loc);
+            Parent root2 = loader.load();
+            Stage stage3 = new Stage();
+            stage3.setTitle("New Folder");
+            stage3.setScene(new Scene(root2));
+            stage3.initModality(Modality.APPLICATION_MODAL);
+            stage3.showAndWait();
+            FolderBoxController pbController = loader.getController();
+            Folder folder = new Folder(pbController.getTitle());
+            if (treeView.getSelectionModel().getSelectedItem() != null) {
+                folder.setFolder_parent(treeView.getSelectionModel().getSelectedItem().getValue().getFolder_ID());
+            }
+            created = FoldersDB.insertFolder(folder);
+            if (created) {
+                Logger.getLogger(MainController.class.getName()).log(Level.INFO, "CREATED");
+            } else {
+                Logger.getLogger(MainController.class.getName()).log(Level.WARNING, "NOT CREATED");
+            }
+            buildFolders();
+        } catch (Exception e) {
+            DialogBox.showError("Error", "There was a problem opening the desired window");
+            Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, "ERROR OPENING FOLDER BOX", e);
+
+        }
+    }
 
     @FXML
     private void deletePassword(ActionEvent actionEvent) {
@@ -275,23 +308,58 @@ public class MainController
             toggleInfoPane();
     }
 
+    private void deleteFolder() {
+        ArrayList<Password> pwds = PasswordsDB.getPasswords(DB.FOLDER_ID, selected.getFolder_ID());
+        ArrayList<Folder> folders = FoldersDB.getFolders(DB.FOLDER_PARENT, selected.getFolder_ID());
+        for (Password pwd : pwds) {
+            PasswordsDB.deletePassword(DB.PASSWORD_ID,pwd.getPassword_ID());
+        }
+        for (Folder folder : folders) {
+            pwds = PasswordsDB.getPasswords(DB.FOLDER_ID, folder.getFolder_ID());
+            for (Password pwd : pwds) {
+                PasswordsDB.deletePassword(DB.PASSWORD_ID,pwd.getPassword_ID());
+            }
+            FoldersDB.removeFolder(DB.FOLDER_ID,folder.getFolder_ID());
+        }
+        FoldersDB.removeFolder(DB.FOLDER_ID,selected.getFolder_ID());
+        buildFolders();
+    }
+
     private void buildFolders()
     {
         treeView.setRoot(FolderBuilder.buildTreeView(FoldersDB.getFoldersByAL(user.getAccess_level())));
         treeView.setShowRoot(false);
+        treeView.setOnKeyPressed(e -> {
+            TreeItem<Folder> selectedItem = treeView.getSelectionModel().getSelectedItem();
+            if (selected != null && e.getCode() == KeyCode.DELETE) {
+                try {
+                    selected = selectedItem.getValue();
+                } catch (Exception e2) {
+                    Logger.getLogger(MainController.class.getName()).log(Level.INFO, "DELETING FODER");
+                }
+                deleteFolder();
+            }
+         });
         treeView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         treeView.getSelectionModel().selectedItemProperty().addListener(
                 (ChangeListener) (observable, oldValue, newValue) -> {
                     TreeItem<Folder> selectedItem = (TreeItem<Folder>) newValue;
-                    selected = selectedItem.getValue();
-
+                    try {
+                        selected = selectedItem.getValue();
+                    } catch (Exception e) {
+                        Logger.getLogger(MainController.class.getName()).log(Level.INFO, "REBUILDING FOLDERS");
+                    }
                 showPasswords();
                 });
 
     }
 
     public void showPasswords() {
-        selected = treeView.getSelectionModel().getSelectedItem().getValue();
+        try {
+            selected = treeView.getSelectionModel().getSelectedItem().getValue();
+        }catch (Exception e) {
+            Logger.getLogger(MainController.class.getName()).log(Level.INFO, "SHOWING PASSWORDS");
+        }
         passwordList.getPanes().clear();
         ArrayList<Password> pwdsDB = PasswordsDB.getPasswords(DB.FOLDER_ID, selected.getFolder_ID());
 

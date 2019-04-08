@@ -36,6 +36,7 @@
             <items>
                   <MenuItem fx:id="viewProfile" mnemonicParsing="false" onAction="#viewMyProfile" text="View Profile" />
               <MenuItem fx:id="newPasswordMenu" mnemonicParsing="false" onAction="#createNewPassword" text="New Password" />
+                  <MenuItem fx:id="newFolder" mnemonicParsing="false" onAction="#createNewFolder" text="New Folder" />
               <MenuItem fx:id="gotoLogin" mnemonicParsing="false" onAction="#logout" text="Logout" />
               <MenuItem fx:id="exit" mnemonicParsing="false" onAction="#closeApp" text="Close" />
             </items>

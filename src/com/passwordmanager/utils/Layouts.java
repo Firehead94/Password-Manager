@@ -13,6 +13,9 @@ public class Layouts {
     // Password Enter Dialog Box
     public static final String PASSWORDBOX_FXML = LAYOUT_LOC + "/passwordbox/PasswordBox.fxml";
 
+    // Folder Enter Dialog Box
+    public static final String FOLDERBOX_FXML = LAYOUT_LOC + "/passwordbox/FolderBox.fxml";
+
     // New User Screen
     public static final String NEWUSER_FXML = LAYOUT_LOC + "/newuser/NewUser.fxml";
 
